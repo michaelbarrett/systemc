@@ -12,8 +12,8 @@ A simple communications interface
 ## cpu
 A RISC CPU implementation
 
-##seq_det
+## seq_det
 A sequence detector for value "1011"
 
-##two_counters
+## two_counters
 A variable countdown timer using two counters
