@@ -1,0 +1,10 @@
+//alu.cpp
+//
+#include "alu.h"
+
+void alu :: prc() {
+  switch(opcode.read()) { //based on the opcode perform a function
+  case 0:
+    
+  }
+}

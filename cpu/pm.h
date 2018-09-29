@@ -1,0 +1,20 @@
+//pm.h
+//PM ~ Program Memory module
+#include "systemc.h"
+
+//main distinction: no d_in, no rw inp, since read only after program initialization
+
+SC_MODULE(program_memory) {
+  sc_in <int> addr; //address
+  sc_in <bool> en, clock; //enable, clock
+  sc_out <int> d_out; //data output
+  int* _data; //local variable
+
+  SC_HAS_PROCESS(program_memory);
+  SC_HAS_PROCESS(prc);
+
+ program_memory(sc_module_name name, int* data) : sc_module(name),  _data(data) {
+    SC_METHOD(prc);
+    sensitive << clock.pos(); //sequential?
+  }
+}
