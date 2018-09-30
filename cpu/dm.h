@@ -2,12 +2,6 @@
 //DM ~ Data Memory module ~ similar (same?) to program memory module
 #include "systemc.h"
 
-//memory size variable & checks?
-//should PM use the same module?
-//is an int a word? is that ok to use for words without checks?
-//how do we check the size of the initial data input?
-//does _data have a word size?
-
 // is RF the same as memory but with two inputs and two outputs? other differences?
 
 const int WORD_SIZE = 16;

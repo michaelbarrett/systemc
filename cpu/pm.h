@@ -2,7 +2,7 @@
 //PM ~ Program Memory module
 #include "systemc.h"
 
-//main distinction: no d_in, no rw inp, since read only after program initialization
+//there is no d_in, and no read/write input, since program memory is read only; data is passed in during initialization.
 
 SC_MODULE(program_memory) {
   sc_in <int> addr; //address

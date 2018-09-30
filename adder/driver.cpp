@@ -1,7 +1,5 @@
-//=================================
-// Function: Driver
-// File Name: driver.cpp
-//=================================
+// Driver
+// driver.cpp
 #include "driver.h"
 
 void driver :: prc_driver() {

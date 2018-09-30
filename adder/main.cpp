@@ -1,7 +1,5 @@
-//=================================
 //Function: Main Program
 //File Name: main.cpp
-//=================================
 #include "driver.h"
 #include "monitor.h"
 #include "full_adder.h"

@@ -1,7 +1,7 @@
-//=================================
-// Function: Driver
-// File Name: driver.h
-//=================================
+
+// Driver
+// driver.h
+
 #include "systemc.h"
 
 SC_MODULE (driver) {
