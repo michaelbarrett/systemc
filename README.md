@@ -1,7 +1,5 @@
 # systemc
-systemc toy programs
-
-TODO: Add driver.cpp to sequence detector and communications interface
+ese 356
 
 ## adder
 A simple combinational full adder
