@@ -34,7 +34,7 @@ SC_MODULE(alu) {
   SC_HAS_PROCESS(alu);
 
   alu(sc_module_name name) : sc_module(name) {
-    SC_METHOD(prc_read_eval);
+    SC_METHOD(prc);
     sensitive << with_twos << use_imm << set_oup_reg << add << and_instr << or_instr << xor_instr << mov << lsh << ash << imm << r_src << r_dest;
   }
 }
