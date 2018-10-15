@@ -30,7 +30,6 @@ SC_MODULE(alu) {
   int data_src;
   int data_res;
 
-  SC_HAS_PROCESS(prc);
   SC_HAS_PROCESS(alu);
 
   alu(sc_module_name name) : sc_module(name) {

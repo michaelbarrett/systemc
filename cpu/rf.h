@@ -16,8 +16,6 @@ SC_MODULE(register_file) {
   int* _data;
 
   SC_HAS_PROCESS(register_file);
-  SC_HAS_PROCESS(prc_read);
-  SC_HAS_PROCESS(prc_write);
 
  register_file(sc_module_name name, int* data) : sc_module(name), _data(data) {
     SC_METHOD(prc_read);

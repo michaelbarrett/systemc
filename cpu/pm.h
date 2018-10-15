@@ -11,7 +11,6 @@ SC_MODULE(program_memory) {
   int* _data; //local variable
 
   SC_HAS_PROCESS(program_memory);
-  SC_HAS_PROCESS(prc);
 
  program_memory(sc_module_name name, int* data) : sc_module(name),  _data(data) {
     SC_METHOD(prc);
