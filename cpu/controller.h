@@ -13,6 +13,19 @@ SC_MODULE(controller) {
   sc_in <int> instr_from_pm;
   sc_out <int> addr_to_pm;
 
+  //to and from ALU (control signals)
+  sc_out <bool> with_twos_to_alu;
+  sc_out <bool> use_imm_to_alu;
+  sc_out <bool> set_oup_reg_to_alu;
+  sc_out <bool> add_to_alu;
+  sc_out <bool> and_instr_to_alu;
+  sc_out <bool> or_instr_to_alu;
+  sc_out <bool> xor_instr_to_alu;
+  sc_out <bool> mov_instr_to_alu;
+  sc_out <bool> lsh_instr_to_alu;
+  sc_out <bool> ash_instr_to_alu;
+  sc_out <bool> en_to_alu;
+
   int ir = 0; //instruction register (init = 0)
   int pc = 0; //program counter (init = 0)
 

@@ -3,6 +3,7 @@
 #include "systemc.h"
 
 SC_MODULE(alu) {
+  sc_in <bool> en;
   //control signals, from controller mux logic
   sc_in <bool> with_twos; //if asserted, do two's complement on inp Rsrc
   sc_in <bool> use_imm; //if asserted, imm val is used rather than Rsrc
