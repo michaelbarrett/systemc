@@ -9,6 +9,13 @@ SC_MODULE(controller) {
   sc_in <bool> c_flag;
   sc_in <bool> l_flag;
 
+  //to and from PM
+  sc_in <int> instr_from_pm;
+  sc_out <int> addr_to_pm;
+
+  int ir = 0; //instruction register (init = 0)
+  int pc = 0; //program counter (init = 0)
+
   SC_HAS_PROCESS(controller);
 
  controller(sc_module_name name) : sc_module(name) {
