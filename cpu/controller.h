@@ -33,15 +33,19 @@ SC_MODULE(controller) {
   sc_out <int> rs_to_alu;
   sc_out <int> imm_to_alu;
 
-  //to and from DM
+  //to and from DM ~ rw
   sc_in <int> data_from_dm;
   sc_out <int> addr_to_dm;
   sc_out <int> d_in_to_dm;
+  sc_out <int> rw_to_dm;
 
-  //to and from RF
-  sc_in <int> data_from_rf;
-  sc_out <int> rs_to_rf;
-  sc_out <int> rd_to_rf;
+  //to and from RF ~ rw
+  sc_in <int> data1_from_rf;
+  sc_int <int> data2_from_rf;
+  sc_out <int> addr1_to_rf;
+  sc_out <int> addr2_to_rf;
+  sc_out <int> d_in_to_rf;
+  sc_out <int> rw_to_rf;
 
   int ir = 0; //instruction register (init = 0)
   int pc = 0; //program counter (init = 0)

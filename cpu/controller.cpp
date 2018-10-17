@@ -5,7 +5,7 @@
 //IF, instruction fetch ~ reads from program memory from PC address
 //and places instruction into IR
 void prc_if :: controller() {
-  //pm has int addr, out d_out
+  //pm has int addr, out d_out; pm is read-only
   addr_to_pm.write(pc); //set the address of the PM
   //...make sure the output has been set? should this be comb in pm?
   ir = instr_from_pm.read(); //read to ir from pm
@@ -26,6 +26,8 @@ void controller :: prc_rd() {
   ash_instr_to_alu.write(false);
   en_to_alu.write(false);
 
+  opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
+  op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
   switch (opcode) {
   case 0b0000: //0000
     if (op_ext == 0b0101){//ADD
@@ -116,7 +118,7 @@ void controller :: prc_rd() {
       //This is handled by the PRC_MEM stage
     }
     else if (op_ext == 0b0100){ //STOR
-				//This is handled by the PRC_MEM stage
+      //This is handled by the PRC_MEM stage
     }
     break;
   case 0b1100: //BCOND
@@ -125,7 +127,7 @@ void controller :: prc_rd() {
   }
 }
 
-//EXE, ALU execute ~ sets the inputs the the ALU so that the operation is performed
+//EXE, ALU execute ~ sets the inputs to the ALU so that the operation is performed
 void prc_exe :: controller() {
   en_to_alu.write(true);
 }
@@ -135,29 +137,39 @@ void prc_exe :: controller() {
 void prc_mem :: controller() {
   int opcode, r_data, op_ext, r_addr;
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
-  r_data = ir & 0x0F00; // ir & 0000 1111 0000 0000
+  regist = ir & 0x0F00; // ir & 0000 1111 0000 0000
   op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
   r_addr = ir & 0x000F; // ir & 0000 0000 0000 1111
   if (opcode == 0x4) { //0100 ~ load or store
-    if (op_ext == 0x0) { //load to dm
+    if (op_ext == 0x0) { //load from dm into rf
+      rw_to_dm.write(false); //reading from dm into rf
       addr_to_dm.write(r_addr);
-      d_in_to_dm.write(r_data);
-    }
-    else if (op_ext == 0x4) { //store from dm in reg file
-      addr_to_rf.write(r_addr);
+      rw_to_rf.write(true); //writing to rf
+      addr1_to_rf.write(regist);
       d_in_to_rf.write(data_from_dm.read()); //store read data in rf
+    }
+    else if (op_ext == 0x4) { //store from rf into dm
+      rw_to_rf.write(false); //reading from rf
+      addr1_to_rf.write(regist);
+      //now write this to dm
+      rw_to_dm.write(true); //writing to dm
+      addr_to_dm.write(r_addr);
+      d_in_to_dm.write(data1_from_rf.read()); //store read data in dm
     }
   }
 }
 
-//WB, write ~ writes the result to the regfile rd destination
+//WB, write ~ writes the result to the regfile rd destination ~ for ALU operations
 void prc_wb :: controller() {
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
   r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 gets reg destination
   if (opcode != 0x4 &&   //if not load, store,
       opcode != 0xC &&   //branch,
-      opcode != 0x8) {   //or jump -- then write to rdest
+      opcode != 0xB &&   //cmp,
+      opcode != 0x8) {   //or jump -- then write to rdest from alu result
+    rw_to_rf.write(true); //writing to rf
     addr_to_rf.write(r_dest);
-    d_in_to_dm.write(result_from_alu.read());
+    d_in_to_rf.write(result_from_alu.read());
   }
+  pc++; //increment program counter so the next instr can be read and operated on
 }
