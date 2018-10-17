@@ -15,6 +15,9 @@ SC_MODULE(register_file) {
   sc_out <int> d_out1, d_out2; //data output for Rdest and Rsrc
   int* _data;
 
+  void prc_read();
+  void prc_write();
+  
   SC_HAS_PROCESS(register_file);
 
  register_file(sc_module_name name, int* data) : sc_module(name), _data(data) {
@@ -24,5 +27,4 @@ SC_MODULE(register_file) {
     SC_METHOD(prc_write);
     sensitive << clock.neg();
   }
-}
-
+};

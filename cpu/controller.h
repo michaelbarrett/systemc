@@ -41,7 +41,7 @@ SC_MODULE(controller) {
 
   //to and from RF ~ rw
   sc_in <int> data1_from_rf;
-  sc_int <int> data2_from_rf;
+  sc_in <int> data2_from_rf;
   sc_out <int> addr1_to_rf;
   sc_out <int> addr2_to_rf;
   sc_out <int> d_in_to_rf;
@@ -52,6 +52,12 @@ SC_MODULE(controller) {
   int control = 0;
 
   int mem_result; //result of memory op
+
+  void prc_if();
+  void prc_rd();
+  void prc_exe();
+  void prc_mem();
+  void prc_wb();
   
   SC_HAS_PROCESS(controller);
 
@@ -67,4 +73,4 @@ SC_MODULE(controller) {
     SC_METHOD(prc_wb);
     sensitive << clock.neg();
   }
-}
+};

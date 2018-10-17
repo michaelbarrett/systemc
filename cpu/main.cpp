@@ -1,9 +1,9 @@
 //main.cpp
-#include "driver.h"
-#include "dm.h"
 #include "pm.h"
-#include "controller.h"
+#include "dm.h"
+#include "rf.h"
 #include "alu.h"
+#include "controller.h"
 
 int sc_main(int argc, char* argv[]) {
   //ports decl (communication)
@@ -22,12 +22,13 @@ int sc_main(int argc, char* argv[]) {
   //clock to feed modules
   sc_clock c1 ("c1", 5, SC_NS);
 
-  //module instantiation
+  //parameters for paramaterized modules
   int programMemory[256] = { /* Program here */
 			    0b0000000101010010} ; //add r1, r2
   int dataMemory[256] = { 0 };
   int registerFile[256] = { 0, 1, 2 };
 
+  //module instantiation
   pm pm1("pm1", &programMemory); //PM
   dm dm1("dm1", &dataMemory); //DM
   rf rf1("rf1", &registerFile); //RF
