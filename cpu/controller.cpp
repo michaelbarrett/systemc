@@ -27,7 +27,10 @@ void controller :: prc_rd() {
   en_to_alu.write(false);
 
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
+  r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 -> alu
   op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
+  r_src  = ir & 0x000F; // ir & 0000 0000 0000 1111 -> alu
+  imm    = ir & 0x00FF; // ir & 0000 0000 1111 1111 -> alu
   switch (opcode) {
   case 0b0000: //0000
     if (op_ext == 0b0101){//ADD
@@ -122,14 +125,25 @@ void controller :: prc_rd() {
     }
     break;
   case 0b1100: //BCOND
-
     break;
   }
 }
 
 //EXE, ALU execute ~ sets the inputs to the ALU so that the operation is performed
 void prc_exe :: controller() {
+  r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 -> alu
+  r_src  = ir & 0x000F; // ir & 0000 0000 0000 1111 -> alu
+  imm    = ir & 0x00FF; // ir & 0000 0000 1111 1111 -> alu
+  
   en_to_alu.write(true);
+  //read r_dest and r_src from rf
+  rw_to_rf.write(false); //reading from rf
+  addr1_to_rf.write(r_dest);
+  addr2_to_rf.write(r_src);
+  //writing to alu
+  rd_to_alu.write(data1_from_rf.read());
+  rs_to_alu.write(data2_from_rf.read());
+  imm_to_alu.write(imm);
 }
 
 //MEM, memory access ~ loads data from memory to regfile if op is load

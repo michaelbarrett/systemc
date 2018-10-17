@@ -7,7 +7,7 @@
 
 int sc_main(int argc, char* argv[]) {
   //ports decl (communication)
-  sc_signal <bool> t_z_flag, t_n_flag, t_c_flag, t_l_flag //flags
+  sc_signal <bool> t_z_flag, t_n_flag, t_c_flag, t_l_flag; //flags
   sc_signal <bool> t_instr_from_pm, t_addr_to_pm; //pm-to-ctrl
   sc_signal <bool> t_with_twos_to_alu, t_use_imm_to_alu, t_set_oup_reg_to_alu, t_add_to_alu, t_and_instr_to_alu, t_or_instr_to_alu, t_xor_instr_to_alu, t_mov_to_alu, t_lsh_to_alu, t_ash_to_alu, t_en_to_alu; //ctrl-to-alu control
   sc_signal <bool> t_result_from_alu, t_rd_to_alu, t_rs_to_alu, t_imm_to_alu; //alu
@@ -17,9 +17,10 @@ int sc_main(int argc, char* argv[]) {
   sc_clock c1 ("c1", 5, SC_NS);
 
   //module instantiation
-  int programMemory[256] = { /* Program here */ } ;
+  int programMemory[256] = { /* Program here */
+			    0b0000000101010010} ; //add r1, r2
   int dataMemory[256] = { 0 };
-  int registerFile[256] = { 0 };
+  int registerFile[256] = { 0, 1, 2 };
 
   pm pm1("pm1", &programMemory); //PM
   dm dm1("dm1", &dataMemory); //DM
