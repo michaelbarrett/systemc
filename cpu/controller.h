@@ -4,6 +4,7 @@
 
 SC_MODULE(controller) {
   sc_in <bool> clock;
+  //flag inputs needed for conditional branch operation
   sc_in <bool> z_flag;
   sc_in <bool> n_flag;
   sc_in <bool> c_flag;
@@ -21,9 +22,9 @@ SC_MODULE(controller) {
   sc_out <bool> and_instr_to_alu;
   sc_out <bool> or_instr_to_alu;
   sc_out <bool> xor_instr_to_alu;
-  sc_out <bool> mov_instr_to_alu;
-  sc_out <bool> lsh_instr_to_alu;
-  sc_out <bool> ash_instr_to_alu;
+  sc_out <bool> mov_to_alu;
+  sc_out <bool> lsh_to_alu;
+  sc_out <bool> ash_to_alu;
   sc_out <bool> en_to_alu;
 
   //to and from ALU (data)

@@ -13,25 +13,116 @@ void prc_if :: controller() {
 
 //RD, decode ~ looks at the opcode of the instruction in IR and translates
 //to ALU control signals which are sent to ALU
-void prc_rd :: controller() {
-  //get the opcode from ir ~ first four bits, 15:12 from all 15:0
-  int opcode, op_ext;
-  opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
-  op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
-  //Large if/switch statement goes here. Translate the opcode into
-  //control signals to be sent to the ALU.
+void controller :: prc_rd() {
   with_twos_to_alu.write(false);
-  
+  use_imm_to_alu.write(false);
+  set_oup_reg_to_alu.write(true);
+  add_to_alu.write(false);
+  and_instr_to_alu.write(false);
+  or_instr_to_alu.write(false);
+  xor_instr_to_alu.write(false);
+  mov_instr_to_alu.write(false);
+  lsh_instr_to_alu.write(false);
+  ash_instr_to_alu.write(false);
+  en_to_alu.write(false);
+
   switch (opcode) {
-  case 0x0: //0000
-    if (op_ext == 0x5) { //0101
-      with_twos_to_alu.write(false);
-      use_imm_to_alu.write(false); //...
-      //set rd to alu, rs to alu
+  case 0b0000: //0000
+    if (op_ext == 0b0101){//ADD
+      add_to_alu.write(true);
+    }
+    else if (op_ext == 0b1001){//SUB
+      add_to_alu.write(true);
+      with_twos_to_alu.write(true);
+    }	
+    else if (op_ext == 0b1011){//CMP
+      add_to_alu.write(true);
+      with_twos_to_alu.write(true);
+      set_oup_reg_to_alu.write(false);
+    }
+    else if (op_ext == 0b0001){//AND
+      and_instr_to_alu.write(true);
+    }
+    else if (op_ext == 0b0010){//OR
+      or_instr_to_alu.write(true);
+    }
+    else if (op_ext == 0b0011){//XOR
+      xor_instr_to_alu.write(true);
+    }
+    else if (op_ext == 0b1101){//MOV
+      mov_instr_to_alu.write(true);
     }
     break;
+  case 0b0101: //ADDI
+    add_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+
+  case 0b1001: //SUBI
+    add_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    with_twos_to_alu.write(true);
+    break;
+
+  case 0b1011: //CMPI
+    add_to_alu.write(true);
+    with_twos_to_alu.write(true);
+    use_imm_to_alu.write(true);	
+    set_oup_reg_to_alu.write(false);
+    break;
+
+  case 0b0001: //ANDI
+    and_instr_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+
+  case 0b0010: //ORI
+    or_instr_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+
+  case 0b0011: //XORI
+    xor_instr_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+
+  case 0b1101: //MOVI
+    mov_instr_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+
+  case 0b1000:
+    if (op_ext == 0b0100){ //LSH
+      lsh_instr_to_alu.write(true);
+    }
+    else if (op_ext == 0b0000 || opo_ext == 0b0001){ //LSHI
+      lsh_instr_to_alu.write(true);
+      use_imm_to_alu.write(true);
+    }
+    else if (op_ext == 0b0110){ //ASH
+      ash_instr_to_alu.write(true);
+    }
+    else if (op_ext == 0b0010 || 0b0011){ //ASHI
+      ash_instr_to_alu.write(true);
+      use_imm_to_alu.write(true);
+    }
+    break;
+  case 0b1111: //LUI
+    lsh_instr_to_alu.write(true);
+    use_imm_to_alu.write(true);
+    break;
+  case 0b0100:
+    if (op_ext == 0b0000){ //LOAD
+      //This is handled by the PRC_MEM stage
+    }
+    else if (op_ext == 0b0100){ //STOR
+				//This is handled by the PRC_MEM stage
+    }
+    break;
+  case 0b1100: //BCOND
+
+    break;
   }
-  //...
 }
 
 //EXE, ALU execute ~ sets the inputs the the ALU so that the operation is performed
