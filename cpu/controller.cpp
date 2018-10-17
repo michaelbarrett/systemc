@@ -165,7 +165,7 @@ void controller :: prc_mem() {
       d_in_to_rf.write(data_from_dm.read()); //store read data in rf
     }
     else if (op_ext == 0x4) { //store from rf into dm
-      rw_to_rf.write(false); //reading from rf
+      rw_to_rf.write(false); //reading from rf (using addr1, arbitrary)
       addr1_to_rf.write(regist);
       //now write this to dm
       rw_to_dm.write(true); //writing to dm
