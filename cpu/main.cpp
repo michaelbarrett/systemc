@@ -12,9 +12,11 @@ int sc_main(int argc, char* argv[]) {
   //pm
   sc_signal <int> t_instr_from_pm, t_addr_to_pm;
   //dm
-  sc_signal <bool> t_data_from_dm, t_addr_to_dm, t_d_in_to_dm, t_rw_to_dm;
+  sc_signal <int> t_data_from_dm, t_addr_to_dm, t_d_in_to_dm;
+  sc_signal <bool> t_rw_to_dm;
   //rf
-  sc_signal <bool> t_data1_from_rf, t_data2_from_rf, t_addr1_to_rf, t_addr2_to_rf, t_d_in_to_rf, t_rw_to_rf;
+  sc_signal <int> t_data1_from_rf, t_data2_from_rf, t_addr1_to_rf, t_addr2_to_rf, t_d_in_to_rf;
+  sc_signal <bool> t_rw_to_rf;
   //to alu control
   sc_signal <bool> t_with_twos_to_alu, t_use_imm_to_alu, t_set_oup_reg_to_alu, t_add_to_alu, t_and_instr_to_alu, t_or_instr_to_alu, t_xor_instr_to_alu, t_mov_to_alu, t_lsh_to_alu, t_ash_to_alu, t_en_to_alu;
   //alu data
@@ -29,9 +31,9 @@ int sc_main(int argc, char* argv[]) {
   int registerFile[256] = { 0, 1, 2 };
 
   //module instantiation
-  pm pm1("pm1", &programMemory); //PM
-  dm dm1("dm1", &dataMemory); //DM
-  rf rf1("rf1", &registerFile); //RF
+  program_memory pm1("pm1", &programMemory[0]); //PM
+  data_memory dm1("dm1", &dataMemory[0]); //DM
+  register_file rf1("rf1", &registerFile[0]); //RF
   alu alu1("alu1"); //ALU
   controller controller1("controller1"); //Controller
 
@@ -45,10 +47,10 @@ int sc_main(int argc, char* argv[]) {
   rf1.clock(c1);
   controller1.clock(c1);
   //PM
-  pm1.addr(t_addr_topm);
+  pm1.addr(t_addr_to_pm);
   pm1.d_out(t_instr_from_pm);
   //DM
-  dm1.rw(t_rw_to_dm); //rw should be controlled!!
+  dm1.rw(t_rw_to_dm);
   dm1.d_in(t_d_in_to_dm);
   dm1.addr(t_addr_to_dm);
   dm1.d_out(t_data_from_dm);

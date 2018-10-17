@@ -28,23 +28,23 @@ void alu :: prc() {
       else if (data_src < 0 & data_src < 15) { data_res >> data_src; }
     }
 
-    //set flags
-    //PSR: program status register
-    //Z (zero) flag, N (negative), C (carry out), L (lower) flags
-    if (data_res.read() == 0) { z_flag.write(true); }
-    else { z_flag.write(false); }
-    //N (negative) flag
-    if (data_res.read() < 0) { n_flag.write(true); }
-    else { n_flag.write(false); }
-    //C (carry out) flag
-    if (data_res.read() > 256) { c_flag.write(true); }
-    else { c_flag.write(false); }
-    //L (lower) flag
-    if (data_res.read() < 0) { l_flag.write(true) }
-    else { l_flag.write(false); }
-  
     //set output register if set_oup_reg enabled
     if (set_oup_reg) { result.write(data_res); }
 
   }
+
+    //set flags
+    //PSR: program status register
+    //Z (zero) flag, N (negative), C (carry out), L (lower) flags
+    if (data_res == 0) { z_flag.write(true); }
+    else { z_flag.write(false); }
+    //N (negative) flag
+    if (data_res < 0) { n_flag.write(true); }
+    else { n_flag.write(false); }
+    //C (carry out) flag
+    if (data_res > 256) { c_flag.write(true); }
+    else { c_flag.write(false); }
+    //L (lower) flag
+    if (data_res < 0) { l_flag.write(true); }
+    else { l_flag.write(false); }
 }

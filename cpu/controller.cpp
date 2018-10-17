@@ -4,7 +4,7 @@
 
 //IF, instruction fetch ~ reads from program memory from PC address
 //and places instruction into IR
-void prc_if :: controller() {
+void controller :: prc_if() {
   //pm has int addr, out d_out; pm is read-only
   addr_to_pm.write(pc); //set the address of the PM
   //...make sure the output has been set? should this be comb in pm?
@@ -21,11 +21,12 @@ void controller :: prc_rd() {
   and_instr_to_alu.write(false);
   or_instr_to_alu.write(false);
   xor_instr_to_alu.write(false);
-  mov_instr_to_alu.write(false);
-  lsh_instr_to_alu.write(false);
-  ash_instr_to_alu.write(false);
+  mov_to_alu.write(false);
+  lsh_to_alu.write(false);
+  ash_to_alu.write(false);
   en_to_alu.write(false);
 
+  int opcode, r_dest, op_ext, r_src, imm;
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
   r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 -> alu
   op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
@@ -55,7 +56,7 @@ void controller :: prc_rd() {
       xor_instr_to_alu.write(true);
     }
     else if (op_ext == 0b1101){//MOV
-      mov_instr_to_alu.write(true);
+      mov_to_alu.write(true);
     }
     break;
   case 0b0101: //ADDI
@@ -92,28 +93,28 @@ void controller :: prc_rd() {
     break;
 
   case 0b1101: //MOVI
-    mov_instr_to_alu.write(true);
+    mov_to_alu.write(true);
     use_imm_to_alu.write(true);
     break;
 
   case 0b1000:
     if (op_ext == 0b0100){ //LSH
-      lsh_instr_to_alu.write(true);
+      lsh_to_alu.write(true);
     }
-    else if (op_ext == 0b0000 || opo_ext == 0b0001){ //LSHI
-      lsh_instr_to_alu.write(true);
+    else if (op_ext == 0b0000 || op_ext == 0b0001){ //LSHI
+      lsh_to_alu.write(true);
       use_imm_to_alu.write(true);
     }
     else if (op_ext == 0b0110){ //ASH
-      ash_instr_to_alu.write(true);
+      ash_to_alu.write(true);
     }
     else if (op_ext == 0b0010 || 0b0011){ //ASHI
-      ash_instr_to_alu.write(true);
+      ash_to_alu.write(true);
       use_imm_to_alu.write(true);
     }
     break;
   case 0b1111: //LUI
-    lsh_instr_to_alu.write(true);
+    lsh_to_alu.write(true);
     use_imm_to_alu.write(true);
     break;
   case 0b0100:
@@ -130,7 +131,8 @@ void controller :: prc_rd() {
 }
 
 //EXE, ALU execute ~ sets the inputs to the ALU so that the operation is performed
-void prc_exe :: controller() {
+void controller :: prc_exe() {
+  int r_dest, r_src, imm;
   r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 -> alu
   r_src  = ir & 0x000F; // ir & 0000 0000 0000 1111 -> alu
   imm    = ir & 0x00FF; // ir & 0000 0000 1111 1111 -> alu
@@ -148,8 +150,8 @@ void prc_exe :: controller() {
 
 //MEM, memory access ~ loads data from memory to regfile if op is load
 //or stores data from regfile to memory if op is store
-void prc_mem :: controller() {
-  int opcode, r_data, op_ext, r_addr;
+void controller :: prc_mem() {
+  int opcode, regist, op_ext, r_addr;
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
   regist = ir & 0x0F00; // ir & 0000 1111 0000 0000
   op_ext = ir & 0x00F0; // ir & 0000 0000 1111 0000
@@ -174,7 +176,8 @@ void prc_mem :: controller() {
 }
 
 //WB, write ~ writes the result to the regfile rd destination ~ for ALU operations
-void prc_wb :: controller() {
+void controller :: prc_wb() {
+  int opcode, r_dest;
   opcode = ir & 0xF000; // ir & 1111 0000 0000 0000 gets opcode
   r_dest = ir & 0x0F00; // ir & 0000 1111 0000 0000 gets reg destination
   if (opcode != 0x4 &&   //if not load, store,
@@ -182,7 +185,7 @@ void prc_wb :: controller() {
       opcode != 0xB &&   //cmp,
       opcode != 0x8) {   //or jump -- then write to rdest from alu result
     rw_to_rf.write(true); //writing to rf
-    addr_to_rf.write(r_dest);
+    addr1_to_rf.write(r_dest);
     d_in_to_rf.write(result_from_alu.read());
   }
   pc++; //increment program counter so the next instr can be read and operated on
