@@ -4,7 +4,7 @@
 void register_file :: prc_read() {
 //if enabled and reading -- read both registers from both addresses
   if (en & !rw) {
-    if (addr1.read() < MEM_SIZE & addr2.read() < MEM_SIZE) {
+    if (addr1.read() < MEM_SIZE_RF & addr2.read() < MEM_SIZE_RF) {
       d_out1.write(_data[addr1.read()]);
       d_out2.write(_data[addr2.read()]);
     }
@@ -18,7 +18,7 @@ void register_file :: prc_read() {
 void register_file :: prc_write() {
   //if enabled and writing -- use addr1 for writing in RF
   if (en & rw) {
-    if (addr1.read() < MEM_SIZE) {
+    if (addr1.read() < MEM_SIZE_RF) {
       _data[addr1.read()] = d_in;
     }
     else {

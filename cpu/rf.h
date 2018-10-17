@@ -2,6 +2,8 @@
 //RF ~ Register File module
 #include "systemc.h"
 
+const int MEM_SIZE_RF = 256;
+
 //a reg file is like a DM with 2 inputs and 2 outputs
 
 //we are using 4-bit addressing, so we have registers $r0 to $r15

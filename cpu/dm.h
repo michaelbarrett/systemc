@@ -2,11 +2,7 @@
 //DM ~ Data Memory module ~ similar (same?) to program memory module
 #include "systemc.h"
 
-// is RF the same as memory but with two inputs and two outputs? other differences?
-
-const int WORD_SIZE = 16;
-const int ADDR_SIZE = 8;
-const int MEM_SIZE = 256;
+const int MEM_SIZE_DM = 256;
 
 SC_MODULE(data_memory) {
   sc_in <int> d_in; //data input

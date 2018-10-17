@@ -2,6 +2,8 @@
 //PM ~ Program Memory module
 #include "systemc.h"
 
+const int MEM_SIZE_PM = 256;
+
 //there is no d_in, and no read/write input, since program memory is read only; data is passed in during initialization.
 
 SC_MODULE(program_memory) {
