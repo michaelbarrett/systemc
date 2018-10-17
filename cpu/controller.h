@@ -49,6 +49,7 @@ SC_MODULE(controller) {
 
   int ir = 0; //instruction register (init = 0)
   int pc = 0; //program counter (init = 0)
+  int control = 0;
 
   int mem_result; //result of memory op
   

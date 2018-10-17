@@ -7,12 +7,18 @@
 
 int sc_main(int argc, char* argv[]) {
   //ports decl (communication)
-  sc_signal <bool> t_z_flag, t_n_flag, t_c_flag, t_l_flag; //flags
-  sc_signal <bool> t_instr_from_pm, t_addr_to_pm; //pm-to-ctrl
-  sc_signal <bool> t_with_twos_to_alu, t_use_imm_to_alu, t_set_oup_reg_to_alu, t_add_to_alu, t_and_instr_to_alu, t_or_instr_to_alu, t_xor_instr_to_alu, t_mov_to_alu, t_lsh_to_alu, t_ash_to_alu, t_en_to_alu; //ctrl-to-alu control
-  sc_signal <bool> t_result_from_alu, t_rd_to_alu, t_rs_to_alu, t_imm_to_alu; //alu
-  sc_signal <bool> t_data_from_dm, t_addr_to_dm, t_d_in_to_dm; //ctrl-to-dm
-  sc_signal <bool> t_data_from_rf, t_rs_to_rf, t_rd_to_rf; //ctrl-to-rf
+  //flags
+  sc_signal <bool> t_z_flag, t_n_flag, t_c_flag, t_l_flag;
+  //pm
+  sc_signal <int> t_instr_from_pm, t_addr_to_pm;
+  //dm
+  sc_signal <bool> t_data_from_dm, t_addr_to_dm, t_d_in_to_dm, t_rw_to_dm;
+  //rf
+  sc_signal <bool> t_data1_from_rf, t_data2_from_rf, t_addr1_to_rf, t_addr2_to_rf, t_d_in_to_rf, t_rw_to_rf;
+  //to alu control
+  sc_signal <bool> t_with_twos_to_alu, t_use_imm_to_alu, t_set_oup_reg_to_alu, t_add_to_alu, t_and_instr_to_alu, t_or_instr_to_alu, t_xor_instr_to_alu, t_mov_to_alu, t_lsh_to_alu, t_ash_to_alu, t_en_to_alu;
+  //alu data
+  sc_signal <int> t_result_from_alu, t_rd_to_alu, t_rs_to_alu, t_imm_to_alu;
   //clock to feed modules
   sc_clock c1 ("c1", 5, SC_NS);
 
@@ -32,21 +38,26 @@ int sc_main(int argc, char* argv[]) {
   sc_trace_file *tfile = sc_create_vcd_trace_file("communications");
   
   //association
+  //clock all but ALU
+  pm1.clock(c1);
+  dm1.clock(c1);
+  rf1.clock(c1);
+  controller1.clock(c1);
   //PM
-  pm1.addr(t_addr_pm);
-  pm1.d_out(t_instr_pm);
+  pm1.addr(t_addr_topm);
+  pm1.d_out(t_instr_from_pm);
   //DM
-  dm1.rw(); //rw should be controlled!!
+  dm1.rw(t_rw_to_dm); //rw should be controlled!!
   dm1.d_in(t_d_in_to_dm);
   dm1.addr(t_addr_to_dm);
-  dm1.d_ou(t_data_from_dm);
-  //RF (are we setting these correctly?)
-  rf1.rw(); //rw should be controlled!!
-  rf1.addr1(t_rd_to_rf);
-  rf1.addr2(t_rs_to_rf);
-  rf1.d_in(t_result_from_alu); //??
-  rf1.d_out1(t_data_from_rf);
-  rf1.d_out2(); //!!
+  dm1.d_out(t_data_from_dm);
+  //RF
+  rf1.rw(t_rw_to_rf);
+  rf1.addr1(t_addr1_to_rf);
+  rf1.addr2(t_addr2_to_rf);
+  rf1.d_in(t_d_in_to_rf);
+  rf1.d_out1(t_data1_from_rf);
+  rf1.d_out2(d_data2_from_rf);
   //ALU //control sigs
   alu1.with_twos(t_with_twos_to_alu);
   alu1.use_imm(t_use_imm_to_alu);
@@ -63,6 +74,11 @@ int sc_main(int argc, char* argv[]) {
   alu1.r_dest(t_rd_to_alu);
   alu1.imm(t_imm_to_alu);
   alu.result(t_result_from_alu);
+  //flags
+  alu1.z_flag(t_z_flag);
+  alu1.n_flag(t_n_flag);
+  alu1.c_flag(t_c_flag);
+  alu1.l_flag(t_l_flag);
   //Controller //flags
   controller1.z_flag(t_z_flag);
   controller1.n_flag(t_n_flag);
@@ -71,7 +87,7 @@ int sc_main(int argc, char* argv[]) {
   //control sigs
   controller1.instr_from_pm(t_instr_from_pm);
   controller1.addr_to_pm(t_addr_to_pm);
-  controller1.with_twos_to_alu(t_with_two_to_alu);
+  controller1.with_twos_to_alu(t_with_twos_to_alu);
   controller1.use_imm_to_alu(t_use_imm_to_alu);
   controller1.set_oup_reg_to_alu(t_set_oup_reg_to_alu);
   controller1.add_to_alu(t_add_to_alu);
