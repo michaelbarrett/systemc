@@ -28,8 +28,8 @@ int sc_main(int argc, char* argv[]) {
   //parameters for paramaterized modules
   int programMemory[256] = { /* Program here */
 			    0b0000000101010010} ; //add r1, r2
-  int dataMemory[256] = { 0 };
-  int registerFile[256] = { 0, 1, 2 };
+  int dataMemory[256] = { 3 };
+  int registerFile[256] = { 0, 1, 2, 3, 4, 5 };
 
   //module instantiation
   program_memory pm1("pm1", &programMemory[0]); //PM
@@ -42,7 +42,7 @@ int sc_main(int argc, char* argv[]) {
   sc_trace_file *tfile = sc_create_vcd_trace_file("risccpu");
   
   //association
-  //wiring to enable modules
+  //wiring to enable modules (en is active low)
   controller1.enable_modules(t_enable_modules);
   pm1.en(t_enable_modules);
   dm1.en(t_enable_modules);
@@ -130,7 +130,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
 
-  sc_start(70, SC_NS);
+  sc_start(300, SC_NS);
 
   sc_close_vcd_trace_file(tfile);
   return 0;

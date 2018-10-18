@@ -1,5 +1,4 @@
 //alu.cpp
-//
 #include "alu.h"
 
 //on pos clk edge: handles reading and arithmetic evaluation on the alu

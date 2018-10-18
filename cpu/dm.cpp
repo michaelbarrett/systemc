@@ -4,7 +4,7 @@
 
 void data_memory :: prc() {
   //if enabled and writing
-  if (en & rw) {
+  if (!en & rw) {
     //we look at the address and the data input and based on this change local _data
     //data array _data can be any length, it is supplied in module instantiation
     if (addr.read() < MEM_SIZE_DM) {
@@ -15,7 +15,7 @@ void data_memory :: prc() {
     }
   }
   //if enabled and reading
-  else if (en & !rw) {
+  else if (!en & !rw) {
     if (addr.read() < MEM_SIZE_DM) {
       d_out.write(_data[addr.read()]);
     }
