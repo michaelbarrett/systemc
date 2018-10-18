@@ -22,6 +22,7 @@ int sc_main(int argc, char* argv[]) {
   //alu data
   sc_signal <int> t_result_from_alu, t_rd_to_alu, t_rs_to_alu, t_imm_to_alu;
   //clock to feed modules
+  sc_signal <bool> t_enable_modules;
   sc_clock c1 ("c1", 5, SC_NS);
 
   //parameters for paramaterized modules
@@ -38,9 +39,14 @@ int sc_main(int argc, char* argv[]) {
   controller controller1("controller1"); //Controller
 
   //trace file definition
-  sc_trace_file *tfile = sc_create_vcd_trace_file("communications");
+  sc_trace_file *tfile = sc_create_vcd_trace_file("risccpu");
   
   //association
+  //wiring to enable modules
+  controller1.enable_modules(t_enable_modules);
+  pm1.en(t_enable_modules);
+  dm1.en(t_enable_modules);
+  rf1.en(t_enable_modules);
   //clock all but ALU
   pm1.clock(c1);
   dm1.clock(c1);
@@ -62,6 +68,7 @@ int sc_main(int argc, char* argv[]) {
   rf1.d_out1(t_data1_from_rf);
   rf1.d_out2(t_data2_from_rf);
   //ALU //control sigs
+  alu1.en(t_en_to_alu);
   alu1.with_twos(t_with_twos_to_alu);
   alu1.use_imm(t_use_imm_to_alu);
   alu1.set_oup_reg(t_set_oup_reg_to_alu);
@@ -88,8 +95,6 @@ int sc_main(int argc, char* argv[]) {
   controller1.c_flag(t_c_flag);
   controller1.l_flag(t_l_flag);
   //control sigs
-  controller1.instr_from_pm(t_instr_from_pm);
-  controller1.addr_to_pm(t_addr_to_pm);
   controller1.with_twos_to_alu(t_with_twos_to_alu);
   controller1.use_imm_to_alu(t_use_imm_to_alu);
   controller1.set_oup_reg_to_alu(t_set_oup_reg_to_alu);
@@ -110,12 +115,14 @@ int sc_main(int argc, char* argv[]) {
   controller1.data_from_dm(t_data_from_dm);
   controller1.addr_to_dm(t_addr_to_dm);
   controller1.d_in_to_dm(t_d_in_to_dm);
+  controller1.rw_to_dm(t_rw_to_dm);
   //to and from rf
   controller1.data1_from_rf(t_data1_from_rf);
   controller1.data2_from_rf(t_data2_from_rf);
-  controller1.d_in_to_rf(t_d_in_to_rf);
   controller1.addr1_to_rf(t_addr1_to_rf);
   controller1.addr2_to_rf(t_addr2_to_rf);
+  controller1.d_in_to_rf(t_d_in_to_rf);
+  controller1.rw_to_rf(t_rw_to_rf);
   //to and from pm
   controller1.instr_from_pm(t_instr_from_pm);
   controller1.addr_to_pm(t_addr_to_pm);

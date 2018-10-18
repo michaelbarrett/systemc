@@ -11,10 +11,10 @@ const int MEM_SIZE_RF = 256;
 //$r1 is PC ~ program counter
 
 SC_MODULE(register_file) {
-  sc_in <int> addr1, addr2; //write: use addr1, read: address for Rdest and Rsrc
-  sc_in <bool> en, rw, clock;
-  sc_in <int> d_in; //data input
-  sc_out <int> d_out1, d_out2; //data output for Rdest and Rsrc
+  sc_in <int> addr1{"addr1"}, addr2{"addr2"}; //write: use addr1, read: address for Rdest and Rsrc
+  sc_in <bool> en{"en"}, rw{"rw"}, clock{"clock"};
+  sc_in <int> d_in{"d_in"}; //data input
+  sc_out <int> d_out1{"d_out1"}, d_out2{"d_out2"}; //data output for Rdest and Rsrc
   int* _data;
 
   void prc_read();
