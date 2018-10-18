@@ -18,6 +18,7 @@ void data_memory :: prc() {
   else if (!en & !rw) {
     if (addr.read() < MEM_SIZE_DM) {
       d_out.write(_data[addr.read()]);
+      
     }
     else {
       cout << "address" << addr << "is out of range for reading" << endl;
@@ -26,5 +27,15 @@ void data_memory :: prc() {
   //if disabled
   else {
     //do nothing
+  }
+}
+
+void data_memory :: initPrint() {
+  while(1) {
+    cout << "Data Memory Contents: " << endl;
+    for (int i = 0; i <= 5; i++) {
+      cout << "DM" << i << ": " << _data[i] << endl;
+    }
+    wait(10);
   }
 }

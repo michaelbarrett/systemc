@@ -12,11 +12,14 @@ SC_MODULE(data_memory) {
   int* _data; //local variable
 
   void prc();
+  void initPrint();
   
   SC_HAS_PROCESS(data_memory);
   
  data_memory(sc_module_name name, int* data) : sc_module(name),  _data(data) {
+    
     SC_METHOD(prc);
     sensitive << clock.pos(); //sequential?
+    SC_CTHREAD(initPrint, clock.pos());
   }
 };

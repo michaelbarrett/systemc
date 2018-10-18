@@ -27,8 +27,26 @@ int sc_main(int argc, char* argv[]) {
 
   //parameters for paramaterized modules
   int programMemory[256] = { /* Program here */
-			    0b0000000101010010} ; //add r1, r2
-  int dataMemory[256] = { 3 };
+			    0b0101000100000000, //addi r1, 0d (nop) [0 pc]
+			    0b0100001100000010,
+			    0b0100010000000011, //load r4, dm[2] [1 pc]
+			    //r4 should be 10
+			    //0b0101000100000001, //addi r1, 1d
+			    //0b0101001000000010, //addi r2, 2d
+			    0b0000000101010010, //add r1, r2 (r2 is 2) [3 pc]
+			    0b0000000110110100, //cmp r1, r4
+			    0b0000000110010010, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b0000000110010010, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b0000000110010010, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b0000000110010010, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b0100000101000001, //stor r1, dm[1]
+			    0b0100010001000011, //stor r4, dm[3]
+			    0b0000000110010010, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b1001000100000001, //sub r1, r2 (r2 is 2) [3 pc]
+			    0b0000000110110010, //cmp r1, r2
+			    0b0100000011000001, //jcond equal r1, r4 [4 pc]
+                           } ; 
+  int dataMemory[256] = { 10, 20, 10, 20, 10, 20 };
   int registerFile[256] = { 0, 1, 2, 3, 4, 5 };
 
   //module instantiation
@@ -130,7 +148,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
 
-  sc_start(300, SC_NS);
+  sc_start(2000, SC_NS);
 
   sc_close_vcd_trace_file(tfile);
   return 0;

@@ -13,18 +13,30 @@ void alu :: prc() {
 
     //check which instruction is enabled. we will assume one instruction is enabled,
     //otherwise precedence is arbitrary.
-    if (add.read()) { data_res = data_src + r_dest.read(); }
-    else if (and_instr.read()) { data_res = data_src & r_dest.read(); }
-    else if (or_instr.read()) { data_res = data_src | r_dest.read(); }
-    else if (xor_instr.read()) { data_res = data_src ^ r_dest.read(); }
-    else if (mov.read()) { data_res = data_src; }
+    if (add.read()) { data_res = data_src + r_dest.read();
+      cout << "ALU ADD OP: add " << data_src << " data_src + " << r_dest.read() << " r_dest to produce " << data_res << endl;
+    }
+    else if (and_instr.read()) { data_res = data_src & r_dest.read();
+      cout << "ALU BITWISE AND OP: and " << data_src << " data_src with " << r_dest.read() << " r_dest to produce " << data_res << endl;
+    }
+    else if (or_instr.read()) { data_res = data_src | r_dest.read();
+      cout << "ALU BITWISE OR OP: or " << data_src << " data_src with " << r_dest.read() << " r_dest to produce " << data_res << endl;
+    }
+    else if (xor_instr.read()) { data_res = data_src ^ r_dest.read();
+      cout << "ALU BITWISE XOR OP: xor " << data_src << " data_src with " << r_dest.read() << " r_dest to produce " << data_res << endl;
+    }
+    else if (mov.read()) { data_res = data_src;
+      cout << "ALU MOV: mov " << data_src;
+    }
     else if (lsh.read()) {
       if (data_src > 0 & data_src < 15) { unsigned(data_res) << data_src; }
       else if (data_src < 0 & data_src < 15) { unsigned(data_res) >> data_src; }
+      cout << "ALU LSH" << endl;
     }
     else if (ash.read()) {
       if (data_src > 0 & data_src < 15) { data_res << data_src; }
       else if (data_src < 0 & data_src < 15) { data_res >> data_src; }
+      cout << "ALU ASH" << endl;
     }
 
     //set output register if set_oup_reg enabled
