@@ -1,0 +1,1591 @@
+        SystemC 2.3.2-Accellera --- Sep  5 2018 14:15:23
+        Copyright (c) 1996-2017 by all Contributors,
+        ALL RIGHTS RESERVED
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+
+Info: (I702) default timescale unit used for tracing: 1 ps (risccpu.vcd)
+==============================
+PC = 0
+------------------------------
+Instruction: 
+opcode: 5
+r_dest: 1
+op_ext: 0
+r_src: 0
+imm: 0
+ALU output: 0
+WB Stage: 
+old data: 1
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 3
+R4: 4
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 1
+------------------------------
+Instruction: 
+opcode: 5
+r_dest: 1
+op_ext: 0
+r_src: 0
+imm: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+ALU output: 0
+WB Stage: 
+old data: 0
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 3
+R4: 4
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 2
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 3
+op_ext: 0
+r_src: 2
+imm: 2
+ALU output: 0
+RF WROTE DATA: 0 TO ADDRESS 3
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 4
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+==============================
+PC = 3
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 0
+r_src: 3
+imm: 3
+ALU output: 0
+RF WROTE DATA: 10 TO ADDRESS 4
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+==============================
+PC = 4
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 5
+r_src: 2
+imm: 82
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: 0
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 5
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 4
+imm: 180
+ALU ADD OP: add -2 data_src + 10 r_dest to produce 8
+ALU output: 10
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+WB Stage: 
+old data: 10
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 6
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -10 data_src + 10 r_dest to produce 0
+ALU output: 0
+WB Stage: 
+old data: 10
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+==============================
+PC = 7
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + 0 r_dest to produce -2
+ALU output: -2
+WB Stage: 
+old data: 0
+RF WROTE DATA: -2 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -2
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 8
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -2 r_dest to produce -4
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+ALU output: -4
+WB Stage: 
+old data: -2
+RF WROTE DATA: -4 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -4
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 9
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -4 r_dest to produce -6
+ALU output: -6
+WB Stage: 
+old data: -4
+RF WROTE DATA: -6 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -6
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 20
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+==============================
+PC = 10
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 1
+op_ext: 4
+r_src: 1
+imm: 65
+ALU output: -6
+==============================
+PC = 11
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 4
+r_src: 3
+imm: 67
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: 20
+DM4: 10
+DM5: 20
+ALU output: -6
+==============================
+PC = 12
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+old data: -6
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 13
+------------------------------
+Instruction: 
+opcode: 9
+r_dest: 1
+op_ext: 0
+r_src: 1
+imm: 1
+ALU ADD OP: add -1 data_src + 10 r_dest to produce 9
+ALU output: 9
+WB Stage: 
+old data: 10
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 14
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 2
+imm: 178
+ALU ADD OP: add -9 data_src + 9 r_dest to produce 0
+ALU output: 9
+WB Stage: 
+old data: 9
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 15
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 0
+op_ext: 12
+r_src: 1
+imm: 193
+ALU output: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+JUMPING!
+==============================
+PC = 1
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 0
+op_ext: 0
+r_src: 0
+imm: 0
+ALU output: 0
+WB Stage: 
+old data: 0
+RF WROTE DATA: 0 TO ADDRESS 0
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 2
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 3
+op_ext: 0
+r_src: 2
+imm: 2
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: 0
+RF WROTE DATA: 0 TO ADDRESS 3
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 3
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 0
+r_src: 3
+imm: 3
+ALU output: 0
+RF WROTE DATA: 10 TO ADDRESS 4
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 4
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 5
+r_src: 2
+imm: 82
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: 9
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 5
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 4
+imm: 180
+ALU ADD OP: add -2 data_src + 10 r_dest to produce 8
+ALU output: 10
+WB Stage: 
+old data: 10
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 6
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -10 data_src + 10 r_dest to produce 0
+ALU output: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+WB Stage: 
+old data: 10
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 7
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + 0 r_dest to produce -2
+ALU output: -2
+WB Stage: 
+old data: 0
+RF WROTE DATA: -2 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -2
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 8
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -2 r_dest to produce -4
+ALU output: -4
+WB Stage: 
+old data: -2
+RF WROTE DATA: -4 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -4
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 9
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -4 r_dest to produce -6
+Data Memory Contents: 
+DM0: 10
+DM1: 0
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: -6
+WB Stage: 
+old data: -4
+RF WROTE DATA: -6 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -6
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 10
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 1
+op_ext: 4
+r_src: 1
+imm: 65
+ALU output: -6
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 11
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 4
+r_src: 3
+imm: 67
+ALU output: -6
+==============================
+PC = 12
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: -6
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 13
+------------------------------
+Instruction: 
+opcode: 9
+r_dest: 1
+op_ext: 0
+r_src: 1
+imm: 1
+ALU ADD OP: add -1 data_src + 10 r_dest to produce 9
+ALU output: 9
+WB Stage: 
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+old data: 10
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 14
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 2
+imm: 178
+ALU ADD OP: add -9 data_src + 9 r_dest to produce 0
+ALU output: 9
+WB Stage: 
+old data: 9
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 15
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 0
+op_ext: 12
+r_src: 1
+imm: 193
+ALU output: 0
+JUMPING!
+==============================
+PC = 1
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 0
+op_ext: 0
+r_src: 0
+imm: 0
+ALU output: 0
+WB Stage: 
+old data: 0
+RF WROTE DATA: 0 TO ADDRESS 0
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 2
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 3
+op_ext: 0
+r_src: 2
+imm: 2
+ALU output: 0
+RF WROTE DATA: 0 TO ADDRESS 3
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 3
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 0
+r_src: 3
+imm: 3
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: 0
+RF WROTE DATA: 10 TO ADDRESS 4
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 4
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 5
+r_src: 2
+imm: 82
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+old data: 9
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 5
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 4
+imm: 180
+ALU ADD OP: add -2 data_src + 10 r_dest to produce 8
+ALU output: 10
+WB Stage: 
+old data: 10
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 6
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -10 data_src + 10 r_dest to produce 0
+ALU output: 0
+WB Stage: 
+old data: 10
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 7
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + 0 r_dest to produce -2
+ALU output: -2
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+WB Stage: 
+old data: 0
+RF WROTE DATA: -2 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -2
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 8
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -2 r_dest to produce -4
+ALU output: -4
+WB Stage: 
+old data: -2
+RF WROTE DATA: -4 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -4
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 9
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -4 r_dest to produce -6
+ALU output: -6
+WB Stage: 
+old data: -4
+RF WROTE DATA: -6 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -6
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 10
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 1
+op_ext: 4
+r_src: 1
+imm: 65
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: -6
+==============================
+PC = 11
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 4
+r_src: 3
+imm: 67
+ALU output: -6
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 12
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: -6
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 13
+------------------------------
+Instruction: 
+opcode: 9
+r_dest: 1
+op_ext: 0
+r_src: 1
+imm: 1
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU ADD OP: add -1 data_src + 10 r_dest to produce 9
+ALU output: 9
+WB Stage: 
+old data: 10
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 14
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 2
+imm: 178
+ALU ADD OP: add -9 data_src + 9 r_dest to produce 0
+ALU output: 9
+WB Stage: 
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+old data: 9
+RF WROTE DATA: 9 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 15
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 0
+op_ext: 12
+r_src: 1
+imm: 193
+ALU output: 0
+JUMPING!
+==============================
+PC = 1
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 0
+op_ext: 0
+r_src: 0
+imm: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: 0
+WB Stage: 
+old data: 0
+RF WROTE DATA: 0 TO ADDRESS 0
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 2
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 3
+op_ext: 0
+r_src: 2
+imm: 2
+ALU output: 0
+RF WROTE DATA: 0 TO ADDRESS 3
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 3
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 0
+r_src: 3
+imm: 3
+ALU output: 0
+RF WROTE DATA: 10 TO ADDRESS 4
+New Register File Contents: 
+R0: 0
+R1: 9
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 4
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 5
+r_src: 2
+imm: 82
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: 9
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 5
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 11
+r_src: 4
+imm: 180
+ALU ADD OP: add -2 data_src + 10 r_dest to produce 8
+ALU output: 10
+WB Stage: 
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+old data: 10
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 6
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -10 data_src + 10 r_dest to produce 0
+ALU output: 0
+WB Stage: 
+old data: 10
+RF WROTE DATA: 0 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 0
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 7
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + 0 r_dest to produce -2
+ALU output: -2
+WB Stage: 
+old data: 0
+RF WROTE DATA: -2 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -2
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 8
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -2 r_dest to produce -4
+ALU output: -4
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+WB Stage: 
+old data: -2
+RF WROTE DATA: -4 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -4
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+==============================
+PC = 9
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add -2 data_src + -4 r_dest to produce -6
+ALU output: -6
+WB Stage: 
+old data: -4
+RF WROTE DATA: -6 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: -6
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+==============================
+PC = 10
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 1
+op_ext: 4
+r_src: 1
+imm: 65
+ALU output: -6
+==============================
+PC = 11
+------------------------------
+Instruction: 
+opcode: 4
+r_dest: 4
+op_ext: 4
+r_src: 3
+imm: 67
+Data Memory Contents: 
+DM0: 10
+DM1: 10
+DM2: 10
+DM3: -6
+DM4: 10
+DM5: 20
+ALU output: -6
+==============================
+PC = 12
+------------------------------
+Instruction: 
+opcode: 0
+r_dest: 1
+op_ext: 9
+r_src: 2
+imm: 146
+ALU ADD OP: add 0 data_src + 10 r_dest to produce 10
+ALU output: 10
+WB Stage: 
+old data: -6
+RF WROTE DATA: 10 TO ADDRESS 1
+New Register File Contents: 
+R0: 0
+R1: 10
+R2: 2
+R3: 0
+R4: 10
+R5: 5
+R6: 0
+R7: 0
+R8: 0
+R9: 0
+R10: 0
