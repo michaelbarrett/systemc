@@ -9,6 +9,9 @@ void environment :: prc() {
     //four loops
     //part 1: each cycle, each robot updates its position
     //> move delta x/y towards next grid in the path
+    //compute a path based on your current location
+    //current grid is found based on your current location and next grid is
+    //moved towards.
     robotp.x += DELTA_X;
     robotp.y += DELTA_Y;
 
@@ -23,6 +26,8 @@ void environment :: prc() {
       //PHASE 2: actually check for robot
       //send signal "crossing" to robot->server
       message.write(1);
+      wait();
+      message.write(0);
     }
 
     //part 4: for each robot, compare the distance from obstacles
@@ -30,5 +35,10 @@ void environment :: prc() {
     //and the robot sends the status to the server - "STOPPED"
     //- if the stopped robot is clear from obstacles, resume the robot, send robot the
     //status and the robot sends the status to the server - "MOVING"
+    if (distance(robotp, humanp) < 3) {
+      message.write(2);
+      wait();
+      message.write(0);
+    }
   }
 }

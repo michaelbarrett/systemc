@@ -8,5 +8,8 @@ void server :: prc() {
       cout << "CROSSING received from robot" << i << endl;
       i++;
     }
+    if (message.read() == 2) {
+      cout << "STOPPED received from robot" << endl;
+    }
   }
 }

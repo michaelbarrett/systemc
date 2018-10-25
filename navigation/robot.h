@@ -11,4 +11,4 @@ SC_MODULE (robot) {
  robot(sc_module_name name) : sc_module(name) {
     SC_CTHREAD(prc, clock.pos());
   }
-}
+};
