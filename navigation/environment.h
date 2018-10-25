@@ -1,6 +1,7 @@
 //environment.h
 #include "systemc.h"
 
+//A point is x,y -- used for GPS
 struct Point
 {
   double x, y;
@@ -9,6 +10,7 @@ struct Point
 }
 };
 
+//A box is a bottom left corner point and a top right corner point -- used for grid definition and storage
 struct Box
 {
   Point botLeft, topRight;
@@ -16,22 +18,25 @@ struct Box
   }
 }
 
+//finds the distance between two gps points
 double distance(Point point1, Point point2)
 {
   return  sqrt((point1.x * point2.x) + (point1.y * point2.y));
 }
 
 SC_MODULE(environment) {
-  //start gps at 0,0
+  //holds all the robot coords
+  //for robot indices 0, 1, 2, 3, etc
+  Point[] robotCoords
   gps robotx = new Point(0, 0);
   gps roboty = new Point(0, 0);
   //grid map array
   //grid array = all boxes of grid in order -- now the grid is 5 horiz boxes
-  //indices are 0, 1, 2, 3, etc
+  //grid indices are 0, 1, 2, 3, etc
   int[] grid = {new Box(new Point(0, 0), new Point(2, 2)), new Box(new Point(2, 0), new Point(4, 2)), new Box(new Point(4, 0), new Point (6,2)), new Box(new Point(6, 0), new Point(8,2)), new Box(new Point(8, 0), new Point (10, 2))};
   //smth to hold current grid number in path and next grid number in path
   //local variable path
-  int* _path; //path
+  int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
 
   void prc();
   
