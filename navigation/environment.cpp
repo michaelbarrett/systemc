@@ -24,17 +24,17 @@ void environment :: prc() {
     //part 1: each cycle, each robot updates its position
     //> move delta x/y towards next grid in the path
     //compute a path based on your current location
-    robotp.x += DELTA_X;
-    robotp.y += DELTA_Y;
+    robotx += DELTA_X;
+    roboty += DELTA_Y;
 
     //part 2: each cycle, each obstacle updates its position
-    humanp.x -= DELTA_X;
-    humanp.y -= DELTA_Y;
+    humanx -= DELTA_X;
+    humany -= DELTA_Y;
 
     //part 3: for each robot, compare the distance from the grid bounary.
     //if close to boundary, send signal to robot, then robot sends signal to server
     //we are checking with right boundary for now PHASE 2: check with all boundaries
-    if (x == 1.9 || x == 3.9 || x == 5.9 || x == 7.9 || x == 9.9) {
+    if (robotx == 1.9 || robotx == 3.9 || robotx == 5.9 || robotx == 7.9 || robotx == 9.9) {
       //PHASE 2: actually check for robot
       //send signal "crossing" to robot->server
       message.write(1);
