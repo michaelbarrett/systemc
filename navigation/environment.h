@@ -18,7 +18,7 @@ SC_MODULE(environment) {
   //grid map array
   //grid array = all boxes of grid in order -- now the grid is 5 horiz boxes
   //{{INDEX, X1, Y1, X2, Y2}, {...}, ...}
-  int grid[9][9] = {{0, 0, 0, 2, 2}, {1, 2, 0, 4, 2}, {2, 4, 0, 6, 2}, {3, 6, 0, 8, 2}, {4, 8, 0, 10, 2}};
+  int grid[50][50] = {{1, 0, 0, 2, 2}, {2, 2, 0, 4, 2}, {3, 4, 0, 6, 2}, {4, 6, 0, 8, 2}, {5, 8, 0, 10, 2}};
   //local variable path
   int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
 
