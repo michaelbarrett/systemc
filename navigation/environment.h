@@ -6,14 +6,15 @@ SC_MODULE(environment) {
   //out to robot then to server
   //0 = None
   //1 = "CROSSING"
+  int my_message;
   sc_out<int> message;
   //holds all the robot coords
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
-  int robotx = 1;
-  int roboty = 1;
-  int humanx = 9;
-  int humany = 1;
+  double robotx = 1;
+  double roboty = 1;
+  double humanx = 9;
+  double humany = 1;
 
   //grid map array
   //grid array = all boxes of grid in order -- now the grid is 5 horiz boxes
@@ -27,6 +28,7 @@ SC_MODULE(environment) {
   SC_HAS_PROCESS(environment);
 
  environment(sc_module_name name, int* path) : sc_module(name), _path(path) {
-    SC_CTHREAD(prc, clock.pos());
+    SC_THREAD(prc);
+    sensitive << clock.pos();
   }
 };

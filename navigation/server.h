@@ -11,6 +11,7 @@ SC_MODULE (server) {
   SC_HAS_PROCESS(server);
 
  server(sc_module_name name) : sc_module(name) {
-    SC_CTHREAD(prc, clock.pos());
+    SC_THREAD(prc);
+    sensitive << clock.pos();
   }
 };
