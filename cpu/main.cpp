@@ -45,9 +45,9 @@ int sc_main(int argc, char* argv[]) {
 			    0b1001000100000001, //sub r1, r2 (r2 is 2) [3 pc]
 			    0b0000000110110010, //cmp r1, r2
 			    0b0100000011000001, //jcond equal r1, r4 [4 pc]
-                           } ; 
+                           }; 
   int dataMemory[256] = { 10, 20, 10, 20, 10, 20 };
-  int registerFile[256] = { 0, 1, 2, 3, 4, 5 };
+  int registerFile[256] = { 1, 1 };
 
   //module instantiation
   program_memory pm1("pm1", &programMemory[0]); //PM

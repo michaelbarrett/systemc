@@ -20,6 +20,7 @@ SC_MODULE(data_memory) {
     
     SC_METHOD(prc);
     sensitive << clock.pos(); //sequential?
+
     SC_CTHREAD(initPrint, clock.pos());
   }
 };
