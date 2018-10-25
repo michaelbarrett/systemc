@@ -4,10 +4,11 @@
 
 int sc_main(int argc, char* argv[]) {
   //ports decl
-  sc_signal<bool> t_message_to_robot, t_message_to_server;
+  sc_signal<int> t_message_to_robot, t_message_to_server;
+  sc_clock c1 ("c1", 5, SC_NS);
 
   //parameters for paramaterized modules
-  int path[5] = {0, 1, 2, 3, 4};
+  int path[] = {0, 1, 2, 3, 4};
 
   //module instantiation
   environment e1("e1", &path[0]);
@@ -18,9 +19,20 @@ int sc_main(int argc, char* argv[]) {
   sc_trace_file *tfile = sc_create_vcd_trace_file("navigation");
 
   //association
+  //clock wiring
+  e1.clock(c1);
+  r1.clock(c1);
+  s1.clock(c1);
   //wiring for message signal
   e1.message(t_message_to_robot);
   r1.message_i(t_message_to_robot);
   r1.message_o(t_message_to_server);
   s1.message(t_message_to_server);
+
+  //signal trace
+  sc_trace(tfile, c1, "c1");
+  sc_start(2000, SC_NS);
+  sc_close_vcd_trace_file(tfile);
+
+  return 0;
 }

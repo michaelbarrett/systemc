@@ -1,6 +1,7 @@
 //robot.h
 #include "systemc.h"
 SC_MODULE (robot) {
+  sc_in<bool> clock;
   sc_in<int> message_i;
   sc_out<int> message_o;
 

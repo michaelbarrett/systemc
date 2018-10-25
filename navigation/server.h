@@ -1,6 +1,7 @@
 //server.h
 #include "systemc.h"
-SC_MODULE () {
+SC_MODULE (server) {
+  sc_in<bool> clock;
   sc_in<int> message;
 
   int i = 1;

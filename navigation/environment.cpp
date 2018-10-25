@@ -26,6 +26,7 @@ void environment :: prc() {
     //compute a path based on your current location
     robotx += DELTA_X;
     roboty += DELTA_Y;
+    cout << "test" << endl;
 
     //part 2: each cycle, each obstacle updates its position
     humanx -= DELTA_X;
