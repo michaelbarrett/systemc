@@ -28,7 +28,7 @@ SC_MODULE(environment) {
   SC_HAS_PROCESS(environment);
 
  environment(sc_module_name name, int* path) : sc_module(name), _path(path) {
-    SC_THREAD(prc);
-    sensitive << clock.pos();
+    SC_CTHREAD(prc, clock.pos());
+    //   sensitive << clock.pos();
   }
 };

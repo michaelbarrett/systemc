@@ -1,5 +1,6 @@
 //environment.cpp
 #include "environment.h"
+#include "server.h"
 
 const double DELTA_X = 0.1;
 const double DELTA_Y = 0;
@@ -52,8 +53,9 @@ void environment :: prc() {
       //PHASE 2: actually check for robot
       //send signal "crossing" to robot->server
       cout << "sending message CROSSING to server" << endl;
-      message.write(1);
-      my_message = 1;
+      //message.write(1);
+      //my_message = 1;
+      server::message_from_env(1);
       cout << "sent message CROSSING" << message << endl;
       //      message.write(0);
     }
@@ -74,5 +76,6 @@ void environment :: prc() {
     if (robotx > 4.3) {
       wait();
     }
+    wait();
   }
 }
