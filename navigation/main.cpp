@@ -33,42 +33,6 @@ int sc_main(int argc, char* argv[]) {
 
   //signal trace
   sc_trace(tfile, c1, "c1");
-
-  /*  int i;
-  for (i=0;i<10;i++) {
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(true); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    c1.write(false); 
-    sc_start(1, SC_NS);// Run simulation for 1 ns.
-    }*/
   
   sc_start(1000, SC_NS);
   sc_close_vcd_trace_file(tfile);
