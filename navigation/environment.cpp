@@ -25,18 +25,18 @@ void environment :: prc() {
     //part 1: each cycle, each robot updates its position
     //> move delta x/y towards next grid in the path
     //compute a path based on your current location
-    if (my_message != 2) { //if not human stopped
+    if (my_message != 2) {
       robotx += DELTA_X;
       roboty += DELTA_Y;
       cout << "robot x,y is: " << robotx << ", " << roboty << " and ";
-    } else { cout << "robot is stopped by human." << " and "; } 
-
+    } else { cout << "robot is stopped by human." << " and "; }
+     
     //part 2: each cycle, each obstacle updates its position
     humanx -= DELTA_X;
     humany -= DELTA_Y;
     cout << "human x,y is: " << humanx << ", " << humany << endl;
     cout << "message is: " << my_message << endl;
-
+    
     if (my_message != 0) {
       my_message = 0;
     }
@@ -53,8 +53,8 @@ void environment :: prc() {
       //PHASE 2: actually check for robot
       //send signal "crossing" to robot->server
       cout << "sending message CROSSING to server" << endl;
-      //message.write(1);
-      //my_message = 1;
+      message.write(1);
+      my_message = 1;
       server::message_from_env(1);
       cout << "sent message CROSSING" << message << endl;
       //      message.write(0);
@@ -63,7 +63,7 @@ void environment :: prc() {
     //part 4: for each robot, compare the distance from obstacles
     //- if the robot is close to the obstacle, stop the robot, send robot the status
     //and the robot sends the status to the server - "STOPPED"
-    //- if the stopped robot is clear from obstacles, resume the robot, send robot the
+    //- if the stopped robot is clear from obstacles, resume the robot, send robot
     //status and the robot sends the status to the server - "MOVING"
     if (distance(robotx, roboty, humanx, humany) < 3) {
       cout << "stopped bc of human" << endl;
@@ -74,8 +74,10 @@ void environment :: prc() {
     }
 
     if (robotx > 4.3) {
-      wait();
+      //wait();
     }
+    cout << "get ready" << endl;
     wait();
+    cout << "hi" << endl;
   }
 }

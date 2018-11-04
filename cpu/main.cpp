@@ -148,7 +148,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
 
-  sc_start(2000, SC_NS);
+  sc_start();
 
   sc_close_vcd_trace_file(tfile);
   return 0;

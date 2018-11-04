@@ -7,15 +7,16 @@ void server :: prc() {
   i = 1;
   while(1) {
     cout << "SERVER: process running" << endl;
-    wait(ev_env);
+
+    wait(ev_env); //wait for a message from the environment
     cout << "SERVER: Received message from environment." << endl;
-    /*if (message.read() == 1) {
+    if (message.read() == 1) {
       cout << "CROSSING received from robot" << i << endl;
       i++;
     }
     if (message.read() == 2) {
       cout << "STOPPED received from robot" << endl;
-      }*/
+      }
     wait();
     }
 }
