@@ -2,14 +2,22 @@
 #include "environment.h"
 #include "server.h"
 
-const double DELTA_X = 0.1;
-const double DELTA_Y = 0;
+const double SPEED_X = 0.1;
+const double SPEED_Y = 0.1;
 const int NUM_ROBOTS = 4;
 const int NUM_HUMANS = 6;
 const int NUM_ROWS = 3;
 
 double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
+}
+
+double get_center_x(double x1, double y1, double x2, double y2) {
+  return ((x1 + x2) / 2);
+}
+
+double get_center_y(double x1, double y1, double x2, double y2) {
+  return ((y1 + y2) / 2);
 }
 
 //0 = Nothing, 1 = Acknowledged (Ack)
@@ -40,13 +48,22 @@ void environment :: prc() {
     //current grid is found based on current location of all robots.
 
     //and next grid is moved towards.
+    //Q: What is this robot? What is the next grid for this robot?
 
-    int nextGrid = 1;
-    if (robotx > 0 && robotx <= 2) currentGrid = 0;
-    else if (robotx > 2 && robotx <= 4) currentGrid = 1;
-    else if (robotx > 4 && robotx <= 6) currentGrid = 2;
-    else if (robotx > 6 && robotx <= 8) currentGrid = 3;
-    else if (robotx > 8 && robotx <= 10) currentGrid = 4;
+    //for each robot:
+    //1. get the current grid and the next grid
+    //2. update robot position
+    for (int robot_index = 0; i<NUM_ROBOTS; robot_index++) {
+      int current_grid, next_grid;
+      current_grid = server::get_current_grid_robot(robot_index);
+      next_grid = server::get_next_grid_robot(robot_index);
+      //move by speed towards next grid in the path
+      //do we move up, down, left, or right?
+      //get the X and Y of the next grid. Compare it to our X and Y.
+      //Then move towards it.
+      double myx = robotx[robot_index];
+      double myy = roboty[robot_index];
+    }
     
     //four loops
     //part 1: each cycle, each robot updates its position
@@ -80,8 +97,6 @@ void environment :: prc() {
       //PHASE 2: actually check for robot
       //send signal "crossing" to robot->server
       cout << "sending message CROSSING to server" << endl;
-      message.write(1);
-      my_message = 1;
       server::receive_message(1);
       cout << "sent message CROSSING" << message << endl;
       //      message.write(0);

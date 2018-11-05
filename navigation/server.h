@@ -16,14 +16,20 @@ SC_MODULE (server) {
   //3 = stop due to position error
   int robot_status[50][50] =
     {
-     {1, 1, 0},
-     {1, 10, 0}
+     {0.1, 1, 0},
+     {0.1, 10, 0}
     };
 
   void prc();
 
  public:
-  static void message_from_env(int m);
+  static void receive_message(int m);
+  static void send_message(int m);
+
+  static int get_current_grid_robot(int robot_index);
+  static void set_current_grid_robot(int robot_index, int new_current_grid);
+  static int get_next_grid_robot(int robot_index);
+  static bool is_grid_occupied(int grid_index);
   
   SC_HAS_PROCESS(server);
 
