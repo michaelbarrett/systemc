@@ -16,6 +16,8 @@ SC_MODULE(environment) {
   double humanx[NUM_HUMANS-1] = {};
   double humany[NUM_HUMANS-1] = {};
 
+  int current_grid[NUM_ROBOTS-1] = {};
+
   //grid map array
   //grid array = all boxes of grid in order -- now the grid is 5 horiz boxes
   //{{INDEX, X1, Y1, X2, Y2}, {...}, ...}
@@ -27,7 +29,7 @@ SC_MODULE(environment) {
  {11, 0, 2, 2, 4}, {12, 18, 2, 20, 4},
  //row index 2
  {13, 0, 4, 2, 6}, {14, 2, 4, 4, 6}, {15, 4, 4, 6, 6}, {16, 6, 4, 8, 6}, {17, 8, 4, 10, 6}, {18, 10, 4, 12, 6}, {19, 12, 4, 14, 6},
- {20, 14, 4, 16, 6}, {21, 16, 4, 18, 6}, {22, 18, 4, 20, 6},
+ {20, 14, 4, 16, 6}, {21, 16, 4, 18, 6}, {22, 18, 4, 20, 6}
  //row index 3
  
 };

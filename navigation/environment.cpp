@@ -12,7 +12,12 @@ double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
 }
 
-int environment:: myGridIndex(int robot_index) {
+//0 = Nothing, 1 = Acknowledged (Ack)
+int environment :: receive_message(int m) {
+  
+}
+
+int environment :: my_grid_index(int robot_index) {
   int i = 0;
   double myx = robotx[robot_index];
   double myy = roboty[robot_index];
@@ -26,15 +31,16 @@ int environment:: myGridIndex(int robot_index) {
       return grid[i][0]; //return this grid index
     }
   }
-  cout << "myGridIndex ERROR: INVALID GRID FOR ROBOT INDEX" << robot_index << endl;
+  cout << "my_grid_index ERROR: INVALID GRID FOR ROBOT INDEX" << robot_index << endl;
   return -1;
 }
 
 void environment :: prc() {
   while(1) {
-    //current grid is found based on your current location and next grid is
-    //moved towards.
-    int currentGrid = 0;
+    //current grid is found based on current location of all robots.
+
+    //and next grid is moved towards.
+
     int nextGrid = 1;
     if (robotx > 0 && robotx <= 2) currentGrid = 0;
     else if (robotx > 2 && robotx <= 4) currentGrid = 1;
@@ -76,7 +82,7 @@ void environment :: prc() {
       cout << "sending message CROSSING to server" << endl;
       message.write(1);
       my_message = 1;
-      server::message_from_env(1);
+      server::receive_message(1);
       cout << "sent message CROSSING" << message << endl;
       //      message.write(0);
     }
