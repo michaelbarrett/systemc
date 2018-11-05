@@ -4,15 +4,21 @@
 
 const double DELTA_X = 0.1;
 const double DELTA_Y = 0;
-const double NUM_ROBOTS = 4;
-const double NUM_HUMANS = 6;
+const int NUM_ROBOTS = 4;
+const int NUM_HUMANS = 6;
+const int NUM_ROWS = 3;
 
 double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
 }
 
-int myGridIndex(int robotIndex) {
-		   
+int environment:: myGridIndex(int robotIndex) {
+  int i = 0;
+  for (i=0;i<NUM_ROWS;i++) { //for each row, check if we're in that row
+    //if (roboty[robotIndex] == ...) {
+
+    //}
+  }
 }
 
 void environment :: prc() {
