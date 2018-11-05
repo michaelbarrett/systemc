@@ -12,13 +12,22 @@ double distance(double x1, double y1, double x2, double y2) {
   return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
 }
 
-int environment:: myGridIndex(int robotIndex) {
+int environment:: myGridIndex(int robot_index) {
   int i = 0;
-  for (i=0;i<NUM_ROWS;i++) { //for each row, check if we're in that row
-    //if (roboty[robotIndex] == ...) {
-
-    //}
+  double myx = robotx[robot_index];
+  double myy = roboty[robot_index];
+  //for each element in grid variable, {0: INDEX, 1: X1, 2: Y1, 3: X2, 4: Y2}
+  for (i=0;i<sizeof(grid);i++) {
+    int x1 = grid[i][1];
+    int y1 = grid[i][2];
+    int x2 = grid[i][3];
+    int y2 = grid[i][4];
+    if (myx < x2 && myx > x1 && myy < y2 && myy > y1) {
+      return grid[i][0]; //return this grid index
+    }
   }
+  cout << "myGridIndex ERROR: INVALID GRID FOR ROBOT INDEX" << robot_index << endl;
+  return -1;
 }
 
 void environment :: prc() {
