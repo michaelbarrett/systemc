@@ -3,13 +3,51 @@
 
 sc_event server::ev_env;
 
+//gets the current grid of a robot from server data.
+int server :: get_current_grid_robot(robot_index) {
+  return robot_status[robot_index][1];
+}
+
+//sets the current grid of a robot in server data.
+void server :: set_current_grid_robot(robot_index, new_current_grid) {
+  robot_status[robot_index][1] = new_current_grid;
+}
+
+//gets the next grid of a robot from server data (using grid list data)
+int server :: get_next_grid_robot(robot_index) {
+  int robot_grid_list = grid_list_data[robot_index];
+  int current_grid_robot = get_current_grid_robot(robot_index);
+  for (int i = 0; i < sizeof(robot_grid_list); i++) {
+    if (robot_grid_list[i] == current_grid_robot) {
+      if ((i+1) < sizeof(robot_grid_list)) {
+	return robot_grid_list[i+1]; //return the next one in the path after current
+      }
+      else {
+	return -1; //no next grid
+      }
+    }
+  }
+}
+
+//returns whether the given grid is occupied by any robot.
+bool server :: is_grid_occupied(grid_index) {
+  for (int i = 0; i<sizeof(robot_status); i++) {
+    if ((get_current_grid_robot(i)) == grid_index) { return true; }
+  }
+  return false;
+}
+
 void server :: prc() {
   while(1) {
     wait(ev_env); //wait for a message from the environment
     cout << "SERVER: Received message from environment." << endl;
     if (message == 1) {
-      cout << "SERVER: CROSSING received from robot" << i << endl;
-      i++;
+      cout << "SERVER: CROSSING received from robot" << endl;
+      //now check if there is a robot in the NEXT GRID of that robot
+      //and if not, send "ack".
+      /*if (is_grid_occupied()) {
+
+	}*/
     }
     if (message == 2) {
       cout << "SERVER: STOPPED received from robot" << endl;
