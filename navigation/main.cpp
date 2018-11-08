@@ -4,7 +4,6 @@
 
 int sc_main(int argc, char* argv[]) {
   //ports decl
-  sc_signal<int> t_message_to_robot, t_message_to_server;
   sc_clock c1 ("c1", 5, SC_NS);
   //sc_signal<bool> c1;
   //cout << c1.period() << endl;
@@ -25,11 +24,6 @@ int sc_main(int argc, char* argv[]) {
   e1.clock(c1);
   r1.clock(c1);
   s1.clock(c1);
-  //wiring for message signal
-  e1.message(t_message_to_robot);
-  r1.message_i(t_message_to_robot);
-  r1.message_o(t_message_to_server);
-  s1.message(t_message_to_server);
 
   //signal trace
   sc_trace(tfile, c1, "c1");

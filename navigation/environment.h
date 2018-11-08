@@ -1,13 +1,18 @@
 //environment.h
 #include "systemc.h"
 
+const double SPEED_X = 0.1;
+const double SPEED_Y = 0.1;
+const int NUM_ROBOTS = 4;
+const int NUM_HUMANS = 6;
+const int NUM_ROWS = 3;
+
 SC_MODULE(environment) {
   sc_in<bool> clock;
   //out to robot then to server
   //0 = None
   //1 = "CROSSING"
   int my_message;
-  sc_out<int> message;
   //holds all the robot coords
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
@@ -20,8 +25,7 @@ SC_MODULE(environment) {
 
   //grid map array
   //{{INDEX, X1, Y1, X2, Y2}, {...}, ...}
-  int grid[50][50] =
-  int grid[50][50] =
+  int grid[60][60] =
 { //row index 0
  {1, 0, 0, 2, 2}, {2, 2, 0, 4, 2}, {3, 4, 0, 6, 2}, {4, 6, 0, 8, 2}, {5, 8, 0, 10, 2}, {6, 10, 0, 12, 2}, {7, 12, 0, 14, 2},
  {8, 14, 0, 16, 2}, {9, 16, 0, 18, 2}, {10, 18, 0, 20, 2},
@@ -29,7 +33,7 @@ SC_MODULE(environment) {
  {11, 0, 2, 2, 4}, {12, 18, 2, 20, 4},
  //row index 2
  {13, 0, 4, 2, 6}, {14, 2, 4, 4, 6}, {15, 4, 4, 6, 6}, {16, 6, 4, 8, 6}, {17, 8, 4, 10, 6}, {18, 10, 4, 12, 6}, {19, 12, 4, 14, 6},
- {20, 14, 4, 16, 6}, {21, 16, 4, 18, 6}, {22, 18, 4, 20, 6}
+ {20, 14, 4, 16, 6}, {21, 16, 4, 18, 6}, {22, 18, 4, 20, 6},
  //row index 3
  {23, 0, 6, 2, 8}, {24, 10, 6, 12, 8}, {25, 18, 6, 20, 8},
  //row index 4
@@ -49,6 +53,7 @@ SC_MODULE(environment) {
   //local variable path
   int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
 
+  int my_grid_index(int robot_index);
   void prc();
   
   SC_HAS_PROCESS(environment);
