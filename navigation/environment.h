@@ -53,6 +53,8 @@ SC_MODULE(environment) {
   //local variable path
   int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
 
+  double get_x_center_of_grid(int grid_index);
+  double get_y_center_of_grid(int grid_index);
   int grid_to_xy(int grid_index);
   int my_grid_index(int robot_index);
   void prc();

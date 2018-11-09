@@ -1,52 +1,32 @@
 //environment.cpp
+//environment.cpp
+#include "helper.h"
 #include "environment.h"
 #include "server.h"
-
-double distance(double x1, double y1, double x2, double y2) {
-  return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2.0));
-}
-
-double get_center_x(double x1, double y1, double x2, double y2) {
-  return ((x1 + x2) / 2.0);
-}
-
-double get_center_y(double x1, double y1, double x2, double y2) {
-  return ((y1 + y2) / 2.0);
-}
-
-double distance(int x1, int y1, int x2, int y2) {
-  return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2.0));
-}
-
-double get_center_x(int x1, int y1, int x2, int y2) {
-  return ((x1 + x2) / 2.0);
-}
-
-double get_center_y(int x1, int y1, int x2, int y2) {
-  return ((y1 + y2) / 2.0);
-}
 
 //0 = Nothing, 1 = Acknowledged (Ack)
 //int environment :: receive_message(int m) {
 //  
 //}
 
-int environment :: get_x_center_of_grid(int grid_index) {
+double environment :: get_x_center_of_grid(int grid_index) {
   double cx;
   int robot_grid_list[60];
   for (int i = 0; i < sizeof(robot_grid_list); i++) {
-    robot_grid_list[i] = grid[robot_index-1][i];
+    robot_grid_list[i] = grid[grid_index-1][i];
   }
   cx = get_center_x(robot_grid_list[1], robot_grid_list[2], robot_grid_list[3], robot_grid_list[4]);
+  return cx;
 }
 
-int environment :: get_y_center_of_grid(int grid_index) {
+double environment :: get_y_center_of_grid(int grid_index) {
   double cy;
   int robot_grid_list[60];
   for (int i = 0; i < sizeof(robot_grid_list); i++) {
-    robot_grid_list[i] = grid[robot_index-1][i];
+    robot_grid_list[i] = grid[grid_index-1][i];
   }
   cy = get_center_y(robot_grid_list[1], robot_grid_list[2], robot_grid_list[3], robot_grid_list[4]);
+  return cy;
 }
 
 int environment :: my_grid_index(int robot_index) {
@@ -83,79 +63,34 @@ void environment :: prc() {
     //for each robot:
     //1. get the current grid and the next grid
     //2. update robot position
-    for (int robot_index = 0; i<NUM_ROBOTS; robot_index++) {
+    for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+
+      cout << "For Robot " << robot_index << ": " << endl;
+      
       int current_grid, next_grid;
       current_grid = server::get_current_grid_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
+      cout << "Next grid calculation completed." << endl;
+      cout << "Current grid index is: " << current_grid << endl;
+      cout << "Next grid index is: " << next_grid << endl;
       //move by speed towards next grid in the path
       //do we move up, down, left, or right?
       //get the X and Y of the next grid. Compare it to our X and Y.
       //Then move towards it.
       double myx = robotx[robot_index];
       double myy = roboty[robot_index];
+      cout << "Current X is: " << myx << endl;
+      cout << "Current Y is: " << myy << endl;
       //we have our x, our y, our current grid, and our next grid.
       //we need the desired x, desired y.
       //for this we need grid index ----> x and y
-      double desiredx = get_center_x_of_grid[next_grid];
-      double desiredy = get_center_y_of_grid[next_grid];
+      double desiredx = get_x_center_of_grid(next_grid);
+      double desiredy = get_y_center_of_grid(next_grid);
+      cout << "Desired X is: " << desiredx << endl;
+      cout << "Desired Y is: " << desiredy << endl;
     }
     
-    //four loops
-    //part 1: each cycle, each robot updates its position
-    //> move delta x/y towards next grid in the path
-    //compute a path based on your current location
-    if (my_message != 2) {
-      robotx += DELTA_X;
-      roboty += DELTA_Y;
-      cout << "robot x,y is: " << robotx << ", " << roboty << " and ";
-    } else { cout << "robot is stopped by human." << " and "; }
-     
-    //part 2: each cycle, each obstacle updates its position
-    humanx -= DELTA_X;
-    humany -= DELTA_Y;
-    cout << "human x,y is: " << humanx << ", " << humany << endl;
-    cout << "message is: " << my_message << endl;
-    
-    if (my_message != 0) {
-      my_message = 0;
-    }
-
-    //part 3: for each robot, compare the distance from the grid bounary.
-    //if close to boundary, send signal to robot, then robot sends signal to server
-    //we are checking with right boundary for now PHASE 2: check with all boundaries
-    /*if (robotx == 1.9 || robotx == 3.9 || robotx == 5.9 || robotx == 7.9 || robotx == 9.9) {*/
-    if ((robotx < 1.91 && robotx > 1.89) ||
-	(robotx < 3.91 && robotx > 3.89) ||
-	(robotx < 5.91 && robotx > 5.89) ||
-	(robotx < 7.91 && robotx > 7.89) ||
-	(robotx < 9.91 && robotx > 9.89) ) {
-      //PHASE 2: actually check for robot
-      //send signal "crossing" to robot->server
-      cout << "sending message CROSSING to server" << endl;
-      server::receive_message(1);
-      cout << "sent message CROSSING" << message << endl;
-      //      message.write(0);
-    }
-
-    //part 4: for each robot, compare the distance from obstacles
-    //- if the robot is close to the obstacle, stop the robot, send robot the status
-    //and the robot sends the status to the server - "STOPPED"
-    //- if the stopped robot is clear from obstacles, resume the robot, send robot
-    //status and the robot sends the status to the server - "MOVING"
-    if (distance(robotx, roboty, humanx, humany) < 3) {
-      cout << "stopped bc of human" << endl;
-      message.write(2);
-      my_message = 2;
-      //wait();
-      //message.write(0);
-    }
-
-    if (robotx > 4.3) {
-      //wait();
-    }
-    cout << "get ready" << endl;
-    wait();
-    cout << "hi" << endl;
+    wait(10000, SC_NS);
   }
 }
 
