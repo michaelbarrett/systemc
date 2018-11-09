@@ -11,8 +11,9 @@
 
 double environment :: get_x_center_of_grid(int grid_index) {
   double cx;
-  int robot_grid_list[60];
-  for (int i = 0; i < sizeof(robot_grid_list); i++) {
+  int robot_grid_list[20];
+  int size_elements = sizeof(robot_grid_list)/sizeof(robot_grid_list[0]);
+  for (int i = 0; i < size_elements; i++) {
     robot_grid_list[i] = grid[grid_index-1][i];
   }
   cx = get_center_x(robot_grid_list[1], robot_grid_list[2], robot_grid_list[3], robot_grid_list[4]);
@@ -21,8 +22,9 @@ double environment :: get_x_center_of_grid(int grid_index) {
 
 double environment :: get_y_center_of_grid(int grid_index) {
   double cy;
-  int robot_grid_list[60];
-  for (int i = 0; i < sizeof(robot_grid_list); i++) {
+  int robot_grid_list[20];
+  int size_elements = sizeof(robot_grid_list)/sizeof(robot_grid_list[0]);
+  for (int i = 0; i < size_elements; i++) {
     robot_grid_list[i] = grid[grid_index-1][i];
   }
   cy = get_center_y(robot_grid_list[1], robot_grid_list[2], robot_grid_list[3], robot_grid_list[4]);
@@ -53,7 +55,15 @@ void environment :: prc() {
   server::set_current_grid_robot(1, 10);
   cout << "Robot 0 grid index is " << server::get_current_grid_robot(0) << endl;
   cout << "Robot 1 grid index is " << server::get_current_grid_robot(1) << endl;
-
+  cout << "Robot 0 x is " << get_x_center_of_grid(server::get_current_grid_robot(0)) << endl;
+  cout << "Robot 0 y is " << get_y_center_of_grid(server::get_current_grid_robot(0)) << endl;
+						  
+  for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+    cout << "loop iter robox_index: " << robot_index << " , NUM_ROBOTS: " << NUM_ROBOTS << endl;
+    robotx[robot_index] = get_x_center_of_grid(server::get_current_grid_robot(robot_index));
+    roboty[robot_index] = get_y_center_of_grid(server::get_current_grid_robot(robot_index));
+  }
+  
   while(1) {
     //current grid is found based on current location of all robots.
 
