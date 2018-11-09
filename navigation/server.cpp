@@ -33,33 +33,25 @@ int server :: get_next_grid_robot(int robot_index) {
   //get the grid list and put it in robot_grid_list
   int robot_grid_list[20];
   int size_elements = sizeof(robot_grid_list)/sizeof(robot_grid_list[0]);
-  cout << "Size of robot grid list: " << size_elements << endl;
   for (int i = 0; i < size_elements; i++) {
     robot_grid_list[i] = grid_list_data[robot_index][i];
   }
   //linear search for current grid variable, then return the next one
   int current_grid_robot = get_current_grid_robot(robot_index);
 
-  //DEBUG: print robot grid list
-  cout << "ROBOT GRID LIST" << endl;
   for (int i = 0; i < size_elements; i++) {
     cout << robot_grid_list[i] << ", " << endl;
   }
   
   for (int i = 0; i < size_elements; i++) {
     if (robot_grid_list[i] == current_grid_robot) {
-      cout << "hi from loop iter of robot_index: " << i << endl;
-      cout << "current grid robot: " << current_grid_robot << endl;
-      
       if ((i+1) < size_elements) {
-	cout << "hi from returning: " << robot_grid_list[i+1] << endl;
 	return robot_grid_list[i+1]; //return the next one in the path after current
       }
       else {
 	return -1; //no next grid
       }
     }
-    cout << "looping around" << endl;
   }
   return -1;
 }

@@ -53,16 +53,23 @@ void environment :: prc() {
   //initialize robot positions
   server::set_current_grid_robot(0, 1);
   server::set_current_grid_robot(1, 10);
-  cout << "Robot 0 grid index is " << server::get_current_grid_robot(0) << endl;
-  cout << "Robot 1 grid index is " << server::get_current_grid_robot(1) << endl;
-  cout << "Robot 0 x is " << get_x_center_of_grid(server::get_current_grid_robot(0)) << endl;
-  cout << "Robot 0 y is " << get_y_center_of_grid(server::get_current_grid_robot(0)) << endl;
-						  
+  server::set_current_grid_robot(2, 49);
+  server::set_current_grid_robot(3, 60);
+
+  //set x and y in environment gps
   for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
-    cout << "loop iter robox_index: " << robot_index << " , NUM_ROBOTS: " << NUM_ROBOTS << endl;
     robotx[robot_index] = get_x_center_of_grid(server::get_current_grid_robot(robot_index));
     roboty[robot_index] = get_y_center_of_grid(server::get_current_grid_robot(robot_index));
   }
+
+  cout << "Robot 0 x is " << robotx[0] << endl;
+  cout << "Robot 0 y is " << roboty[0] << endl;
+  cout << "Robot 1 x is " << robotx[1] << endl;
+  cout << "Robot 1 y is " << roboty[1] << endl;
+  cout << "Robot 2 x is " << robotx[2] << endl;
+  cout << "Robot 2 y is " << roboty[2] << endl;
+  cout << "Robot 3 x is " << robotx[3] << endl;
+  cout << "Robot 3 y is " << roboty[3] << endl;
   
   while(1) {
     //current grid is found based on current location of all robots.
