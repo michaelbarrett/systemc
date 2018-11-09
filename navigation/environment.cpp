@@ -63,6 +63,7 @@ void environment :: prc() {
     roboty[robot_index] = get_y_center_of_grid(server::get_current_grid_robot(robot_index));
   }
 
+  cout << "INITIAL POSITIONS: " << endl;
   cout << "Robot 0 x is " << robotx[0] << endl;
   cout << "Robot 0 y is " << roboty[0] << endl;
   cout << "Robot 1 x is " << robotx[1] << endl;

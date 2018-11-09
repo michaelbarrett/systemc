@@ -16,12 +16,12 @@ SC_MODULE(environment) {
   //holds all the robot coords
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
-  double robotx[NUM_ROBOTS-1] = {};
-  double roboty[NUM_ROBOTS-1] = {};
-  double humanx[NUM_HUMANS-1] = {};
-  double humany[NUM_HUMANS-1] = {};
+  double robotx[NUM_ROBOTS] = {};
+  double roboty[NUM_ROBOTS] = {};
+  double humanx[NUM_HUMANS] = {};
+  double humany[NUM_HUMANS] = {};
 
-  int current_grid[NUM_ROBOTS-1] = {};
+  int current_grid[NUM_ROBOTS] = {};
 
   //grid map array
   //{{INDEX, X1, Y1, X2, Y2}, {...}, ...}

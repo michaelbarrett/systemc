@@ -6,10 +6,13 @@ int server :: message = 0;
 int server :: message_robot_index = 0;
 sc_event server :: ev_env;
 
+//grid paths here robots 0-3
 int server :: grid_list_data[50][50] =
   {
    {1, 11, 13, 14, 15, 16, 17, 18, 24, 31, 30, 29, 28, 27, 26, 36, 39},
-   {10, 12, 22, 21, 20, 19}
+   {10, 12, 22, 21, 20, 19},
+   {49, 39, 36, 26, 27, 28, 29, 30},
+   {60, 50, 48, 47, 46, 45, 37, 32}
   };
 
 int server :: robot_status[50][50] =
