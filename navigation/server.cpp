@@ -16,11 +16,6 @@ int server :: grid_list_data[50][50] =
    {60, 50, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 49, 51, 52, 53, 54, 55}
   };
 
-int server :: human_grid_list_data[50][50] =
-  {
-   
-  };
-
 //format: {[ROBOT INDEX]: ROBOT SPEED, CURRENT GRID, STATUS}
 //status: 0 = ok, 1 = stop at the grid due to no ack, 2 = stop due to obstacles
 //3 = stop due to position error

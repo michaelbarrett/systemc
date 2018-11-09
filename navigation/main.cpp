@@ -4,7 +4,7 @@
 
 int sc_main(int argc, char* argv[]) {
   //ports decl
-  sc_clock c1 ("c1", 5, SC_NS);
+  sc_clock c1 ("c1", 5, SC_MS);
   //sc_signal<bool> c1;
   cout << c1.period() << endl;
 
@@ -25,7 +25,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
   
-  sc_start(2500, SC_NS);
+  sc_start(2500, SC_MS);
   sc_close_vcd_trace_file(tfile);
 
   return 0;

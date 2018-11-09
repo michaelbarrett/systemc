@@ -1,8 +1,8 @@
 //environment.h
 #include "systemc.h"
 
-const double SPEED_X = 0.1;
-const double SPEED_Y = 0.1;
+const double MAX_SPEED_X = 0.002;
+const double MAX_SPEED_Y = 0.002;
 const int NUM_ROBOTS = 4;
 const int NUM_HUMANS = 6;
 const int NUM_ROWS = 3;
@@ -24,6 +24,7 @@ SC_MODULE(environment) {
   static double roboty[NUM_ROBOTS];
   static double humanx[NUM_HUMANS];
   static double humany[NUM_HUMANS];
+  static int human_grids[NUM_HUMANS];
 
   //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to human, 3 = " due to position error
   static int stop_state[NUM_ROBOTS];

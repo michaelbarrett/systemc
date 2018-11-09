@@ -15,6 +15,17 @@ double environment :: robotx[NUM_ROBOTS] = {};
 double environment :: roboty[NUM_ROBOTS] = {};
 double environment :: humanx[NUM_HUMANS] = {};
 double environment :: humany[NUM_HUMANS] = {};
+int environment :: human_grids[NUM_HUMANS] = {1, 13, 18, 26, 32, 39}; //human start grids
+//grid paths humans 0-5, these are circular.
+int server :: human_grid_list_data[50][50] =
+  {
+   {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 11},
+   {13, 14, 15, 16, 17, 18, 24, 31, 30, 29, 28, 27, 26, 23},
+   {18, 19, 20, 21, 22, 25, 35, 34, 33, 32, 31, 24},
+   {26, 27, 28, 29, 30, 31, 32, 37, 45, 44, 43, 42, 41, 40, 36},
+   {32, 33, 34, 35, 38, 48, 47, 46, 45, 37},
+   {39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 49}
+  };
 int environment :: stop_state[NUM_ROBOTS] = {};
 int environment :: current_grid[NUM_ROBOTS] = {};
 int environment :: grid[60][60] =
@@ -42,6 +53,26 @@ int environment :: grid[60][60] =
    {51, 0, 16, 2, 18}, {52, 2, 16, 4, 18}, {53, 4, 16, 6, 18}, {54, 6, 16, 8, 18}, {55, 8, 16, 10, 18},  {56, 10, 16, 12, 18},
    {57, 12, 16, 14, 18}, {58, 14, 16, 16, 18}, {59, 16, 16, 18, 18}, {60, 18, 16, 20, 18}
   };
+
+//gets the next grid of a human
+int environment :: get_next_grid_human(int human_index, int current_grid) {
+  int human_grid_list[30];
+  int size_elements = sizeof(human_grid_list)/sizeof(human_grid_list[0]);
+  for (int i = 0; i < size_elements; i++) {
+    human_grid_list[i] = human_grid_list_data[human_index][i];
+  }
+  //linear search for current grid variable, then return the next one
+  for (int i = 0; i < size_elements; i++) {
+    if (human_grid_list[i] == current_grid) {
+      if ((i+1) < size_elements) {
+	return human_grid_list[i+1];
+      }
+      else {
+	return human_grid_list[0]; //Implements Circularity of Human Paths
+      }
+    }
+  }
+}
 
 double environment :: get_x_center_of_grid(int grid_index) {
   double cx;
@@ -85,16 +116,21 @@ int environment :: my_grid_index(int robot_index) {
 
 void environment :: prc() {
   //INITIALIZATION -- ROBOT CURRENT GRID (IN SERVER) AND GPS XY (IN ENVIRONMENT)
-  //initialize robot positions
+  //initialize robot positions (humans are already initialized)
   server::set_current_grid_robot(0, 1);
   server::set_current_grid_robot(1, 10);
   server::set_current_grid_robot(2, 49);
   server::set_current_grid_robot(3, 60);
 
-  //set x and y in environment gps
+  //set x and y in environment gps for robots
   for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
     robotx[robot_index] = get_x_center_of_grid(server::get_current_grid_robot(robot_index));
     roboty[robot_index] = get_y_center_of_grid(server::get_current_grid_robot(robot_index));
+  }
+  //set x and y in environment gps for humans
+  for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+    humanx[human_index] = get_x_center_of_grid(human_grids[human_index]);
+    humany[human_index] = get_y_center_of_grid(human_grids[human_index]);
   }
 
   cout << "INITIAL POSITIONS: " << endl;
@@ -106,24 +142,37 @@ void environment :: prc() {
   cout << "Robot 3 y is " << roboty[2] << endl;
   cout << "Robot 4 x is " << robotx[3] << endl;
   cout << "Robot 4 y is " << roboty[3] << endl;
+  cout << "Human 1 x is " << humanx[0] << endl;
+  cout << "Human 1 y is " << humany[0] << endl;
+  cout << "Human 2 x is " << humanx[1] << endl;
+  cout << "Human 2 y is " << humany[1] << endl;
+  cout << "Human 3 x is " << humanx[2] << endl;
+  cout << "Human 3 y is " << humany[2] << endl;
+  cout << "Human 4 x is " << humanx[3] << endl;
+  cout << "Human 4 y is " << humany[3] << endl;
+  cout << "Human 5 x is " << humanx[4] << endl;
+  cout << "Human 5 y is " << humany[4] << endl;
+  cout << "Human 6 x is " << humanx[5] << endl;
+  cout << "Human 6 y is " << humany[5] << endl;
   
   while(1) {
-    //(1) MOVEMENT LOOP
+    //(1) ROBOT MOVEMENT LOOP WITH BOUNDARY CHECK
     for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
       int current_grid, next_grid;
+      double myx, myy, desiredx, desiredy;
       current_grid = server::get_current_grid_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
       //move by speed towards next grid in the path
       //do we move up, down, left, or right?
       //get the X and Y of the next grid. Compare it to our X and Y.
       //Then move towards it.
-      double myx = robotx[robot_index];
-      double myy = roboty[robot_index];
+      myx = robotx[robot_index];
+      myy = roboty[robot_index];
       //we have our x, our y, our current grid, and our next grid.
       //we need the desired x, desired y.
       //for this we need grid index ----> x and y
-      double desiredx = get_x_center_of_grid(next_grid);
-      double desiredy = get_y_center_of_grid(next_grid);
+      desiredx = get_x_center_of_grid(next_grid);
+      desiredy = get_y_center_of_grid(next_grid);
       //Now, we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
       //If desired is to the right of curent, move right.
@@ -133,16 +182,16 @@ void environment :: prc() {
       if (next_grid > 0) { //done with all path
 	if ((stop_state[robot_index]) == 0) {
 	  if (desiredx < myx) {
-	    robotx[robot_index] -= SPEED_X;
+	    robotx[robot_index] -= MAX_SPEED_X;
 	  }
 	  else if (desiredx > myx) {
-	    robotx[robot_index] += SPEED_X;
+	    robotx[robot_index] += MAX_SPEED_X;
 	  }
 	  if (desiredy < myy) {
-	    roboty[robot_index] -= SPEED_Y;
+	    roboty[robot_index] -= MAX_SPEED_Y;
 	  }
 	  else if (desiredy > myy) {
-	    roboty[robot_index] += SPEED_Y;
+	    roboty[robot_index] += MAX_SPEED_Y;
 	  }
 	}
 	//Boundary check
@@ -175,15 +224,14 @@ void environment :: prc() {
 	}
       }
     }
-    /*cout << "POSITIONS AT LOOP END: " << endl;
-    cout << "Robot 0 x is " << robotx[0] << endl;
-    cout << "Robot 0 y is " << roboty[0] << endl;
-    cout << "Robot 1 x is " << robotx[1] << endl;
-    cout << "Robot 1 y is " << roboty[1] << endl;
-    cout << "Robot 2 x is " << robotx[2] << endl;
-    cout << "Robot 2 y is " << roboty[2] << endl;
-    cout << "Robot 3 x is " << robotx[3] << endl;
-    cout << "Robot 3 y is " << roboty[3] << endl;*/
+
+    //(2) HUMAN MOVEMENT LOOP -- Moves All Humans
+    for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+      //get current grid, next grid, myx/y, desiredx/y
+      int current_grid, next_grid;
+      double myx, myy, desiredx, desiredy;
+      current_grid = human_grids[human_index];
+    }
     
     wait();
   }
