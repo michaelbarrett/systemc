@@ -9,6 +9,7 @@
 //  
 //}
 
+
 int environment :: message_received = 0; //0 = none received , 1 = ack received
 bool environment :: path_fin[NUM_ROBOTS] = {false, false, false, false};
 double environment :: robotx[NUM_ROBOTS] = {};
@@ -17,7 +18,7 @@ double environment :: humanx[NUM_HUMANS] = {};
 double environment :: humany[NUM_HUMANS] = {};
 int environment :: human_grids[NUM_HUMANS] = {1, 13, 18, 26, 32, 39}; //human start grids
 //grid paths humans 0-5, these are circular.
-int server :: human_grid_list_data[50][50] =
+int environment :: human_grid_list_data[50][50] =
   {
    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 11},
    {13, 14, 15, 16, 17, 18, 24, 31, 30, 29, 28, 27, 26, 23},
@@ -54,6 +55,11 @@ int environment :: grid[60][60] =
    {57, 12, 16, 14, 18}, {58, 14, 16, 16, 18}, {59, 16, 16, 18, 18}, {60, 18, 16, 20, 18}
   };
 
+//sets the current grid of a human
+void environment :: set_current_grid_human(int human_index, int grid_index) {
+  human_grids[human_index] = grid_index;
+}
+
 //gets the next grid of a human
 int environment :: get_next_grid_human(int human_index, int current_grid) {
   int human_grid_list[30];
@@ -72,6 +78,7 @@ int environment :: get_next_grid_human(int human_index, int current_grid) {
       }
     }
   }
+  return human_grid_list[0]; //shouldn't occur
 }
 
 double environment :: get_x_center_of_grid(int grid_index) {
@@ -158,27 +165,21 @@ void environment :: prc() {
   while(1) {
     //(1) ROBOT MOVEMENT LOOP WITH BOUNDARY CHECK
     for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+      //get values needed for movement
       int current_grid, next_grid;
       double myx, myy, desiredx, desiredy;
       current_grid = server::get_current_grid_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
-      //move by speed towards next grid in the path
-      //do we move up, down, left, or right?
-      //get the X and Y of the next grid. Compare it to our X and Y.
-      //Then move towards it.
       myx = robotx[robot_index];
       myy = roboty[robot_index];
-      //we have our x, our y, our current grid, and our next grid.
-      //we need the desired x, desired y.
-      //for this we need grid index ----> x and y
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
-      //Now, we want to actually move towards the desired grid.
+      //actual movement: we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
       //If desired is to the right of curent, move right.
       //If desired is above current, move up.
       //If desired is below current, move down.
-      //this is movement, so if we are not moving, don't do this
+      //If we are not moving, don't perform actual movement
       if (next_grid > 0) { //done with all path
 	if ((stop_state[robot_index]) == 0) {
 	  if (desiredx < myx) {
@@ -231,6 +232,31 @@ void environment :: prc() {
       int current_grid, next_grid;
       double myx, myy, desiredx, desiredy;
       current_grid = human_grids[human_index];
+      next_grid = get_next_grid_human(human_index, current_grid);
+      myx = humanx[human_index];
+      myy = humany[human_index];
+      desiredx = get_x_center_of_grid(next_grid);
+      desiredy = get_y_center_of_grid(next_grid);
+      //actual movement
+      if (desiredx < myx) {
+	humanx[human_index] -= HUMAN_SPEED_X;
+      }
+      else if (desiredx > myx) {
+	humanx[human_index] += HUMAN_SPEED_X;
+      }
+      if (desiredy < myy) {
+	humany[human_index] -= HUMAN_SPEED_Y;
+      }
+      else if (desiredy > myy) {
+	humany[human_index] += HUMAN_SPEED_Y;
+      }
+      //Boundary Check
+      if (distance(myx, myy, desiredx, desiredy) < 1.05) {
+	//set current grid to next grid -- get_next_grid_human
+	set_current_grid_human(human_index, get_next_grid_human(human_index, current_grid));
+	cout << "Human " << human_index+1 << " x is " << humanx[human_index] << endl;
+	cout << "Human " << human_index+1 << " y is " << humany[human_index] << endl;
+      }
     }
     
     wait();

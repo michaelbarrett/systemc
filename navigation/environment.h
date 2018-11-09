@@ -3,6 +3,8 @@
 
 const double MAX_SPEED_X = 0.002;
 const double MAX_SPEED_Y = 0.002;
+const double HUMAN_SPEED_X = 0.005;
+const double HUMAN_SPEED_Y = 0.005;
 const int NUM_ROBOTS = 4;
 const int NUM_HUMANS = 6;
 const int NUM_ROWS = 3;
@@ -25,6 +27,7 @@ SC_MODULE(environment) {
   static double humanx[NUM_HUMANS];
   static double humany[NUM_HUMANS];
   static int human_grids[NUM_HUMANS];
+  static int human_grid_list_data[50][50];
 
   //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to human, 3 = " due to position error
   static int stop_state[NUM_ROBOTS];
@@ -43,6 +46,8 @@ SC_MODULE(environment) {
  public:
   static void receive_message(int m);
 
+  static void set_current_grid_human(int human_index, int grid_index);
+  static int get_next_grid_human(int human_index, int current_grid);
   static double get_x_center_of_grid(int grid_index);
   static double get_y_center_of_grid(int grid_index);
   static int grid_to_xy(int grid_index);
