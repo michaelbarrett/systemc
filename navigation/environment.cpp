@@ -10,6 +10,7 @@
 //}
 
 int environment :: message_received = 0; //0 = none received , 1 = ack received
+bool environment :: path_fin[NUM_ROBOTS] = {false, false, false, false};
 double environment :: robotx[NUM_ROBOTS] = {};
 double environment :: roboty[NUM_ROBOTS] = {};
 double environment :: humanx[NUM_HUMANS] = {};
@@ -97,96 +98,92 @@ void environment :: prc() {
   }
 
   cout << "INITIAL POSITIONS: " << endl;
-  cout << "Robot 0 x is " << robotx[0] << endl;
-  cout << "Robot 0 y is " << roboty[0] << endl;
-  cout << "Robot 1 x is " << robotx[1] << endl;
-  cout << "Robot 1 y is " << roboty[1] << endl;
-  cout << "Robot 2 x is " << robotx[2] << endl;
-  cout << "Robot 2 y is " << roboty[2] << endl;
-  cout << "Robot 3 x is " << robotx[3] << endl;
-  cout << "Robot 3 y is " << roboty[3] << endl;
-  cout << "IS_GRID_OCCUPIED TESTS: " << endl;
-  cout << "Grid 1 is " << server::is_grid_occupied(1) << endl;
-  cout << "Grid 2 is " << server::is_grid_occupied(2) << endl;
-  cout << "Grid 10 is " << server::is_grid_occupied(10) << endl;
-  cout << "Grid 12 is " << server::is_grid_occupied(12) << endl;
-  cout << "Grid 49 is " << server::is_grid_occupied(49) << endl;
-  cout << "Grid 50 is " << server::is_grid_occupied(50) << endl;
-  cout << "Grid 59 is " << server::is_grid_occupied(59) << endl;
-  cout << "Grid 60 is " << server::is_grid_occupied(60) << endl;
+  cout << "Robot 1 x is " << robotx[0] << endl;
+  cout << "Robot 1 y is " << roboty[0] << endl;
+  cout << "Robot 2 x is " << robotx[1] << endl;
+  cout << "Robot 2 y is " << roboty[1] << endl;
+  cout << "Robot 3 x is " << robotx[2] << endl;
+  cout << "Robot 3 y is " << roboty[2] << endl;
+  cout << "Robot 4 x is " << robotx[3] << endl;
+  cout << "Robot 4 y is " << roboty[3] << endl;
   
   while(1) {
     //(1) MOVEMENT LOOP
-    //Q: What is this robot? What is the next grid for this robot?
-    //for each robot:
-    //1. get the current grid and the next grid
-    //2. update robot position
     for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
-
-      //cout << "Movement Loop For Robot " << robot_index << ": " << endl;
-      
       int current_grid, next_grid;
       current_grid = server::get_current_grid_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
-      //cout << "The Current Grid is: " << current_grid << endl;
-      //cout << "The Next Grid is: " << next_grid << endl;
       //move by speed towards next grid in the path
       //do we move up, down, left, or right?
       //get the X and Y of the next grid. Compare it to our X and Y.
       //Then move towards it.
       double myx = robotx[robot_index];
       double myy = roboty[robot_index];
-      //cout << "Current X is: " << myx << endl;
-      //cout << "Current Y is: " << myy << endl;
       //we have our x, our y, our current grid, and our next grid.
       //we need the desired x, desired y.
       //for this we need grid index ----> x and y
       double desiredx = get_x_center_of_grid(next_grid);
       double desiredy = get_y_center_of_grid(next_grid);
-      //cout << "Desired X is: " << desiredx << endl;
-      //cout << "Desired Y is: " << desiredy << endl;
       //Now, we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
       //If desired is to the right of curent, move right.
       //If desired is above current, move up.
       //If desired is below current, move down.
-      //movemment, so if we are not moving, don't do this
-      if ((stop_state[robot_index]) == 0) {
-	if (desiredx < myx) {
-	  robotx[robot_index] -= SPEED_X;
+      //this is movement, so if we are not moving, don't do this
+      if (next_grid > 0) { //done with all path
+	if ((stop_state[robot_index]) == 0) {
+	  if (desiredx < myx) {
+	    robotx[robot_index] -= SPEED_X;
+	  }
+	  else if (desiredx > myx) {
+	    robotx[robot_index] += SPEED_X;
+	  }
+	  if (desiredy < myy) {
+	    roboty[robot_index] -= SPEED_Y;
+	  }
+	  else if (desiredy > myy) {
+	    roboty[robot_index] += SPEED_Y;
+	  }
 	}
-	else if (desiredx > myx) {
-	  robotx[robot_index] += SPEED_X;
-	}
-	if (desiredy < myy) {
-	  roboty[robot_index] -= SPEED_Y;
-	}
-	else if (desiredy > myy) {
-	  roboty[robot_index] += SPEED_Y;
+	//Boundary check
+	//we are "crossing" if the distance between my gps and desired gps is <1.05.
+	//at this point it would be safe to update the grid to the next grid.
+	if (distance(myx, myy, desiredx, desiredy) < 1.05) {
+	  //Send CROSSING signal to server
+	  server::receive_message(robot_index, 1);
+	  wait(); //wait for a response
+	  //If "ack" is received, update current grid in server and keep going
+	  if (message_received == 1) {
+	    stop_state[robot_index] == 0;
+	    server::set_current_grid_robot(robot_index, next_grid);
+	    cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
+	    cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
+	    cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
+	  }
+	  //Otherwise, stop and change stop_state in env + status in server
+	  else {
+	    cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
+	    stop_state[robot_index] == 1;
+	    server::set_robot_status(robot_index, 1);
+	  }
 	}
       }
-      //Boundary check
-      //we are "crossing" if the distance between my gps and desired gps is <1.05.
-      //at this point it would be safe to update the grid to the next grid.
-      if (distance(myx, myy, desiredx, desiredy) < 1.05) {
-	//Send CROSSING signal to server
-	server::receive_message(robot_index, 1);
-	wait(); //wait for a response
-	//If "ack" is received, update current grid in server and keep going
-	if (message_received == 1) {
-	  stop_state[robot_index] == 0;
-	  server::set_current_grid_robot(robot_index, next_grid);
-	}
-	//Otherwise, stop and change stop_state in env + status in server
-	else {
-	  stop_state[robot_index] == 1;
-	  server::set_robot_status(robot_index, 1);
+      else {
+	if (path_fin[robot_index] != true) {
+	  path_fin[robot_index] = true;
+	  cout << "******* Robot " << robot_index+1 << " has completed its path. *******" << endl;
 	}
       }
     }
-
-    //Note. We wish to update the "current grid" and "next grid" in the server so that the path can be followed all the way to the end for each robot.
-    //This will relate to the "crossing" signals.
+    /*cout << "POSITIONS AT LOOP END: " << endl;
+    cout << "Robot 0 x is " << robotx[0] << endl;
+    cout << "Robot 0 y is " << roboty[0] << endl;
+    cout << "Robot 1 x is " << robotx[1] << endl;
+    cout << "Robot 1 y is " << roboty[1] << endl;
+    cout << "Robot 2 x is " << robotx[2] << endl;
+    cout << "Robot 2 y is " << roboty[2] << endl;
+    cout << "Robot 3 x is " << robotx[3] << endl;
+    cout << "Robot 3 y is " << roboty[3] << endl;*/
     
     wait();
   }
@@ -194,5 +191,4 @@ void environment :: prc() {
 
 void environment :: receive_message(int m) {
   message_received = m;
-  cout << "environment message received" << endl;
 }

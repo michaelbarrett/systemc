@@ -19,12 +19,13 @@ SC_MODULE(environment) {
   //holds all the robot coords
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
+  static bool path_fin[NUM_ROBOTS];
   static double robotx[NUM_ROBOTS];
   static double roboty[NUM_ROBOTS];
   static double humanx[NUM_HUMANS];
   static double humany[NUM_HUMANS];
 
-  //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to obstacle, 3 = " due to position error
+  //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to human, 3 = " due to position error
   static int stop_state[NUM_ROBOTS];
 
   static int current_grid[NUM_ROBOTS];

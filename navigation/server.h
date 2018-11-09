@@ -9,6 +9,7 @@ SC_MODULE (server) {
   static sc_event ev_env;
 
   static int grid_list_data[50][50];
+  static int human_grid_list_data[50][50];
 
   static int robot_status[50][50];
 

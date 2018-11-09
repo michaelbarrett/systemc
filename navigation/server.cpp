@@ -11,9 +11,14 @@ sc_event server :: ev_env;
 int server :: grid_list_data[50][50] =
   {
    {1, 11, 13, 14, 15, 16, 17, 18, 24, 31, 30, 29, 28, 27, 26, 36, 39},
-   {10, 12, 22, 21, 20, 19},
-   {49, 39, 36, 26, 27, 28, 29, 30},
-   {60, 50, 48, 47, 46, 45, 37, 32}
+   {10, 12, 22, 21, 20, 19, 18, 24, 31, 32, 33, 34, 35, 25},
+   {49, 39, 36, 26, 27, 28, 29, 30, 31, 32, 37, 45, 46, 47, 48, 38},
+   {60, 50, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 49, 51, 52, 53, 54, 55}
+  };
+
+int server :: human_grid_list_data[50][50] =
+  {
+   
   };
 
 //format: {[ROBOT INDEX]: ROBOT SPEED, CURRENT GRID, STATUS}
@@ -80,9 +85,7 @@ bool server :: is_grid_occupied(int grid_index)
 void server :: prc() {
   while(1) {
     wait(ev_env); //wait for a message from the environmen
-    cout << "SERVER: Received message from environment." << endl;
     if (message == 1) {
-      cout << "SERVER: CROSSING received from robot" << endl;
       //now check if there is a robot in the NEXT GRID of that robot
       //and if not, send "ack".
       //Q: Which robot is sending the message?
@@ -108,7 +111,6 @@ void server :: receive_message(int robot_index, int m) {
   message = m;
   message_robot_index = robot_index;
   ev_env.notify();
-  cout << "ev_env notified." << endl;
 }
 
 //Called to send messages through robots to environment.
