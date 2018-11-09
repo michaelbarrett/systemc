@@ -50,6 +50,7 @@ int environment :: my_grid_index(int robot_index) {
 }
 
 void environment :: prc() {
+  //INITIALIZATION -- ROBOT CURRENT GRID (IN SERVER) AND GPS XY (IN ENVIRONMENT)
   //initialize robot positions
   server::set_current_grid_robot(0, 1);
   server::set_current_grid_robot(1, 10);
@@ -72,24 +73,20 @@ void environment :: prc() {
   cout << "Robot 3 y is " << roboty[3] << endl;
   
   while(1) {
-    //current grid is found based on current location of all robots.
-
-    //and next grid is moved towards.
+    //(1) MOVEMENT LOOP
     //Q: What is this robot? What is the next grid for this robot?
-
     //for each robot:
     //1. get the current grid and the next grid
     //2. update robot position
     for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
 
-      cout << "For Robot " << robot_index << ": " << endl;
+      cout << "Movement Loop For Robot " << robot_index << ": " << endl;
       
       int current_grid, next_grid;
       current_grid = server::get_current_grid_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
-      cout << "Next grid calculation completed." << endl;
-      cout << "Current grid index is: " << current_grid << endl;
-      cout << "Next grid index is: " << next_grid << endl;
+      cout << "The Current Grid is: " << current_grid << endl;
+      cout << "The Next Grid is: " << next_grid << endl;
       //move by speed towards next grid in the path
       //do we move up, down, left, or right?
       //get the X and Y of the next grid. Compare it to our X and Y.

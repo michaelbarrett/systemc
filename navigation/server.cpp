@@ -38,10 +38,6 @@ int server :: get_next_grid_robot(int robot_index) {
   }
   //linear search for current grid variable, then return the next one
   int current_grid_robot = get_current_grid_robot(robot_index);
-
-  for (int i = 0; i < size_elements; i++) {
-    cout << robot_grid_list[i] << ", " << endl;
-  }
   
   for (int i = 0; i < size_elements; i++) {
     if (robot_grid_list[i] == current_grid_robot) {
