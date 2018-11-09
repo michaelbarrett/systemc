@@ -8,11 +8,8 @@ int sc_main(int argc, char* argv[]) {
   //sc_signal<bool> c1;
   //cout << c1.period() << endl;
 
-  //parameters for paramaterized modules
-  int path[] = {0, 1, 2, 3, 4};
-
   //module instantiation
-  environment e1("e1", &path[0]);
+  environment e1("e1");
   robot r1("r1");
   server s1("s1");
 
@@ -28,7 +25,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
   
-  sc_start(1000, SC_NS);
+  sc_start(100, SC_NS);
   sc_close_vcd_trace_file(tfile);
 
   return 0;

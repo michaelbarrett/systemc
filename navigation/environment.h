@@ -9,59 +9,46 @@ const int NUM_ROWS = 3;
 
 SC_MODULE(environment) {
   sc_in<bool> clock;
-  //out to robot then to server
+  //SENDING: out to robot then to server
   //0 = None
   //1 = "CROSSING"
-  int my_message;
+  //RECEIVING: from server thru robot
+  //0 = None
+  //1 = Ack
+  static int message_received;
   //holds all the robot coords
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
-  double robotx[NUM_ROBOTS] = {};
-  double roboty[NUM_ROBOTS] = {};
-  double humanx[NUM_HUMANS] = {};
-  double humany[NUM_HUMANS] = {};
+  static double robotx[NUM_ROBOTS];
+  static double roboty[NUM_ROBOTS];
+  static double humanx[NUM_HUMANS];
+  static double humany[NUM_HUMANS];
 
-  int current_grid[NUM_ROBOTS] = {};
+  //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to obstacle, 3 = " due to position error
+  static int stop_state[NUM_ROBOTS];
+
+  static int current_grid[NUM_ROBOTS];
 
   //grid map array
   //{{INDEX, X1, Y1, X2, Y2}, {...}, ...}
-  int grid[60][60] =
-{ //row index 0
- {1, 0, 0, 2, 2}, {2, 2, 0, 4, 2}, {3, 4, 0, 6, 2}, {4, 6, 0, 8, 2}, {5, 8, 0, 10, 2}, {6, 10, 0, 12, 2}, {7, 12, 0, 14, 2},
- {8, 14, 0, 16, 2}, {9, 16, 0, 18, 2}, {10, 18, 0, 20, 2},
- //row index 1
- {11, 0, 2, 2, 4}, {12, 18, 2, 20, 4},
- //row index 2
- {13, 0, 4, 2, 6}, {14, 2, 4, 4, 6}, {15, 4, 4, 6, 6}, {16, 6, 4, 8, 6}, {17, 8, 4, 10, 6}, {18, 10, 4, 12, 6}, {19, 12, 4, 14, 6},
- {20, 14, 4, 16, 6}, {21, 16, 4, 18, 6}, {22, 18, 4, 20, 6},
- //row index 3
- {23, 0, 6, 2, 8}, {24, 10, 6, 12, 8}, {25, 18, 6, 20, 8},
- //row index 4
- {26, 0, 8, 2, 10}, {27, 2, 8, 4, 10}, {28, 4, 8, 6, 10}, {29, 6, 8, 8, 10}, {30, 8, 8, 10, 10}, {31, 10, 8, 12, 10},
- {32, 12, 8, 14, 10}, {33, 14, 8, 16, 10}, {34, 16, 8, 18, 10},  {35, 18, 8, 20, 10},
- //row index 5
- {36, 0, 10, 2, 12}, {37, 12, 10, 14, 12}, {38, 18, 10, 20, 12},
- //row index 6
- {39, 0, 12, 2, 14}, {40, 2, 12, 4, 14}, {41, 4, 12, 6, 14}, {42, 6, 12, 8, 14}, {43, 8, 12, 10, 14}, {44, 10, 12, 12, 14},
- {45, 12, 12, 14, 14}, {46, 14, 12, 16, 14}, {47, 16, 12, 18, 14}, {48, 18, 12, 20, 14},
- //row index 7
- {49, 0, 14, 2, 16}, {50, 18, 14, 20, 16},
- //row index 8
- {51, 0, 16, 2, 18}, {52, 2, 16, 4, 18}, {53, 4, 16, 6, 18}, {54, 6, 16, 8, 18}, {55, 8, 16, 10, 18},  {56, 10, 16, 12, 18},
- {57, 12, 16, 14, 18}, {58, 14, 16, 16, 18}, {59, 16, 16, 18, 18}, {60, 18, 16, 20, 18}
-};
-  //local variable path
-  int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
+  static int grid[60][60];
 
-  double get_x_center_of_grid(int grid_index);
-  double get_y_center_of_grid(int grid_index);
-  int grid_to_xy(int grid_index);
-  int my_grid_index(int robot_index);
+  //local variable path
+  //int* _path; //path, parameterizable -- PHASE 2: add possibility for multiple paths with multiple robots
+
   void prc();
+
+ public:
+  static void receive_message(int m);
+
+  static double get_x_center_of_grid(int grid_index);
+  static double get_y_center_of_grid(int grid_index);
+  static int grid_to_xy(int grid_index);
+  static int my_grid_index(int robot_index);
   
   SC_HAS_PROCESS(environment);
 
- environment(sc_module_name name, int* path) : sc_module(name), _path(path) {
+ environment(sc_module_name name) : sc_module(name) {
     SC_THREAD(prc);
     sensitive << clock.pos();
   }

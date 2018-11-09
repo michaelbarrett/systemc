@@ -24,6 +24,8 @@ SC_MODULE (server) {
   static void receive_message(int robot_index, int m);
   static void send_message(int robot_index, int m);
 
+  static int get_robot_status(int robot_index);
+  static void set_robot_status(int robot_index, int status);
   static int get_current_grid_robot(int robot_index);
   static void set_current_grid_robot(int robot_index, int new_current_grid);
   static int get_next_grid_robot(int robot_index);

@@ -1,6 +1,7 @@
 //server.cpp
 #include "helper.h"
 #include "server.h"
+#include "environment.h"
 
 int server :: message = 0;
 int server :: message_robot_index = 0;
@@ -15,11 +16,22 @@ int server :: grid_list_data[50][50] =
    {60, 50, 48, 47, 46, 45, 37, 32}
   };
 
+//format: {[ROBOT INDEX]: ROBOT SPEED, CURRENT GRID, STATUS}
+//status: 0 = ok, 1 = stop at the grid due to no ack, 2 = stop due to obstacles
+//3 = stop due to position error
 int server :: robot_status[50][50] =
   {
    {1, 1, 0},
    {1, 10, 0}
   };
+
+int server :: get_robot_status(int robot_index) {
+  return robot_status[robot_index][2];
+}
+
+void server :: set_robot_status(int robot_index, int status) {
+  robot_status[robot_index][2] = status;
+}
 
 //gets the current grid of a robot from server data.
 int server :: get_current_grid_robot(int robot_index) {
@@ -56,8 +68,10 @@ int server :: get_next_grid_robot(int robot_index) {
 }
 
 //returns whether the given grid is occupied by any robot.
-bool server :: is_grid_occupied(int grid_index) {
-  for (int i = 0; i<sizeof(robot_status); i++) {
+bool server :: is_grid_occupied(int grid_index)
+{
+  int size_elements = sizeof(robot_status)/sizeof(robot_status[0]);
+  for (int i = 0; i < size_elements; i++) {
     if ((get_current_grid_robot(i)) == grid_index) { return true; }
   }
   return false;
@@ -65,7 +79,7 @@ bool server :: is_grid_occupied(int grid_index) {
 
 void server :: prc() {
   while(1) {
-    wait(ev_env); //wait for a message from the environment
+    wait(ev_env); //wait for a message from the environmen
     cout << "SERVER: Received message from environment." << endl;
     if (message == 1) {
       cout << "SERVER: CROSSING received from robot" << endl;
@@ -74,14 +88,18 @@ void server :: prc() {
       //Q: Which robot is sending the message?
       //Q: Into which grid is this robot entering?
       int next_grid_index = get_next_grid_robot(message_robot_index);
-      if (is_grid_occupied(next_grid_index)) {
-	
+      if (!is_grid_occupied(next_grid_index)) {
+	//send message "ack"
+	environment::receive_message(1);
+      }
+      else {
+	environment::receive_message(0);
       }
     }
     if (message == 2) {
       cout << "SERVER: STOPPED received from robot" << endl;
       }
-    wait();
+    //wait();
     }
 }
 
