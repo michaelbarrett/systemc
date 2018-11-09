@@ -103,9 +103,26 @@ void environment :: prc() {
       double desiredy = get_y_center_of_grid(next_grid);
       cout << "Desired X is: " << desiredx << endl;
       cout << "Desired Y is: " << desiredy << endl;
+      //Now, we want to actually move towards the desired grid.
+      //If desired is to the left of current, move left.
+      //If desired is to the right of curent, move right.
+      //If desired is above current, move up.
+      //If desired is below current, move down.
+      if (desiredx < myx) {
+	robotx[robot_index] -= SPEED_X;
+      }
+      else if (desiredx > myx) {
+	robotx[robot_index] += SPEED_X;
+      }
+      if (desiredy < myy) {
+	roboty[robot_index] -= SPEED_Y;
+      }
+      else if (desiredy > myy) {
+	roboty[robot_index] += SPEED_Y;
+      }
     }
     
-    wait(10000, SC_NS);
+    wait();
   }
 }
 
