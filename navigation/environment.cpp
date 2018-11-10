@@ -209,9 +209,8 @@ void environment :: prc() {
 	  }
 	  else {
 	    //stop
-	    stop_state[robot_index] = 2;
 	    if (stop_state[robot_index] != 2) {
-	      cout << "Robot " << robot_index+1 << " is stopped due to Human " << human_index+1 << endl;
+	      stop_state[robot_index] = 2;
 	      server::set_robot_status(robot_index, 2);
 	    }
 	    break; //stay 2
@@ -249,7 +248,7 @@ void environment :: prc() {
 	    }
 	    cout << endl;
 	  }
-	  //Otherwise, stop and change stop_state in env + status in server
+	  //If no "ack", stop and change stop_state in env + status in server
 	  else {
 	    if (stop_state[robot_index] == 0) {
 	      //cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
