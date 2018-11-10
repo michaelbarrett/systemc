@@ -174,6 +174,7 @@ void environment :: prc() {
       myy = roboty[robot_index];
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
+      
       //actual movement: we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
       //If desired is to the right of curent, move right.
@@ -201,20 +202,45 @@ void environment :: prc() {
 	if (distance(myx, myy, desiredx, desiredy) < 1.05) {
 	  //Send CROSSING signal to server
 	  server::receive_message(robot_index, 1);
-	  wait(); //wait for a response
+	  
+	  wait(1, SC_NS); //wait for a response
 	  //If "ack" is received, update current grid in server and keep going
 	  if (message_received == 1) {
 	    stop_state[robot_index] == 0;
+	    server::set_robot_status(robot_index, 0);
 	    server::set_current_grid_robot(robot_index, next_grid);
 	    cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
 	    cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
 	    cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
+	    if (robot_index == 0 || robot_index == 3) {
+	      //(1p) Print robot grids right now -- feedback after R4 crosses
+	      sc_time time_now;
+	      time_now = sc_time_stamp();
+	      cout << "Time Now: "<< time_now.to_string() << endl;
+	      cout << "Robot Grids of R1, 2, 3, 4: ";
+	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+		cout << server::get_current_grid_robot(robot_index) << ", ";
+	      }
+	      cout << endl;
+	    }
 	  }
 	  //Otherwise, stop and change stop_state in env + status in server
 	  else {
-	    cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
-	    stop_state[robot_index] == 1;
+	    if (stop_state[robot_index] == 0) {
+	      cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
+	    }
+	    stop_state[robot_index] = 1;
 	    server::set_robot_status(robot_index, 1);
+	  }
+	}
+	//Extra Stopped Check
+	//If the robot is stopped, check if the next grid has become free.
+	//Most of this is handled by Boundary Check but this catches cases where
+	//we have already passed the threshold.
+	if ((stop_state[robot_index]) == 1) {
+	  if (!server::is_grid_occupied(next_grid)) {
+	    cout << "HELLO" << endl;
+	    stop_state[robot_index] = 0;
 	  }
 	}
       }
@@ -254,8 +280,6 @@ void environment :: prc() {
       if (distance(myx, myy, desiredx, desiredy) < 1.05) {
 	//set current grid to next grid -- get_next_grid_human
 	set_current_grid_human(human_index, get_next_grid_human(human_index, current_grid));
-	cout << "Human " << human_index+1 << " x is " << humanx[human_index] << endl;
-	cout << "Human " << human_index+1 << " y is " << humany[human_index] << endl;
       }
     }
     
