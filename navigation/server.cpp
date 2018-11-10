@@ -91,6 +91,7 @@ void server :: prc() {
 	environment::receive_message(1);
       }
       else {
+	cout << "SERVER: Did not send \"ack\" to robot " << message_robot_index+1 << " because grid " << next_grid_index << " is occupied." << endl;
 	environment::receive_message(0);
       }
     }

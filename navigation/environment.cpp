@@ -60,6 +60,10 @@ void environment :: set_current_grid_human(int human_index, int grid_index) {
   human_grids[human_index] = grid_index;
 }
 
+int environment :: get_current_grid_human(int human_index) {
+  return human_grids[human_index];
+}
+
 //gets the next grid of a human
 int environment :: get_next_grid_human(int human_index, int current_grid) {
   int human_grid_list[30];
@@ -70,7 +74,7 @@ int environment :: get_next_grid_human(int human_index, int current_grid) {
   //linear search for current grid variable, then return the next one
   for (int i = 0; i < size_elements; i++) {
     if (human_grid_list[i] == current_grid) {
-      if ((i+1) < size_elements) {
+      if (human_grid_list[i+1] != 0) {
 	return human_grid_list[i+1];
       }
       else {
@@ -212,35 +216,29 @@ void environment :: prc() {
 	    cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
 	    cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
 	    cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
-	    if (robot_index == 0 || robot_index == 3) {
-	      //(1p) Print robot grids right now -- feedback after R4 crosses
-	      sc_time time_now;
-	      time_now = sc_time_stamp();
-	      cout << "Time Now: "<< time_now.to_string() << endl;
-	      cout << "Robot Grids of R1, 2, 3, 4: ";
-	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
-		cout << server::get_current_grid_robot(robot_index) << ", ";
-	      }
-	      cout << endl;
+
+	    //(1p) Print robot grids right now -- feedback after R4 crosses
+	    sc_time time_now;
+	    time_now = sc_time_stamp();
+	    cout << "Time Now: "<< time_now.to_string() << endl;
+	    cout << "All Robot Grids: ";
+	    for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+	      cout << server::get_current_grid_robot(robot_index) << ", ";
 	    }
+	    cout << endl;
+	    cout << "All Human Grids: ";
+	    for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+	      cout << get_current_grid_human(human_index) << ", ";
+	    }
+	    cout << endl;
 	  }
 	  //Otherwise, stop and change stop_state in env + status in server
 	  else {
 	    if (stop_state[robot_index] == 0) {
-	      cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
+	      //cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
 	    }
 	    stop_state[robot_index] = 1;
 	    server::set_robot_status(robot_index, 1);
-	  }
-	}
-	//Extra Stopped Check
-	//If the robot is stopped, check if the next grid has become free.
-	//Most of this is handled by Boundary Check but this catches cases where
-	//we have already passed the threshold.
-	if ((stop_state[robot_index]) == 1) {
-	  if (!server::is_grid_occupied(next_grid)) {
-	    cout << "HELLO" << endl;
-	    stop_state[robot_index] = 0;
 	  }
 	}
       }
@@ -250,8 +248,17 @@ void environment :: prc() {
 	  cout << "******* Robot " << robot_index+1 << " has completed its path. *******" << endl;
 	}
       }
+      //Bonus Stopped Check
+      //In the case that we don't want to go into a new grid, but we are stopped.
+      //If the robot is stopped, check if the next grid has become free.
+      //Most of this is handled by Boundary Check but this catches cases where
+      //we have already passed the threshold.
+      if ((stop_state[robot_index]) == 1) {
+	if (!server::is_grid_occupied(next_grid)) {
+	  stop_state[robot_index] = 0;
+	}
+      }
     }
-
     //(2) HUMAN MOVEMENT LOOP -- Moves All Humans
     for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
       //get current grid, next grid, myx/y, desiredx/y
@@ -263,6 +270,13 @@ void environment :: prc() {
       myy = humany[human_index];
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
+
+      //DEBUG
+      //if (human_index == 0) {
+      //cout << "Hey this is Human 0 in his movement loop with xy (" << myx << " ," << myy << ") and desiredxy (" << desiredx << ", " << desiredy << ")" << endl;
+      //}
+      //DEBUG
+    
       //actual movement
       if (desiredx < myx) {
 	humanx[human_index] -= HUMAN_SPEED_X;
@@ -282,10 +296,11 @@ void environment :: prc() {
 	set_current_grid_human(human_index, get_next_grid_human(human_index, current_grid));
       }
     }
-    
-    wait();
   }
+    
+  wait();
 }
+
 
 void environment :: receive_message(int m) {
   message_received = m;

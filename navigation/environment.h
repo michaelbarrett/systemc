@@ -46,6 +46,7 @@ SC_MODULE(environment) {
  public:
   static void receive_message(int m);
 
+  static int get_current_grid_human(int human_index);
   static void set_current_grid_human(int human_index, int grid_index);
   static int get_next_grid_human(int human_index, int current_grid);
   static double get_x_center_of_grid(int grid_index);
