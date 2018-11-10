@@ -200,6 +200,23 @@ void environment :: prc() {
 	    roboty[robot_index] += MAX_SPEED_Y;
 	  }
 	}
+	//Human Distance Check
+	for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+	  if (distance(myx, myy, humanx[human_index], humany[human_index]) > 2) {
+	    //keep going
+	    stop_state[robot_index] = 0;
+	    server::set_robot_status(robot_index, 0);
+	  }
+	  else {
+	    //stop
+	    stop_state[robot_index] = 2;
+	    if (stop_state[robot_index] != 2) {
+	      cout << "Robot " << robot_index+1 << " is stopped due to Human " << human_index+1 << endl;
+	      server::set_robot_status(robot_index, 2);
+	    }
+	    break; //stay 2
+	  }
+	}
 	//Boundary check
 	//we are "crossing" if the distance between my gps and desired gps is <1.05.
 	//at this point it would be safe to update the grid to the next grid.
@@ -270,12 +287,6 @@ void environment :: prc() {
       myy = humany[human_index];
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
-
-      //DEBUG
-      //if (human_index == 0) {
-      //cout << "Hey this is Human 0 in his movement loop with xy (" << myx << " ," << myy << ") and desiredxy (" << desiredx << ", " << desiredy << ")" << endl;
-      //}
-      //DEBUG
     
       //actual movement
       if (desiredx < myx) {
@@ -300,7 +311,6 @@ void environment :: prc() {
     
   wait();
 }
-
 
 void environment :: receive_message(int m) {
   message_received = m;
