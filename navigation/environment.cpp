@@ -281,9 +281,9 @@ void environment :: prc() {
 
 	      cout << "Current Grid: " << server::get_current_grid_robot(robot_index) << ", Next Grid: " << server::get_next_grid_robot(robot_index) << ", Current Node: "<< server::get_current_node_robot(robot_index) << ", Next Node: " << server::get_next_node_robot(robot_index) << endl;
 	      
-	      cout << myx << ", " << myy << ", " << desiredx << ", " << desiredy << endl;
 	      cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
 	      cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
+	      cout << "Robot will now move towards x: " << desiredx << ", y: " << desiredy << endl;
 
 	      //speed test
 	      //SET THE SPEED
@@ -299,19 +299,19 @@ void environment :: prc() {
 
 	      //(1p) Print robot grids right now -- feedback after R4 crosses
 	      cout << "Elapsed Time: " << time_in_ms << " ms" << endl;
-	      cout << "All Stop States (2 = stopped by human): ";
+	      cout << "All Stop States (1 = stopped by robot, 2 = stopped by human): ";
 	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
 		cout << stop_state[robot_index] << ", ";
-	      }
-	      cout << endl;
-	      cout << "All Robot Grids: ";
-	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
-		cout << server::get_current_grid_robot(robot_index) << ", ";
 	      }
 	      cout << endl;
 	      cout << "All Human Grids: ";
 	      for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
 		cout << get_current_grid_human(human_index) << ", ";
+	      }
+	      cout << endl;
+	      cout << "All Robot Grids: ";
+	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+		cout << server::get_current_grid_robot(robot_index) << ", ";
 	      }
 	      cout << endl;
 	    }

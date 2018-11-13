@@ -1,253 +1,600 @@
-./main
 
         SystemC 2.3.2-Accellera --- Sep  5 2018 14:15:23
-	        Copyright (c) 1996-2017 by all Contributors,
-		        ALL RIGHTS RESERVED
-			robot x,y is: 1.1, 1 and human x,y is: 8.9, 1
-			message is: 0
-			robot x,y is: 1.2, 1 and human x,y is: 8.8, 1
-			message is: 0
-			robot x,y is: 1.3, 1 and human x,y is: 8.7, 1
-			message is: 0
-			robot x,y is: 1.4, 1 and human x,y is: 8.6, 1
-			message is: 0
-			robot x,y is: 1.5, 1 and human x,y is: 8.5, 1
-			message is: 0
-			robot x,y is: 1.6, 1 and human x,y is: 8.4, 1
-			message is: 0
-			robot x,y is: 1.7, 1 and human x,y is: 8.3, 1
-			message is: 0
-			robot x,y is: 1.8, 1 and human x,y is: 8.2, 1
-			message is: 0
-			robot x,y is: 1.9, 1 and human x,y is: 8.1, 1
-			message is: 0
-			sending message CROSSING to server
-			sent message CROSSING0
-			robot x,y is: 2, 1 and human x,y is: 8, 1
-			message is: 1
-			robot x,y is: 2.1, 1 and human x,y is: 7.9, 1
-			message is: 0
-			robot x,y is: 2.2, 1 and human x,y is: 7.8, 1
-			message is: 0
-			robot x,y is: 2.3, 1 and human x,y is: 7.7, 1
-			message is: 0
-			robot x,y is: 2.4, 1 and human x,y is: 7.6, 1
-			message is: 0
-			robot x,y is: 2.5, 1 and human x,y is: 7.5, 1
-			message is: 0
-			robot x,y is: 2.6, 1 and human x,y is: 7.4, 1
-			message is: 0
-			robot x,y is: 2.7, 1 and human x,y is: 7.3, 1
-			message is: 0
-			robot x,y is: 2.8, 1 and human x,y is: 7.2, 1
-			message is: 0
-			robot x,y is: 2.9, 1 and human x,y is: 7.1, 1
-			message is: 0
-			robot x,y is: 3, 1 and human x,y is: 7, 1
-			message is: 0
-			robot x,y is: 3.1, 1 and human x,y is: 6.9, 1
-			message is: 0
-			robot x,y is: 3.2, 1 and human x,y is: 6.8, 1
-			message is: 0
-			robot x,y is: 3.3, 1 and human x,y is: 6.7, 1
-			message is: 0
-			robot x,y is: 3.4, 1 and human x,y is: 6.6, 1
-			message is: 0
-			robot x,y is: 3.5, 1 and human x,y is: 6.5, 1
-			message is: 0
-			robot x,y is: 3.6, 1 and human x,y is: 6.4, 1
-			message is: 0
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 6.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 6.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 6.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.5, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.4, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.3, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.2, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1.1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 1, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 0.9, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 0.8, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 0.7, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 0.6, 1
-			message is: 2
-			stopped bc of human
-			robot is stopped by human. and human x,y is: 0.5, 1
-			message is: 2
-			robot x,y is: 3.7, 1 and human x,y is: 0.4, 1
-			message is: 0
-			robot x,y is: 3.8, 1 and human x,y is: 0.3, 1
-			message is: 0
-			robot x,y is: 3.9, 1 and human x,y is: 0.2, 1
-			message is: 0
-			sending message CROSSING to server
-			sent message CROSSING0
-			robot x,y is: 4, 1 and human x,y is: 0.1, 1
-			message is: 1
-			robot x,y is: 4.1, 1 and human x,y is: 1.52378e-14, 1
-			message is: 0
-			robot x,y is: 4.2, 1 and human x,y is: -0.1, 1
-			message is: 0
-			robot x,y is: 4.3, 1 and human x,y is: -0.2, 1
-			message is: 0
+        Copyright (c) 1996-2017 by all Contributors,
+        ALL RIGHTS RESERVED
+Clock Period: 5 ms
+INITIAL POSITIONS: 
+Robot 1 x is 1
+Robot 1 y is 1
+Robot 2 x is 19
+Robot 2 y is 1
+Robot 3 x is 1
+Robot 3 y is 15
+Robot 4 x is 19
+Robot 4 y is 17
+Human 1 x is 1
+Human 1 y is 1
+Human 2 x is 1
+Human 2 y is 5
+Human 3 x is 11
+Human 3 y is 5
+Human 4 x is 1
+Human 4 y is 9
+Human 5 x is 13
+Human 5 y is 9
+Human 6 x is 1
+Human 6 y is 13
+T: 0ms, Robot 1 with start time 1000 is idle.
+T: 0ms, Robot 2 with start time 5000 is idle.
+T: 0ms, Robot 3 with start time 7000 is idle.
+T: 0ms, Robot 4 with start time 2000 is idle.
 
+Info: (I702) default timescale unit used for tracing: 1 ps (navigation.vcd)
+T: 1000ms, Robot 1 with start time 1000 is idle.
+T: 1000ms, Robot 2 with start time 5000 is idle.
+T: 1000ms, Robot 3 with start time 7000 is idle.
+T: 1000ms, Robot 4 with start time 2000 is idle.
+T: 2000ms, Robot 2 with start time 5000 is idle.
+T: 2000ms, Robot 3 with start time 7000 is idle.
+T: 2000ms, Robot 4 with start time 2000 is idle.
+T: 3000ms, Robot 2 with start time 5000 is idle.
+T: 3000ms, Robot 3 with start time 7000 is idle.
+T: 4000ms, Robot 2 with start time 5000 is idle.
+T: 4000ms, Robot 3 with start time 7000 is idle.
+------- Robot 1 is crossing. -------
+Current Grid: 11, Next Grid: 13, Current Node: 1, Next Node: 13
+Robot 1 x is 1
+Robot 1 y is 1.952
+Robot will now move towards x: 1, y: 3
+Elapsed Time: 4375 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 3, 15, 20, 28, 34, 41, 
+All Robot Grids: 11, 10, 49, 60, 
+------- Robot 4 is crossing. -------
+Current Grid: 50, Next Grid: 48, Current Node: 60, Next Node: 48
+Robot 4 x is 19
+Robot 4 y is 16.046
+Robot will now move towards x: 19, y: 15
+Elapsed Time: 4385 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 3, 15, 20, 28, 34, 41, 
+All Robot Grids: 11, 10, 49, 50, 
+T: 5000ms, Robot 2 with start time 5000 is idle.
+T: 5000ms, Robot 3 with start time 7000 is idle.
+T: 6000ms, Robot 3 with start time 7000 is idle.
+T: 7000ms, Robot 3 with start time 7000 is idle.
+------- Robot 2 is crossing. -------
+Current Grid: 12, Next Grid: 22, Current Node: 10, Next Node: 22
+Robot 2 x is 19
+Robot 2 y is 1.952
+Robot will now move towards x: 19, y: 3
+Elapsed Time: 7380 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 5, 17, 22, 30, 38, 43, 
+All Robot Grids: 11, 12, 49, 50, 
+------- Robot 3 is crossing. -------
+Current Grid: 39, Next Grid: 36, Current Node: 49, Next Node: 26
+Robot 3 x is 1
+Robot 3 y is 14.048
+Robot will now move towards x: 1, y: 13
+Elapsed Time: 9380 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 6, 18, 25, 31, 47, 44, 
+All Robot Grids: 11, 12, 39, 50, 
+------- Robot 4 is crossing. -------
+Current Grid: 48, Next Grid: 47, Current Node: 48, Next Node: 39
+Robot 4 x is 19
+Robot 4 y is 14.048
+Robot will now move towards x: 19, y: 13
+Elapsed Time: 10260 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 6, 24, 35, 31, 47, 44, 
+All Robot Grids: 11, 12, 39, 48, 
+------- Robot 2 is crossing. -------
+Current Grid: 22, Next Grid: 21, Current Node: 22, Next Node: 18
+Robot 2 x is 19
+Robot 2 y is 3.954
+Robot will now move towards x: 19, y: 5
+Elapsed Time: 12385 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 7, 31, 34, 37, 46, 45, 
+All Robot Grids: 11, 22, 39, 48, 
+------- Robot 4 is crossing. -------
+Current Grid: 47, Next Grid: 46, Current Node: 48, Next Node: 39
+Robot 4 x is 18.042
+Robot 4 y is 13.09
+Robot will now move towards x: 17, y: 13
+Elapsed Time: 12655 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 7, 31, 34, 37, 46, 45, 
+All Robot Grids: 11, 22, 39, 47, 
+------- Robot 2 is crossing. -------
+Current Grid: 21, Next Grid: 20, Current Node: 22, Next Node: 18
+Robot 2 x is 18.042
+Robot 2 y is 4.912
+Robot will now move towards x: 17, y: 5
+Elapsed Time: 14780 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 2, 
+All Human Grids: 8, 30, 33, 45, 37, 46, 
+All Robot Grids: 11, 21, 39, 47, 
+------- Robot 2 is crossing. -------
+Current Grid: 20, Next Grid: 19, Current Node: 22, Next Node: 18
+Robot 2 x is 16.046
+Robot 2 y is 5
+Robot will now move towards x: 15, y: 5
+Elapsed Time: 19770 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 12, 27, 24, 42, 34, 50, 
+All Robot Grids: 11, 20, 39, 47, 
+------- Robot 4 is crossing. -------
+Current Grid: 46, Next Grid: 45, Current Node: 48, Next Node: 39
+Robot 4 x is 16.046
+Robot 4 y is 13.002
+Robot will now move towards x: 15, y: 13
+Elapsed Time: 21385 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 21, 26, 19, 41, 35, 59, 
+All Robot Grids: 11, 20, 39, 46, 
+------- Robot 1 is crossing. -------
+Current Grid: 13, Next Grid: 14, Current Node: 13, Next Node: 18
+Robot 1 x is 1
+Robot 1 y is 3.95092
+Robot will now move towards x: 1, y: 5
+Elapsed Time: 25855 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 0, 0, 
+All Human Grids: 19, 14, 21, 26, 47, 57, 
+All Robot Grids: 13, 20, 39, 46, 
+------- Robot 4 is crossing. -------
+Current Grid: 45, Next Grid: 44, Current Node: 48, Next Node: 39
+Robot 4 x is 14.046
+Robot 4 y is 13.002
+Robot will now move towards x: 13, y: 13
+Elapsed Time: 26385 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 19, 14, 21, 26, 47, 57, 
+All Robot Grids: 13, 20, 39, 45, 
+------- Robot 2 is crossing. -------
+Current Grid: 19, Next Grid: 18, Current Node: 22, Next Node: 18
+Robot 2 x is 14.046
+Robot 2 y is 5
+Robot will now move towards x: 13, y: 5
+Elapsed Time: 29315 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 2, 
+All Human Grids: 17, 16, 25, 28, 45, 55, 
+All Robot Grids: 13, 19, 39, 45, 
+------- Robot 3 is crossing. -------
+Current Grid: 36, Next Grid: 26, Current Node: 49, Next Node: 26
+Robot 3 x is 1
+Robot 3 y is 12.049
+Robot will now move towards x: 1, y: 11
+Elapsed Time: 30190 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 2, 
+All Human Grids: 17, 16, 35, 28, 37, 55, 
+All Robot Grids: 13, 19, 36, 45, 
+------- Robot 4 is crossing. -------
+Current Grid: 44, Next Grid: 43, Current Node: 48, Next Node: 39
+Robot 4 x is 12.046
+Robot 4 y is 13.002
+Robot will now move towards x: 11, y: 13
+Elapsed Time: 34990 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 14, 24, 32, 31, 34, 52, 
+All Robot Grids: 13, 19, 36, 44, 
+------- Robot 2 is crossing. -------
+Current Grid: 18, Next Grid: 24, Current Node: 18, Next Node: 31
+Robot 2 x is 12.046
+Robot 2 y is 5
+Robot will now move towards x: 11, y: 5
+Elapsed Time: 35155 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 14, 24, 32, 31, 34, 52, 
+All Robot Grids: 13, 18, 36, 44, 
+------- Robot 2 is crossing. -------
+Current Grid: 24, Next Grid: 31, Current Node: 18, Next Node: 31
+Robot 2 x is 11.088
+Robot 2 y is 5.958
+Robot will now move towards x: 11, y: 7
+Elapsed Time: 37550 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 13, 30, 31, 32, 35, 51, 
+All Robot Grids: 13, 24, 36, 44, 
+------- Robot 1 is crossing. -------
+Current Grid: 14, Next Grid: 15, Current Node: 13, Next Node: 18
+Robot 1 x is 1.95492
+Robot 1 y is 4.90585
+Robot will now move towards x: 3, y: 5
+Elapsed Time: 39120 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 0, 0, 
+All Human Grids: 11, 29, 24, 37, 38, 49, 
+All Robot Grids: 14, 24, 36, 44, 
+------- Robot 4 is crossing. -------
+Current Grid: 43, Next Grid: 42, Current Node: 48, Next Node: 39
+Robot 4 x is 10.046
+Robot 4 y is 13.002
+Robot will now move towards x: 9, y: 13
+Elapsed Time: 39990 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 0, 0, 
+All Human Grids: 1, 29, 18, 45, 48, 39, 
+All Robot Grids: 14, 24, 36, 43, 
+------- Robot 2 is crossing. -------
+Current Grid: 31, Next Grid: 32, Current Node: 31, Next Node: 35
+Robot 2 x is 11.0003
+Robot 2 y is 7.95367
+Robot will now move towards x: 11, y: 9
+Elapsed Time: 46260 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 2, 
+All Human Grids: 4, 23, 21, 42, 37, 42, 
+All Robot Grids: 14, 31, 36, 43, 
+------- Robot 2 is crossing. -------
+Current Grid: 32, Next Grid: 33, Current Node: 31, Next Node: 35
+Robot 2 x is 11.9563
+Robot 2 y is 8.90967
+Robot will now move towards x: 13, y: 9
+Elapsed Time: 48650 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 2, 
+All Human Grids: 5, 14, 25, 40, 33, 43, 
+All Robot Grids: 14, 32, 36, 43, 
+------- Robot 4 is crossing. -------
+Current Grid: 42, Next Grid: 41, Current Node: 48, Next Node: 39
+Robot 4 x is 8.046
+Robot 4 y is 13.002
+Robot will now move towards x: 7, y: 13
+Elapsed Time: 52985 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 2, 0, 
+All Human Grids: 8, 16, 33, 27, 35, 46, 
+All Robot Grids: 14, 32, 36, 42, 
+------- Robot 3 is crossing. -------
+Current Grid: 26, Next Grid: 27, Current Node: 26, Next Node: 32
+Robot 3 x is 1
+Robot 3 y is 10.0493
+Robot will now move towards x: 1, y: 9
+Elapsed Time: 53510 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 0, 0, 
+All Human Grids: 8, 16, 33, 27, 38, 46, 
+All Robot Grids: 14, 32, 26, 42, 
+------- Robot 2 is crossing. -------
+Current Grid: 33, Next Grid: 34, Current Node: 31, Next Node: 35
+Robot 2 x is 13.9523
+Robot 2 y is 9.00167
+Robot will now move towards x: 15, y: 9
+Elapsed Time: 57605 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 10, 24, 24, 29, 47, 48, 
+All Robot Grids: 14, 33, 26, 42, 
+------- Robot 4 is crossing. -------
+Current Grid: 41, Next Grid: 40, Current Node: 48, Next Node: 39
+Robot 4 x is 6.046
+Robot 4 y is 13.002
+Robot will now move towards x: 5, y: 13
+Elapsed Time: 57985 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 12, 24, 24, 29, 47, 50, 
+All Robot Grids: 14, 33, 26, 41, 
+------- Robot 2 is crossing. -------
+Current Grid: 34, Next Grid: 35, Current Node: 31, Next Node: 35
+Robot 2 x is 15.9523
+Robot 2 y is 9.00167
+Robot will now move towards x: 17, y: 9
+Elapsed Time: 62605 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 21, 29, 20, 32, 37, 59, 
+All Robot Grids: 14, 34, 26, 41, 
+------- Robot 1 is crossing. -------
+Current Grid: 15, Next Grid: 16, Current Node: 13, Next Node: 18
+Robot 1 x is 3.95085
+Robot 1 y is 4.99977
+Robot will now move towards x: 5, y: 5
+Elapsed Time: 62760 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 20, 29, 20, 32, 37, 58, 
+All Robot Grids: 15, 34, 26, 41, 
+------- Robot 3 is crossing. -------
+Current Grid: 27, Next Grid: 28, Current Node: 26, Next Node: 32
+Robot 3 x is 1.95484
+Robot 3 y is 9.09445
+Robot will now move towards x: 3, y: 9
+Elapsed Time: 62965 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 20, 29, 20, 32, 37, 58, 
+All Robot Grids: 15, 34, 27, 41, 
+------- Robot 4 is crossing. -------
+Current Grid: 40, Next Grid: 39, Current Node: 48, Next Node: 39
+Robot 4 x is 4.046
+Robot 4 y is 13.002
+Robot will now move towards x: 3, y: 13
+Elapsed Time: 62985 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 20, 29, 20, 32, 37, 58, 
+All Robot Grids: 15, 34, 27, 40, 
+------- Robot 4 is crossing. -------
+Current Grid: 39, Next Grid: 49, Current Node: 39, Next Node: 55
+Robot 4 x is 2.04693
+Robot 4 y is 12.9989
+Robot will now move towards x: 1, y: 13
+Elapsed Time: 67985 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 2, 0, 
+All Human Grids: 18, 27, 25, 44, 34, 56, 
+All Robot Grids: 15, 34, 27, 39, 
+------- Robot 4 is crossing. -------
+Current Grid: 49, Next Grid: 51, Current Node: 39, Next Node: 55
+Robot 4 x is 1.08928
+Robot 4 y is 13.9566
+Robot will now move towards x: 1, y: 15
+Elapsed Time: 70380 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 2, 0, 0, 
+All Human Grids: 17, 23, 34, 42, 38, 55, 
+All Robot Grids: 15, 34, 27, 49, 
+------- Robot 2 is crossing. -------
+Current Grid: 35, Next Grid: 25, Current Node: 35, Next Node: 25
+Robot 2 x is 17.9539
+Robot 2 y is 9.00012
+Robot will now move towards x: 19, y: 9
+Elapsed Time: 75135 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 14, 15, 32, 40, 46, 52, 
+All Robot Grids: 15, 35, 27, 49, 
+------- Robot 4 is crossing. -------
+Current Grid: 51, Next Grid: 52, Current Node: 39, Next Node: 55
+Robot 4 x is 1.0016
+Robot 4 y is 15.9523
+Robot will now move towards x: 1, y: 17
+Elapsed Time: 75370 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 14, 15, 32, 40, 46, 52, 
+All Robot Grids: 15, 35, 27, 51, 
+------- Robot 2 is crossing. -------
+Current Grid: 25, Next Grid: 0, Current Node: 25, Next Node: 0
+Robot 2 x is 18.9103
+Robot 2 y is 8.04371
+Robot will now move towards x: 19, y: 7
+Elapsed Time: 77530 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 2, 2, 
+All Human Grids: 13, 16, 24, 26, 37, 51, 
+All Robot Grids: 15, 25, 27, 51, 
+******* Robot 2 has completed its path. *******
+------- Robot 4 is crossing. -------
+Current Grid: 52, Next Grid: 53, Current Node: 39, Next Node: 55
+Robot 4 x is 1.95709
+Robot 4 y is 16.9078
+Robot will now move towards x: 3, y: 17
+Elapsed Time: 81550 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 2, 24, 19, 28, 33, 40, 
+All Robot Grids: 15, 25, 27, 52, 
+------- Robot 4 is crossing. -------
+Current Grid: 53, Next Grid: 54, Current Node: 39, Next Node: 55
+Robot 4 x is 3.9523
+Robot 4 y is 16.999
+Robot will now move towards x: 5, y: 17
+Elapsed Time: 86540 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 4, 29, 22, 31, 38, 42, 
+All Robot Grids: 15, 25, 27, 53, 
+------- Robot 1 is crossing. -------
+Current Grid: 16, Next Grid: 17, Current Node: 13, Next Node: 18
+Robot 1 x is 5.95077
+Robot 1 y is 5.00005
+Robot will now move towards x: 7, y: 5
+Elapsed Time: 88190 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 5, 29, 25, 32, 47, 43, 
+All Robot Grids: 16, 25, 27, 53, 
+------- Robot 4 is crossing. -------
+Current Grid: 54, Next Grid: 55, Current Node: 39, Next Node: 55
+Robot 4 x is 5.95275
+Robot 4 y is 16.9994
+Robot will now move towards x: 7, y: 17
+Elapsed Time: 91545 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 2, 0, 
+All Human Grids: 7, 27, 34, 45, 46, 45, 
+All Robot Grids: 16, 25, 27, 54, 
+------- Robot 3 is crossing. -------
+Current Grid: 28, Next Grid: 29, Current Node: 26, Next Node: 32
+Robot 3 x is 3.95096
+Robot 3 y is 9.00033
+Robot will now move towards x: 5, y: 9
+Elapsed Time: 94430 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 8, 23, 32, 43, 37, 46, 
+All Robot Grids: 16, 25, 28, 54, 
+------- Robot 4 is crossing. -------
+Current Grid: 55, Next Grid: 0, Current Node: 55, Next Node: 0
+Robot 4 x is 7.95225
+Robot 4 y is 16.9989
+Robot will now move towards x: 9, y: 17
+Elapsed Time: 96550 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 9, 14, 31, 42, 33, 47, 
+All Robot Grids: 16, 25, 28, 55, 
+******* Robot 4 has completed its path. *******
+------- Robot 1 is crossing. -------
+Current Grid: 17, Next Grid: 18, Current Node: 13, Next Node: 18
+Robot 1 x is 7.9507
+Robot 1 y is 5
+Robot will now move towards x: 9, y: 5
+Elapsed Time: 116120 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 14, 27, 31, 37, 35, 52, 
+All Robot Grids: 17, 25, 28, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 29, Next Grid: 30, Current Node: 26, Next Node: 32
+Robot 3 x is 5.95053
+Robot 3 y is 9.00019
+Robot will now move towards x: 7, y: 9
+Elapsed Time: 122425 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 2, 15, 20, 42, 46, 40, 
+All Robot Grids: 17, 25, 29, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 18, Next Grid: 24, Current Node: 18, Next Node: 31
+Robot 1 x is 9.95062
+Robot 1 y is 5
+Robot will now move towards x: 11, y: 5
+Elapsed Time: 141220 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 21, 23, 19, 37, 37, 59, 
+All Robot Grids: 18, 25, 29, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 30, Next Grid: 31, Current Node: 26, Next Node: 32
+Robot 3 x is 7.95053
+Robot 3 y is 9.00019
+Robot will now move towards x: 9, y: 9
+Elapsed Time: 146880 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 18, 15, 25, 43, 34, 56, 
+All Robot Grids: 18, 25, 30, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 24, Next Grid: 31, Current Node: 18, Next Node: 31
+Robot 1 x is 10.9055
+Robot 1 y is 5.95492
+Robot will now move towards x: 11, y: 7
+Elapsed Time: 161770 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 2, 0, 
+All Human Grids: 2, 28, 20, 30, 34, 40, 
+All Robot Grids: 24, 25, 30, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 31, Next Grid: 32, Current Node: 26, Next Node: 32
+Robot 3 x is 9.95053
+Robot 3 y is 9.00019
+Robot will now move towards x: 11, y: 9
+Elapsed Time: 174750 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 9, 17, 32, 42, 32, 47, 
+All Robot Grids: 24, 25, 31, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 32, Next Grid: 37, Current Node: 32, Next Node: 45
+Robot 3 x is 11.9505
+Robot 3 y is 9.00019
+Robot will now move towards x: 13, y: 9
+Elapsed Time: 210260 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 1, 0, 0, 0, 
+All Human Grids: 7, 27, 34, 28, 34, 45, 
+All Robot Grids: 24, 25, 32, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 31, Next Grid: 30, Current Node: 31, Next Node: 26
+Robot 1 x is 11.0005
+Robot 1 y is 7.95085
+Robot will now move towards x: 11, y: 9
+Elapsed Time: 210265 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 7, 27, 34, 28, 34, 45, 
+All Robot Grids: 31, 25, 32, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 30, Next Grid: 29, Current Node: 31, Next Node: 26
+Robot 1 x is 10.045
+Robot 1 y is 8.90627
+Robot will now move towards x: 9, y: 9
+Elapsed Time: 223885 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 20, 18, 21, 43, 33, 58, 
+All Robot Grids: 30, 25, 32, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 37, Next Grid: 45, Current Node: 32, Next Node: 45
+Robot 3 x is 12.9055
+Robot 3 y is 9.95519
+Robot will now move towards x: 13, y: 11
+Elapsed Time: 228400 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 17, 30, 35, 41, 38, 55, 
+All Robot Grids: 30, 25, 37, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 29, Next Grid: 28, Current Node: 31, Next Node: 26
+Robot 1 x is 8.04912
+Robot 1 y is 9.0002
+Robot will now move towards x: 7, y: 9
+Elapsed Time: 255525 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 9, 28, 31, 40, 33, 47, 
+All Robot Grids: 29, 25, 37, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 45, Next Grid: 46, Current Node: 45, Next Node: 48
+Robot 3 x is 13
+Robot 3 y is 11.9507
+Robot will now move towards x: 13, y: 13
+Elapsed Time: 262215 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 20, 23, 20, 28, 48, 58, 
+All Robot Grids: 29, 25, 45, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 46, Next Grid: 47, Current Node: 45, Next Node: 48
+Robot 3 x is 13.955
+Robot 3 y is 12.9057
+Robot will now move towards x: 15, y: 13
+Elapsed Time: 278715 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 2, 0, 0, 0, 
+All Human Grids: 11, 29, 19, 41, 47, 49, 
+All Robot Grids: 29, 25, 46, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 28, Next Grid: 27, Current Node: 31, Next Node: 26
+Robot 1 x is 6.0492
+Robot 1 y is 8.99995
+Robot will now move towards x: 5, y: 9
+Elapsed Time: 283455 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 2, 0, 
+All Human Grids: 3, 26, 21, 26, 37, 41, 
+All Robot Grids: 28, 25, 46, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 47, Next Grid: 48, Current Node: 45, Next Node: 48
+Robot 3 x is 15.9505
+Robot 3 y is 13.0002
+Robot will now move towards x: 17, y: 13
+Elapsed Time: 314130 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 14, 15, 32, 29, 45, 52, 
+All Robot Grids: 28, 25, 47, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 27, Next Grid: 26, Current Node: 31, Next Node: 26
+Robot 1 x is 4.04927
+Robot 1 y is 9
+Robot will now move towards x: 3, y: 9
+Elapsed Time: 315385 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 14, 16, 24, 29, 37, 52, 
+All Robot Grids: 27, 25, 47, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 26, Next Grid: 36, Current Node: 26, Next Node: 39
+Robot 1 x is 2.04935
+Robot 1 y is 9
+Robot will now move towards x: 1, y: 9
+Elapsed Time: 343390 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 2, 0, 
+All Human Grids: 20, 18, 21, 30, 47, 58, 
+All Robot Grids: 26, 25, 47, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 48, Next Grid: 38, Current Node: 48, Next Node: 38
+Robot 3 x is 17.9505
+Robot 3 y is 13.0002
+Robot will now move towards x: 19, y: 13
+Elapsed Time: 345485 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 19, 24, 25, 31, 45, 57, 
+All Robot Grids: 26, 25, 48, 55, 
+------- Robot 1 is crossing. -------
+Current Grid: 36, Next Grid: 39, Current Node: 26, Next Node: 39
+Robot 1 x is 1.09442
+Robot 1 y is 9.95492
+Robot will now move towards x: 1, y: 11
+Elapsed Time: 352870 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 15, 27, 32, 43, 34, 53, 
+All Robot Grids: 36, 25, 48, 55, 
+------- Robot 3 is crossing. -------
+Current Grid: 38, Next Grid: 0, Current Node: 38, Next Node: 0
+Robot 3 x is 18.9055
+Robot 3 y is 12.0452
+Robot will now move towards x: 19, y: 11
+Elapsed Time: 358830 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 1, 14, 19, 40, 47, 39, 
+All Robot Grids: 36, 25, 38, 55, 
+******* Robot 3 has completed its path. *******
+------- Robot 1 is crossing. -------
+Current Grid: 39, Next Grid: 0, Current Node: 39, Next Node: 0
+Robot 1 x is 0.9995
+Robot 1 y is 11.9508
+Robot will now move towards x: 1, y: 13
+Elapsed Time: 377195 ms
+All Stop States (1 = stopped by robot, 2 = stopped by human): 0, 0, 0, 0, 
+All Human Grids: 12, 27, 18, 44, 45, 50, 
+All Robot Grids: 39, 25, 38, 55, 
+******* Robot 1 has completed its path. *******
