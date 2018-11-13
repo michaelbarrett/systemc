@@ -9,6 +9,7 @@ SC_MODULE (server) {
   static sc_event ev_env;
 
   static int grid_list_data[50][50];
+  static int node_list_data[50][50];
   static int human_grid_list_data[50][50];
 
   static int robot_status[50][50];
@@ -26,11 +27,15 @@ SC_MODULE (server) {
   static void receive_message(int robot_index, int m);
   static void send_message(int robot_index, int m);
 
+  static int get_expected_arrival_time_node(int node_index, int robot_index);
   static int get_robot_status(int robot_index);
   static void set_robot_status(int robot_index, int status);
   static int get_current_grid_robot(int robot_index);
+  static int get_current_node_robot(int robot_index);
   static void set_current_grid_robot(int robot_index, int new_current_grid);
+  static void set_current_node_robot(int robot_index, int new_current_node);
   static int get_next_grid_robot(int robot_index);
+  static int get_next_node_robot(int robot_index);
   static bool is_grid_occupied(int grid_index);
   
   SC_HAS_PROCESS(server);

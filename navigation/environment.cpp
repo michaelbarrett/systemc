@@ -1,5 +1,4 @@
 //environment.cpp
-//environment.cpp
 #include "helper.h"
 #include "environment.h"
 #include "server.h"
@@ -15,6 +14,7 @@ bool environment :: path_fin[NUM_ROBOTS] = {false, false, false, false};
 double environment :: start_time[NUM_ROBOTS] = {1000, 5000, 7000, 2000}; //[robot_index], in milliseconds
 double environment :: robotx[NUM_ROBOTS] = {};
 double environment :: roboty[NUM_ROBOTS] = {};
+double environment :: robot_speed[NUM_ROBOTS] = {0, 0, 0, 0};
 double environment :: humanx[NUM_HUMANS] = {};
 double environment :: humany[NUM_HUMANS] = {};
 int environment :: human_grids[NUM_HUMANS] = {1, 13, 18, 26, 32, 39}; //human start grids
@@ -135,6 +135,11 @@ void environment :: prc() {
   server::set_current_grid_robot(2, 49);
   server::set_current_grid_robot(3, 60);
 
+  server::set_current_node_robot(0, 1);
+  server::set_current_node_robot(1, 10);
+  server::set_current_node_robot(2, 49);
+  server::set_current_node_robot(3, 60);
+
   //set x and y in environment gps for robots
   for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
     robotx[robot_index] = get_x_center_of_grid(server::get_current_grid_robot(robot_index));
@@ -173,17 +178,16 @@ void environment :: prc() {
     for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
       //get values needed for movement
       int current_grid, next_grid;
+      int current_node, next_node;
       double myx, myy, desiredx, desiredy;
       current_grid = server::get_current_grid_robot(robot_index);
+      current_node = server::get_current_node_robot(robot_index);
       next_grid = server::get_next_grid_robot(robot_index);
+      next_node = server::get_next_node_robot(robot_index);
       myx = robotx[robot_index];
       myy = roboty[robot_index];
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
-
-      if (start_time[robot_index] < time_in_ms) {
-
-      }
       
       //actual movement: we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
@@ -192,19 +196,51 @@ void environment :: prc() {
       //If desired is below current, move down.
       //If we are not moving, don't perform actual movement
       if (start_time[robot_index] < time_in_ms) {
+	//modify speeds to avoid collisions
+	if ((robot_index % 2) == 1) {
+	  robot_speed[robot_index] *= 2.0;
+	}
+	if ((robot_index % 2) == 0) {
+	  robot_speed[robot_index] *= 0.9;
+	}
+	//if speed is too small push it up
+	if (robot_speed[robot_index] > 0 && robot_speed[robot_index] < 0.0005) {
+	  robot_speed[robot_index] = 0.0005;
+	}
+	//movement
 	if (next_grid > 0) { //done with all path
 	  if ((stop_state[robot_index]) == 0) {
 	    if (desiredx < myx) {
-	      robotx[robot_index] -= MAX_SPEED_X;
+	      if (robot_speed[robot_index] > 0 && robot_speed[robot_index] < MAX_SPEED_X) {
+		robotx[robot_index] -= robot_speed[robot_index];
+	      }
+	      else {
+		robotx[robot_index] -= MAX_SPEED_X;
+	      }
 	    }
 	    else if (desiredx > myx) {
-	      robotx[robot_index] += MAX_SPEED_X;
+	      if (robot_speed[robot_index] > 0 && robot_speed[robot_index] < MAX_SPEED_X) {
+		robotx[robot_index] += robot_speed[robot_index];		
+	      }
+	      else {
+		robotx[robot_index] += MAX_SPEED_X;
+	      }
 	    }
 	    if (desiredy < myy) {
-	      roboty[robot_index] -= MAX_SPEED_Y;
+	      if (robot_speed[robot_index] > 0 && robot_speed[robot_index] < MAX_SPEED_Y) {
+		roboty[robot_index] -= robot_speed[robot_index];
+	      }
+	      else {
+		roboty[robot_index] -= MAX_SPEED_Y;
+	      }
 	    }
 	    else if (desiredy > myy) {
-	      roboty[robot_index] += MAX_SPEED_Y;
+	      if (robot_speed[robot_index] > 0 && robot_speed[robot_index] < MAX_SPEED_Y) {
+		roboty[robot_index] += robot_speed[robot_index];
+	      }
+	      else {
+		roboty[robot_index] += MAX_SPEED_Y;
+	      }
 	    }
 	  }
 	  //Human Distance Check
@@ -236,12 +272,38 @@ void environment :: prc() {
 	      stop_state[robot_index] == 0;
 	      server::set_robot_status(robot_index, 0);
 	      server::set_current_grid_robot(robot_index, next_grid);
+
+	      if (server::get_current_grid_robot(robot_index) == server::get_next_node_robot(robot_index)) {
+		server::set_current_node_robot(robot_index, next_node);
+	      }
+	      
 	      cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
+
+	      cout << "Current Grid: " << server::get_current_grid_robot(robot_index) << ", Next Grid: " << server::get_next_grid_robot(robot_index) << ", Current Node: "<< server::get_current_node_robot(robot_index) << ", Next Node: " << server::get_next_node_robot(robot_index) << endl;
+	      
+	      cout << myx << ", " << myy << ", " << desiredx << ", " << desiredy << endl;
 	      cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
 	      cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
 
+	      //speed test
+	      //SET THE SPEED
+	      robot_speed[robot_index] = 7.0 *
+		distance(myx, myy, get_x_center_of_grid(server::get_next_node_robot(robot_index)),
+			 get_y_center_of_grid(server::get_next_node_robot(robot_index))) /
+		(time_in_ms -
+		 server::get_expected_arrival_time_node(server::get_next_node_robot(robot_index), robot_index));
+
+	      if (robot_index == 0) {
+		robot_speed[robot_index] = 0.002;
+	      }
+
 	      //(1p) Print robot grids right now -- feedback after R4 crosses
-	      cout << "T: " << time_in_ms << " ms" << endl;
+	      cout << "Elapsed Time: " << time_in_ms << " ms" << endl;
+	      cout << "All Stop States (2 = stopped by human): ";
+	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+		cout << stop_state[robot_index] << ", ";
+	      }
+	      cout << endl;
 	      cout << "All Robot Grids: ";
 	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
 		cout << server::get_current_grid_robot(robot_index) << ", ";
@@ -267,12 +329,13 @@ void environment :: prc() {
 	  path_fin[robot_index] = true;
 	  cout << "******* Robot " << robot_index+1 << " has completed its path. *******" << endl;
 	}
-	//Bonus Stopped Check
+	//extra Stopped Check
 	//In the case that we don't want to go into a new grid, but we are stopped.
 	//If the robot is stopped, check if the next grid has become free.
 	//Most of this is handled by Boundary Check but this catches cases where
 	//we have already passed the threshold.
 	if ((stop_state[robot_index]) == 1) {
+	  //cout << "extra stopped check for robot: " << robot_index+1 << endl;
 	  if (!server::is_grid_occupied(next_grid)) {
 	    stop_state[robot_index] = 0;
 	  }

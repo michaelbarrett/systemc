@@ -25,6 +25,7 @@ SC_MODULE(environment) {
   static double start_time[NUM_ROBOTS];
   static double robotx[NUM_ROBOTS];
   static double roboty[NUM_ROBOTS];
+  static double robot_speed[NUM_ROBOTS];
   static double humanx[NUM_HUMANS];
   static double humany[NUM_HUMANS];
   static int human_grids[NUM_HUMANS];
@@ -52,7 +53,6 @@ SC_MODULE(environment) {
   static int get_next_grid_human(int human_index, int current_grid);
   static double get_x_center_of_grid(int grid_index);
   static double get_y_center_of_grid(int grid_index);
-  static int grid_to_xy(int grid_index);
   static int my_grid_index(int robot_index);
   
   SC_HAS_PROCESS(environment);
