@@ -12,7 +12,7 @@
 
 int environment :: message_received = 0; //0 = none received , 1 = ack received
 bool environment :: path_fin[NUM_ROBOTS] = {false, false, false, false};
-double environment :: start_time[NUM_ROBOTS] = {1, 5, 7, 2}; //in seconds
+double environment :: start_time[NUM_ROBOTS] = {1000, 5000, 7000, 2000}; //[robot_index], in milliseconds
 double environment :: robotx[NUM_ROBOTS] = {};
 double environment :: roboty[NUM_ROBOTS] = {};
 double environment :: humanx[NUM_HUMANS] = {};
@@ -180,6 +180,10 @@ void environment :: prc() {
       myy = roboty[robot_index];
       desiredx = get_x_center_of_grid(next_grid);
       desiredy = get_y_center_of_grid(next_grid);
+
+      if (start_time[robot_index] < time_in_ms) {
+
+      }
       
       //actual movement: we want to actually move towards the desired grid.
       //If desired is to the left of current, move left.
@@ -187,94 +191,95 @@ void environment :: prc() {
       //If desired is above current, move up.
       //If desired is below current, move down.
       //If we are not moving, don't perform actual movement
-      if (next_grid > 0) { //done with all path
-	if ((stop_state[robot_index]) == 0 /*&& start_time[robot_index]*/) {
-	  if (desiredx < myx) {
-	    robotx[robot_index] -= MAX_SPEED_X;
-	  }
-	  else if (desiredx > myx) {
-	    robotx[robot_index] += MAX_SPEED_X;
-	  }
-	  if (desiredy < myy) {
-	    roboty[robot_index] -= MAX_SPEED_Y;
-	  }
-	  else if (desiredy > myy) {
-	    roboty[robot_index] += MAX_SPEED_Y;
-	  }
-	}
-	//Human Distance Check
-	for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
-	  if (distance(myx, myy, humanx[human_index], humany[human_index]) > 2) {
-	    //keep going
-	    stop_state[robot_index] = 0;
-	    server::set_robot_status(robot_index, 0);
-	  }
-	  else {
-	    //stop
-	    if (stop_state[robot_index] != 2) {
-	      stop_state[robot_index] = 2;
-	      server::set_robot_status(robot_index, 2);
+      if (start_time[robot_index] < time_in_ms) {
+	if (next_grid > 0) { //done with all path
+	  if ((stop_state[robot_index]) == 0) {
+	    if (desiredx < myx) {
+	      robotx[robot_index] -= MAX_SPEED_X;
 	    }
-	    break; //stay 2
+	    else if (desiredx > myx) {
+	      robotx[robot_index] += MAX_SPEED_X;
+	    }
+	    if (desiredy < myy) {
+	      roboty[robot_index] -= MAX_SPEED_Y;
+	    }
+	    else if (desiredy > myy) {
+	      roboty[robot_index] += MAX_SPEED_Y;
+	    }
 	  }
-	}
-	//Boundary check
-	//we are "crossing" if the distance between my gps and desired gps is <1.05.
-	//at this point it would be safe to update the grid to the next grid.
-	if (distance(myx, myy, desiredx, desiredy) < 1.05) {
-	  //Send CROSSING signal to server
-	  server::receive_message(robot_index, 1);
+	  //Human Distance Check
+	  for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+	    if (distance(myx, myy, humanx[human_index], humany[human_index]) > 2) {
+	      //keep going
+	      stop_state[robot_index] = 0;
+	      server::set_robot_status(robot_index, 0);
+	    }
+	    else {
+	      //stop
+	      if (stop_state[robot_index] != 2) {
+		stop_state[robot_index] = 2;
+		server::set_robot_status(robot_index, 2);
+	      }
+	      break; //stay 2
+	    }
+	  }
+	  //Boundary check
+	  //we are "crossing" if the distance between my gps and desired gps is <1.05.
+	  //at this point it would be safe to update the grid to the next grid.
+	  if (distance(myx, myy, desiredx, desiredy) < 1.05) {
+	    //Send CROSSING signal to server
+	    server::receive_message(robot_index, 1);
 	  
-	  wait(1, SC_NS); //wait for a response
-	  //If "ack" is received, update current grid in server and keep going
-	  if (message_received == 1) {
-	    stop_state[robot_index] == 0;
-	    server::set_robot_status(robot_index, 0);
-	    server::set_current_grid_robot(robot_index, next_grid);
-	    cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
-	    cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
-	    cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
+	    wait(1, SC_NS); //wait for a response
+	    //If "ack" is received, update current grid in server and keep going
+	    if (message_received == 1) {
+	      stop_state[robot_index] == 0;
+	      server::set_robot_status(robot_index, 0);
+	      server::set_current_grid_robot(robot_index, next_grid);
+	      cout << "------- Robot " << robot_index+1 << " is crossing. -------" << endl;
+	      cout << "Robot " << robot_index+1 << " x is " << robotx[robot_index] << endl;
+	      cout << "Robot " << robot_index+1 << " y is " << roboty[robot_index] << endl;
 
-	    //(1p) Print robot grids right now -- feedback after R4 crosses
-	    sc_time time_now;
-	    time_now = sc_time_stamp();
-	    cout << "T:"<< time_now.to_string() << " or " << time_in_ms << " ms" << endl;
-	    cout << "All Robot Grids: ";
-	    for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
-	      cout << server::get_current_grid_robot(robot_index) << ", ";
+	      //(1p) Print robot grids right now -- feedback after R4 crosses
+	      cout << "T: " << time_in_ms << " ms" << endl;
+	      cout << "All Robot Grids: ";
+	      for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
+		cout << server::get_current_grid_robot(robot_index) << ", ";
+	      }
+	      cout << endl;
+	      cout << "All Human Grids: ";
+	      for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
+		cout << get_current_grid_human(human_index) << ", ";
+	      }
+	      cout << endl;
 	    }
-	    cout << endl;
-	    cout << "All Human Grids: ";
-	    for (int human_index = 0; human_index<NUM_HUMANS; human_index++) {
-	      cout << get_current_grid_human(human_index) << ", ";
+	    //If no "ack", stop and change stop_state in env + status in server
+	    else {
+	      if (stop_state[robot_index] == 0) {
+		//cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
+	      }
+	      stop_state[robot_index] = 1;
+	      server::set_robot_status(robot_index, 1);
 	    }
-	    cout << endl;
-	  }
-	  //If no "ack", stop and change stop_state in env + status in server
-	  else {
-	    if (stop_state[robot_index] == 0) {
-	      //cout << "Robot " << robot_index+1 << " is stopped due to another robot." << endl;
-	    }
-	    stop_state[robot_index] = 1;
-	    server::set_robot_status(robot_index, 1);
 	  }
 	}
-      }
-      else {
-	if (path_fin[robot_index] != true) {
+	else if (path_fin[robot_index] != true) {
 	  path_fin[robot_index] = true;
 	  cout << "******* Robot " << robot_index+1 << " has completed its path. *******" << endl;
 	}
-      }
-      //Bonus Stopped Check
-      //In the case that we don't want to go into a new grid, but we are stopped.
-      //If the robot is stopped, check if the next grid has become free.
-      //Most of this is handled by Boundary Check but this catches cases where
-      //we have already passed the threshold.
-      if ((stop_state[robot_index]) == 1) {
-	if (!server::is_grid_occupied(next_grid)) {
-	  stop_state[robot_index] = 0;
+	//Bonus Stopped Check
+	//In the case that we don't want to go into a new grid, but we are stopped.
+	//If the robot is stopped, check if the next grid has become free.
+	//Most of this is handled by Boundary Check but this catches cases where
+	//we have already passed the threshold.
+	if ((stop_state[robot_index]) == 1) {
+	  if (!server::is_grid_occupied(next_grid)) {
+	    stop_state[robot_index] = 0;
+	  }
 	}
+      }
+      else if (time_in_ms % 1000 == 0) {
+	cout << "T: " << time_in_ms << "ms, Robot " << robot_index+1 << " with start time " << start_time[robot_index] << " is idle." << endl;
       }
     }
     //(2) HUMAN MOVEMENT LOOP -- Moves All Humans

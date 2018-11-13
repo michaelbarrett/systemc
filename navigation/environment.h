@@ -30,7 +30,7 @@ SC_MODULE(environment) {
   static int human_grids[NUM_HUMANS];
   static int human_grid_list_data[50][50];
 
-  //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to human, 3 = " due to position error
+  //stop state in env: 0 = not stopped, 1 = stopped due to no ack, 2 = " due to human, 3 = stopped due to pos error, 4 = idle
   static int stop_state[NUM_ROBOTS];
 
   static int current_grid[NUM_ROBOTS];
