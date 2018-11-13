@@ -28,9 +28,9 @@ int server :: robot_status[50][50] =
 //format: {Node Index, Robot index, Earliest, Latest, Expected arrival time}
 int server :: node_ordering[50][50] =
   {
-   {0, 0, 5, 10, 7};
-   {0, 1, 6, 11, 8};
-   {};
+   {0, 0, 5, 10, 7},
+   {0, 1, 6, 11, 8},
+   {}
   };
 
 int server :: get_robot_status(int robot_index) {

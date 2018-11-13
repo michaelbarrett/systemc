@@ -12,6 +12,7 @@ SC_MODULE (server) {
   static int human_grid_list_data[50][50];
 
   static int robot_status[50][50];
+  static int node_ordering[50][50];
 
   //format: {[ROBOT INDEX]: < GRID LIST > ...}
 

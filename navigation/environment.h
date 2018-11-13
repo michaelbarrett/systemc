@@ -22,6 +22,7 @@ SC_MODULE(environment) {
   //for robot indices 0, 1, 2, 3, etc
   //Point[] robotCoords
   static bool path_fin[NUM_ROBOTS];
+  static double start_time[NUM_ROBOTS];
   static double robotx[NUM_ROBOTS];
   static double roboty[NUM_ROBOTS];
   static double humanx[NUM_HUMANS];

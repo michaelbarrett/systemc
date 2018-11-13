@@ -12,6 +12,7 @@
 
 int environment :: message_received = 0; //0 = none received , 1 = ack received
 bool environment :: path_fin[NUM_ROBOTS] = {false, false, false, false};
+double environment :: start_time[NUM_ROBOTS] = {1, 5, 7, 2}; //in seconds
 double environment :: robotx[NUM_ROBOTS] = {};
 double environment :: roboty[NUM_ROBOTS] = {};
 double environment :: humanx[NUM_HUMANS] = {};
@@ -126,6 +127,7 @@ int environment :: my_grid_index(int robot_index) {
 }
 
 void environment :: prc() {
+  int time_in_ms = 0;
   //INITIALIZATION -- ROBOT CURRENT GRID (IN SERVER) AND GPS XY (IN ENVIRONMENT)
   //initialize robot positions (humans are already initialized)
   server::set_current_grid_robot(0, 1);
@@ -186,7 +188,7 @@ void environment :: prc() {
       //If desired is below current, move down.
       //If we are not moving, don't perform actual movement
       if (next_grid > 0) { //done with all path
-	if ((stop_state[robot_index]) == 0) {
+	if ((stop_state[robot_index]) == 0 /*&& start_time[robot_index]*/) {
 	  if (desiredx < myx) {
 	    robotx[robot_index] -= MAX_SPEED_X;
 	  }
@@ -236,7 +238,7 @@ void environment :: prc() {
 	    //(1p) Print robot grids right now -- feedback after R4 crosses
 	    sc_time time_now;
 	    time_now = sc_time_stamp();
-	    cout << "Time Now: "<< time_now.to_string() << endl;
+	    cout << "T:"<< time_now.to_string() << " or " << time_in_ms << " ms" << endl;
 	    cout << "All Robot Grids: ";
 	    for (int robot_index = 0; robot_index<NUM_ROBOTS; robot_index++) {
 	      cout << server::get_current_grid_robot(robot_index) << ", ";
@@ -306,9 +308,9 @@ void environment :: prc() {
 	set_current_grid_human(human_index, get_next_grid_human(human_index, current_grid));
       }
     }
+    time_in_ms += 5;
+    wait();
   }
-    
-  wait();
 }
 
 void environment :: receive_message(int m) {
