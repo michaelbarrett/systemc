@@ -159,7 +159,7 @@ bool server :: is_grid_occupied(int grid_index)
 
 void server :: prc() {
   while(1) {
-    wait(ev_env); //wait for a message from the environment
+    wait(ev_env); //wait for a message from the robots
     if (message == 1) {
       //now check if there is a robot in the NEXT GRID of that robot
       //and if not, send "ack".
@@ -168,11 +168,11 @@ void server :: prc() {
       int next_grid_index = get_next_grid_robot(message_robot_index);
       if (!is_grid_occupied(next_grid_index)) {
 	//send message "ack"
-	environment::receive_message(1);
+	robot::send_message(1);
       }
       else {
 	//cout << "SERVER: Did not send \"ack\" to robot " << message_robot_index+1 << " because grid " << next_grid_index << " is occupied." << endl;
-	environment::receive_message(0);
+	robot::send_message(0);
       }
     }
     if (message == 2) {

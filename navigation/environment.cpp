@@ -264,7 +264,7 @@ void environment :: prc() {
 	  //at this point it would be safe to update the grid to the next grid.
 	  if (distance(myx, myy, desiredx, desiredy) < 1.05) {
 	    //Send CROSSING signal to server
-	    server::receive_message(robot_index, 1);
+	    robot::receive_message(robot_index, 1);
 	  
 	    wait(1, SC_NS); //wait for a response
 	    //If "ack" is received, update current grid in server and keep going
