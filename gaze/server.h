@@ -11,11 +11,20 @@ SC_MODULE (server) {
   //{{MAXx, MAXy}, {P1x, P1y, P2x, P2y}, [...ROI]}, {...}
   static int image_set[50][50][50];
 
-  static void tx(); //used to send images
-  static void rx(); //X (used to receive gaze data)
+  void prc_tx(); //used to send images
+  void prc_rx(); //X (used to receive gaze data)
 
   static bool is_free(); //getter
 
  public:
   static void receive_message(int mobile_index, int message); //a request from a mobile to use the network
-}
+
+  SC_HAS_PROCESS(server);
+
+ server(sc_module_name name) : sc_module(name) {
+    SC_THREAD(prc_tx);
+    sensitive << clock.pos();
+    SC_THREAD(prc_rx);
+    sensitive << clock.pos();
+  }
+};
