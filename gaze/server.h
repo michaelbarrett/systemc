@@ -7,6 +7,8 @@ SC_MODULE (server) {
   static bool free; //signifies whether server is free to be used
 
   static sc_event ev_network_request; //a request from a mobile to use the network
+  static sc_event ev_receive;
+  static sc_event ev_transmit;
 
   //{{MAXx, MAXy}, {P1x, P1y, P2x, P2y}, [...ROI]}, {...}
   static int image_set[50][50][50];

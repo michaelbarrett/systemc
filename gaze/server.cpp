@@ -33,19 +33,29 @@ int server :: image_set[50][50][50] =
 //server transmitter -- sends image data
 void server :: prc_tx() {
   while(true) {
+    //transmit -- we are busy
+    free = false;
     cout << "SERVER: Sending image to mobile 0" << endl;
     mobile::receive_image(0, image_set[0]); //mobile receives first image
     cout << "SERVER: Sending image to mobile 1" << endl;
     mobile::receive_image(1, image_set[1]);
-    wait();
+    //now, receive -- we are now free
+    free = true;
+    ev_receive.notify();
+    //wait for "transmit" event when reception is finished
+    wait(ev_transmit);
   }
 }
 
 //server receiver -- receives gaze data
 void server :: prc_rx() {
   while(true) {
-    
-    wait();
+    wait(ev_receive);
+    //receive
+    //wait(ev_network_request);
+    cout << "SERVER: Receiving now." << endl;
+    //notify transmit
+    ev_transmit.notify();
   }
 }
 
@@ -56,7 +66,5 @@ bool server :: is_free() {
 
 //a request from a mobile to use the server (1: i want to get image data)
 void server :: receive_message(int mobile_index, int message) {
-  free = false; //start busy
   
-  free = true; //end busy
 }

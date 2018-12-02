@@ -12,12 +12,18 @@ void mobile :: prc_rx() {
     wait(ev_image_to_mobile);  //wait until an image is sent to mobile
     cout << "MOBILE: An image was sent to mobile." << endl;
     cout << "MOBILE: The image size = " << sizeof(current_display_image) << endl;
+    cout << "MOBILE: The first ROI of the image is {" <<
+      current_display_image[1][0] << ", " << 
+      current_display_image[1][1] << ", " << 
+      current_display_image[1][2] << ", " << 
+      current_display_image[1][3] << "}" << endl;
     if (server::is_free) {
       //ACTIONS
       //send "can I use the network" (network_request)
       //server says yes or no
       //if no, wait a random time (wait(random))
       //if yes, send from server when network signal goes high (signal = data ready)
+      
     }
     
     wait();
