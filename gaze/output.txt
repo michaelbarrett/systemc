@@ -1,0 +1,237 @@
+
+        SystemC 2.3.2-Accellera --- Sep  5 2018 14:15:23
+        Copyright (c) 1996-2017 by all Contributors,
+        ALL RIGHTS RESERVED
+Clock Period: 5 ms
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+
+Info: (I702) default timescale unit used for tracing: 1 ps (gaze.vcd)
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 1
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 1.
+MOBILE: The image size = 8 MB.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Receiving; waiting for request to use the network.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+SERVER: Sending image to mobile 0
+MOBILE.RECEIVE_IMAGE: An image was sent to mobile 0.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 0.
+Mobile 0 is sending gaze data.
+SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile 1.
+Mobile 1 is sending gaze data.
+MOBILE: The image size = 8 MB.

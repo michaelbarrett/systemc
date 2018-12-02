@@ -5,6 +5,8 @@
 bool server :: free = true;
 
 sc_event server :: ev_network_request;
+sc_event server :: ev_receive;
+sc_event server :: ev_transmit;
 
 //{{MAXx, MAXy}, {P1x, P1y, P2x, P2y}, [...ROI]}, {...}
 int server :: image_set[50][50][50] =
@@ -37,13 +39,26 @@ void server :: prc_tx() {
     free = false;
     cout << "SERVER: Sending image to mobile 0" << endl;
     mobile::receive_image(0, image_set[0]); //mobile receives first image
-    cout << "SERVER: Sending image to mobile 1" << endl;
-    mobile::receive_image(1, image_set[1]);
+    wait(); //give mobiles time to receive
+
     //now, receive -- we are now free
     free = true;
     ev_receive.notify();
     //wait for "transmit" event when reception is finished
     wait(ev_transmit);
+
+    //transmit -- we are busy
+    free = false;
+    cout << "SERVER: Sending image to mobile 1" << endl;
+    mobile::receive_image(1, image_set[1]);
+    wait(); //give mobiles time to receive
+    
+    //now, receive -- we are now free
+    free = true;
+    ev_receive.notify();
+    //wait for "transmit" event when reception is finished
+    wait(ev_transmit);
+    wait();
   }
 }
 
@@ -53,9 +68,11 @@ void server :: prc_rx() {
     wait(ev_receive);
     //receive
     //wait(ev_network_request);
-    cout << "SERVER: Receiving now." << endl;
+    cout << "SERVER: Receiving; waiting for request to use the network." << endl;
+    wait(ev_network_request);
     //notify transmit
     ev_transmit.notify();
+    wait();
   }
 }
 
@@ -64,7 +81,10 @@ bool server :: is_free() {
   return free;
 }
 
-//a request from a mobile to use the server (1: i want to get image data)
+//a request from a mobile to use the server (1: gaze data)
 void server :: receive_message(int mobile_index, int message) {
-  
+  cout << "SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile "
+       << mobile_index << "." << endl;
+  cout << "Mobile " << mobile_index << " is sending gaze data." << endl;
+  ev_network_request.notify();
 }
