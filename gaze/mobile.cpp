@@ -28,26 +28,56 @@ void mobile :: prc_rx() {
   while(true) {
     wait(ev_image_to_mobile);  //wait until an image is sent to mobile
     cout << "MOBILE: The image size = 8 MB." << endl;
-    cout << "MOBILE: The first ROI of the image is {" <<
+    cout << "MOBILE: FIRST IMAGE: ROI 0 ~ {" <<
       m0_display_image_buffer[0][0] << ", " << 
       m0_display_image_buffer[0][1] << ", " << 
       m0_display_image_buffer[0][2] << ", " << 
       m0_display_image_buffer[0][3] << "}" << endl;
-    cout << "{" <<
+    cout << "ROI 1 ~ {" <<
       m0_display_image_buffer[1][0] << ", " << 
       m0_display_image_buffer[1][1] << ", " << 
       m0_display_image_buffer[1][2] << ", " << 
       m0_display_image_buffer[1][3] << "}" << endl;
-    cout << "{" <<
+    cout << "ROI 2 ~ {" <<
       m0_display_image_buffer[2][0] << ", " << 
       m0_display_image_buffer[2][1] << ", " << 
       m0_display_image_buffer[2][2] << ", " << 
       m0_display_image_buffer[2][3] << "}" << endl;
-    cout << "{" <<
+    cout << "ROI 3 ~ {" <<
       m0_display_image_buffer[3][0] << ", " << 
       m0_display_image_buffer[3][1] << ", " << 
       m0_display_image_buffer[3][2] << ", " << 
-      m0_display_image_buffer[3][3] << "}" << endl;    
+      m0_display_image_buffer[3][3] << "}" << endl;
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[4][0] << ", " << 
+      m0_display_image_buffer[4][1] << ", " << 
+      m0_display_image_buffer[4][2] << ", " << 
+      m0_display_image_buffer[4][3] << "}" << endl;
+    cout << "MOBILE: SECOND IMAGE: ROI 0 ~ {" <<
+      m0_display_image_buffer[5][0] << ", " << 
+      m0_display_image_buffer[5][1] << ", " << 
+      m0_display_image_buffer[5][2] << ", " << 
+      m0_display_image_buffer[5][3] << "}" << endl;
+    cout << "ROI 1 ~ {" <<
+      m0_display_image_buffer[6][0] << ", " << 
+      m0_display_image_buffer[6][1] << ", " << 
+      m0_display_image_buffer[6][2] << ", " << 
+      m0_display_image_buffer[6][3] << "}" << endl;
+    cout << "ROI 2 ~ {" <<
+      m0_display_image_buffer[7][0] << ", " << 
+      m0_display_image_buffer[7][1] << ", " << 
+      m0_display_image_buffer[7][2] << ", " << 
+      m0_display_image_buffer[7][3] << "}" << endl;
+    cout << "ROI 3 ~ {" <<
+      m0_display_image_buffer[8][0] << ", " << 
+      m0_display_image_buffer[8][1] << ", " << 
+      m0_display_image_buffer[8][2] << ", " << 
+      m0_display_image_buffer[8][3] << "}" << endl;
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[9][0] << ", " << 
+      m0_display_image_buffer[9][1] << ", " << 
+      m0_display_image_buffer[9][2] << ", " << 
+      m0_display_image_buffer[9][3] << "}" << endl;            
     sc_time t = sc_time_stamp();
     cout << "MOBILE: TIME = " << t << endl;
     wait();
