@@ -80,10 +80,11 @@ void mobile :: prc_rx() {
       m0_display_image_buffer[9][3] << "}" << endl;            
     sc_time t = sc_time_stamp();
     cout << "MOBILE: TIME = " << t << endl;
-    cout << "MOBILE: TVAL = " << t.value()/pow(10, 9) << endl; //time in ms as int
-    /*if (t >= 120 && t <= 140) {
+    int time_ms = t.value()/pow(10,9); //time in ms as int
+    cout << "MOBILE: TVAL = " << time_ms << endl; 
+    if (time_ms >= 120 && time_ms <= 140) {
       percolate_new_image(0);
-      }*/
+    }
     wait();
   }
 }
@@ -129,7 +130,7 @@ void mobile :: percolate_new_image(int mobile_index) {
   int m0_buffer_size = sizeof(m0_display_image_buffer)/sizeof(m0_display_image_buffer[0]);
   for (int o = 0; o < m0_buffer_size; o++) {
     for (int i = 0; i < 4; i++) {
-      m0_display_image_buffer[o][i] = m0_display_image_buffer[o+1][i];
+      m0_display_image_buffer[o][i] = m0_display_image_buffer[o+5][i];
     }
   }
 }
