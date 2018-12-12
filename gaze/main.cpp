@@ -5,6 +5,7 @@ int sc_main(int argc, char* argv[]) {
   //ports decl
   sc_clock c1 ("c1", 5, SC_MS);
   cout << "Clock Period: " << c1.period() << endl;
+  //sc_set_time_resolution(1, SC_MS);
 
   //module instantiation
   server s1("s1");

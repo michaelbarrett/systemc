@@ -8,9 +8,9 @@ sc_event mobile :: ev_image_to_mobile; //indicates an image was sent to a mobile
 int mobile :: m0_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
 int mobile :: m1_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
 int mobile :: m2_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
-int mobile :: m0_image_packet_index = 0; //fills up over time
-int mobile :: m1_image_packet_index = 0;
-int mobile :: m2_image_packet_index = 0;
+int mobile :: m0_image_packet_index = 5; //fills up over time --
+int mobile :: m1_image_packet_index = 5; //the displayed image is not directly
+int mobile :: m2_image_packet_index = 5; //written to.
 //current gaze point
 int mobile :: gaze_point[2] = {((IMAGE_SIZE_X / 2) - 1),
 			       ((IMAGE_SIZE_Y / 2) - 1)}; //center of image
@@ -80,6 +80,10 @@ void mobile :: prc_rx() {
       m0_display_image_buffer[9][3] << "}" << endl;            
     sc_time t = sc_time_stamp();
     cout << "MOBILE: TIME = " << t << endl;
+    cout << "MOBILE: TVAL = " << t.value()/pow(10, 9) << endl; //time in ms as int
+    /*if (t >= 120 && t <= 140) {
+      percolate_new_image(0);
+      }*/
     wait();
   }
 }
@@ -117,4 +121,15 @@ void mobile :: receive_image_packet(int mobile_index, int image_packet[4]) {
     " " << m0_display_image_buffer[m0_image_packet_index][3] << endl;
   m0_image_packet_index += 1;
   ev_image_to_mobile.notify();
+}
+
+//display new image and shift buffer
+void mobile :: percolate_new_image(int mobile_index) {
+  cout << "MOBILE: Displaying new image and shifting buffer" << endl;
+  int m0_buffer_size = sizeof(m0_display_image_buffer)/sizeof(m0_display_image_buffer[0]);
+  for (int o = 0; o < m0_buffer_size; o++) {
+    for (int i = 0; i < 4; i++) {
+      m0_display_image_buffer[o][i] = m0_display_image_buffer[o+1][i];
+    }
+  }
 }

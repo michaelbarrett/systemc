@@ -21,6 +21,7 @@ SC_MODULE (mobile) {
  public:
   //an image transmission from given mobile to the server
   static void receive_image_packet(int mobile_index, int image[3]);
+  static void percolate_new_image(int mobile_index);
 
   SC_HAS_PROCESS(mobile);
 
