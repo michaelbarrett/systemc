@@ -29,10 +29,27 @@ void mobile :: prc_rx() {
     wait(ev_image_to_mobile);  //wait until an image is sent to mobile
     cout << "MOBILE: The image size = 8 MB." << endl;
     cout << "MOBILE: The first ROI of the image is {" <<
-      m1_display_image_buffer[0][0] << ", " << 
-      m1_display_image_buffer[0][1] << ", " << 
-      m1_display_image_buffer[0][2] << ", " << 
-      m1_display_image_buffer[0][3] << "}" << endl;
+      m0_display_image_buffer[0][0] << ", " << 
+      m0_display_image_buffer[0][1] << ", " << 
+      m0_display_image_buffer[0][2] << ", " << 
+      m0_display_image_buffer[0][3] << "}" << endl;
+    cout << "{" <<
+      m0_display_image_buffer[1][0] << ", " << 
+      m0_display_image_buffer[1][1] << ", " << 
+      m0_display_image_buffer[1][2] << ", " << 
+      m0_display_image_buffer[1][3] << "}" << endl;
+    cout << "{" <<
+      m0_display_image_buffer[2][0] << ", " << 
+      m0_display_image_buffer[2][1] << ", " << 
+      m0_display_image_buffer[2][2] << ", " << 
+      m0_display_image_buffer[2][3] << "}" << endl;
+    cout << "{" <<
+      m0_display_image_buffer[3][0] << ", " << 
+      m0_display_image_buffer[3][1] << ", " << 
+      m0_display_image_buffer[3][2] << ", " << 
+      m0_display_image_buffer[3][3] << "}" << endl;    
+    sc_time t = sc_time_stamp();
+    cout << "MOBILE: TIME = " << t << endl;
     wait();
   }
 }
@@ -59,9 +76,15 @@ void mobile :: receive_image_packet(int mobile_index, int image_packet[4]) {
        << mobile_index << "." << endl;
   cout << "MOBILE.RECEIVE_IMAGE: Packet is " << image_packet[0] << ", " << image_packet[1] << ", " << image_packet[2] << ", " << image_packet[3] << endl;
   //copy image packet to display_image_buffer
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < 4; i++) {
     m0_display_image_buffer[m0_image_packet_index][i] = image_packet[i];
+    cout << "MRI LOOP: adding " << image_packet[i] << " to index " << i << endl;
   }
+  cout << "MRI COPY TEST: m0_image_packet_index = " << m0_image_packet_index << endl;
+  cout << "MRI COPY TEST: " << m0_display_image_buffer[m0_image_packet_index][0] <<
+    " " << m0_display_image_buffer[m0_image_packet_index][1] <<
+    " " << m0_display_image_buffer[m0_image_packet_index][2] <<
+    " " << m0_display_image_buffer[m0_image_packet_index][3] << endl;
   m0_image_packet_index += 1;
   ev_image_to_mobile.notify();
 }
