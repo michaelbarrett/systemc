@@ -1,4 +1,5 @@
 //server.h
+#include "constants.h"
 #include "systemc.h"
 
 SC_MODULE (server) {
@@ -10,8 +11,9 @@ SC_MODULE (server) {
   static sc_event ev_receive; //internal event
   static sc_event ev_transmit; //internal event
 
+  static int image_size[2]; //xsize, ysize
   //{{MAXx, MAXy}, {P1x, P1y, P2x, P2y}, [...ROI]}, {...}
-  static int image_set[50][50][50];
+  static int image_set[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH];
 
   void prc_tx(); //used to send images
   void prc_rx(); //X (used to receive gaze data)

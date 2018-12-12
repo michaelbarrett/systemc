@@ -4,18 +4,35 @@
 
 sc_event mobile :: ev_image_to_mobile; //indicates an image was sent to a mobile
 
-int mobile :: current_display_image[50][50];
+//current display image is [0] - [4]
+int mobile :: m0_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
+int mobile :: m1_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
+int mobile :: m2_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
+int mobile :: m0_image_packet_index = 0; //fills up over time
+int mobile :: m1_image_packet_index = 0;
+int mobile :: m2_image_packet_index = 0;
+//current gaze point
+int mobile :: gaze_point[2] = {((IMAGE_SIZE_X / 2) - 1),
+			       ((IMAGE_SIZE_Y / 2) - 1)}; //center of image
+
+//mobile gaze UFO movement
+void mobile :: ufo() {
+  while(true) {
+    
+    wait();
+  }
+}
 
 //mobile receiver -- receives images
 void mobile :: prc_rx() {
   while(true) {
     wait(ev_image_to_mobile);  //wait until an image is sent to mobile
     cout << "MOBILE: The image size = 8 MB." << endl;
-    /*cout << "MOBILE: The first ROI of the image is {" <<
-      current_display_image[1][0] << ", " << 
-      current_display_image[1][1] << ", " << 
-      current_display_image[1][2] << ", " << 
-      current_display_image[1][3] << "}" << endl;*/
+    cout << "MOBILE: The first ROI of the image is {" <<
+      m1_display_image_buffer[0][0] << ", " << 
+      m1_display_image_buffer[0][1] << ", " << 
+      m1_display_image_buffer[0][2] << ", " << 
+      m1_display_image_buffer[0][3] << "}" << endl;
     wait();
   }
 }
@@ -36,15 +53,15 @@ void mobile :: prc_tx() {
   }
 }
 
-//an image transmission from the server
-void mobile :: receive_image(int mobile_index, int image[][50]) {
-  cout << "MOBILE.RECEIVE_IMAGE: An image was sent to mobile "
-       << mobile_index << "." << endl;  
-  //current_display_image = image;
+//receive an image packet from the server
+void mobile :: receive_image_packet(int mobile_index, int image_packet[4]) {
+  cout << "MOBILE.RECEIVE_IMAGE: An image packet was sent to mobile "
+       << mobile_index << "." << endl;
+  cout << "MOBILE.RECEIVE_IMAGE: Packet is " << image_packet[0] << ", " << image_packet[1] << ", " << image_packet[2] << ", " << image_packet[3] << endl;
+  //copy image packet to display_image_buffer
   for (int i = 0; i < 50; i++) {
-    for (int j = 0; j < 50; j++) {
-      current_display_image[i][j] = image[i][j];
-    }
-  }  
+    m0_display_image_buffer[m0_image_packet_index][i] = image_packet[i];
+  }
+  m0_image_packet_index += 1;
   ev_image_to_mobile.notify();
 }
