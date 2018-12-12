@@ -54,7 +54,7 @@ void server :: prc_tx() {
     free = false;
     cout << "SERVER: Sending image packet " << i << " to mobile 0" << endl;
     mobile::receive_image_packet(0, image_set[i]); //mobile receives pointer packet
-    wait(); //give mobiles a clock
+    wait(1600, SC_MS); //it takes 8 seconds to send an image, 1.6 for one packet of 5
 
     //now, receive -- we are now free
     free = true;

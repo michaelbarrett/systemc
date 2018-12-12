@@ -8,10 +8,9 @@ SC_MODULE (mobile) {
 
   static int m0_display_image_buffer[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH];
   static int m1_display_image_buffer[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH];
-  static int m2_display_image_buffer[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH];
   static int m0_image_packet_index;
   static int m1_image_packet_index;
-  static int m2_image_packet_index;
+  static int frame;
   static int gaze_point[2]; //{x, y}
 
   void ufo();

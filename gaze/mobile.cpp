@@ -7,10 +7,10 @@ sc_event mobile :: ev_image_to_mobile; //indicates an image was sent to a mobile
 //current display image is [0] - [4]
 int mobile :: m0_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
 int mobile :: m1_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
-int mobile :: m2_display_image_buffer[(PACKETS_PER_IMAGE * IMAGE_AMOUNT)][PACKET_ARRAY_LENGTH] = {0};
-int mobile :: m0_image_packet_index = 5; //fills up over time --
-int mobile :: m1_image_packet_index = 5; //the displayed image is not directly
-int mobile :: m2_image_packet_index = 5; //written to.
+int mobile :: m0_image_packet_index = 5; //fills up over time; displayed image (0-4)
+int mobile :: m1_image_packet_index = 5; //is not directly written to, but shifted in
+//current frame
+int mobile :: frame = 0;
 //current gaze point
 int mobile :: gaze_point[2] = {((IMAGE_SIZE_X / 2) - 1),
 			       ((IMAGE_SIZE_Y / 2) - 1)}; //center of image
@@ -82,8 +82,9 @@ void mobile :: prc_rx() {
     cout << "MOBILE: TIME = " << t << endl;
     int time_ms = t.value()/pow(10,9); //time in ms as int
     cout << "MOBILE: TVAL = " << time_ms << endl; 
-    if (time_ms >= 120 && time_ms <= 140) {
-      percolate_new_image(0);
+    if (time_ms > 150000 && frame == 0) { //display @ 150,000 MS = 150 sec
+      percolate_new_image(0); //mobile 0 -- percolate new image
+      frame = 1;
     }
     wait();
   }
@@ -99,8 +100,11 @@ void mobile :: prc_tx() {
       //if no, wait a random time (wait(random))
       //if yes, send from server when network signal goes high (signal = data ready)
       server::receive_message(0, 1);
-      server::receive_message(1, 1);	
+      server::receive_message(1, 1);
     }
+    //wait random time
+    int random_time = rand() % 10000;
+    wait(random_time, SC_MS); //WAIT RANDOM TIME -- from 0ms to 10,000ms (10 sec)
     wait();
   }
 }

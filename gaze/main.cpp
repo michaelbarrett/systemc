@@ -22,7 +22,7 @@ int sc_main(int argc, char* argv[]) {
   //signal trace
   sc_trace(tfile, c1, "c1");
 
-  sc_start(150, SC_MS); //1000 MS simulation
+  sc_start(160000, SC_MS); //250,000 MS simulation
   sc_close_vcd_trace_file(tfile);
 
   return 0;
