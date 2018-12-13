@@ -100,7 +100,7 @@ void mobile :: ufo() {
 	for (int i = 0; i < tuple_counter; i++) {
 	  m0_packet[i][0] = 0;
 	  m0_packet[i][1] = 0;
-	  m0_packet[i][2] = 0; 
+	  m0_packet[i][2] = 0;
 	}
 	tuple_counter = 0;
 	packet_counter += 1; //inc packet counter before we start filling next packet
@@ -173,6 +173,22 @@ void mobile :: prc_rx() {
     if (time_ms > 150000 && frame == 0) { //display @ 150,000 MS = 150 sec
       percolate_new_image(0); //mobile 0 -- percolate new image
       frame = 1;
+    }
+    if (time_ms > 175000 && frame == 1) {
+      percolate_new_image(0);
+      frame = 2;
+    }
+    if (time_ms > 200000 && frame == 2) {
+      percolate_new_image(0);
+      frame = 3;
+    }
+    if (time_ms > 225000 && frame == 3) {
+      percolate_new_image(0);
+      frame = 4;
+    }
+    if (time_ms > 250000 && frame == 4) {
+      percolate_new_image(0);
+      frame = 5;
     }
     //TODO: Show the other images in timeline sequence
     wait();
