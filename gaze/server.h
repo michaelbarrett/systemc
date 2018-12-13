@@ -14,6 +14,7 @@ SC_MODULE (server) {
   static int image_size[2]; //xsize, ysize
   //{{MAXx, MAXy}, {P1x, P1y, P2x, P2y}, [...ROI]}, {...}
   static int image_set[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH];
+  static int packets_received[MAX_GAZE_PACKET_AMT][MAX_GAZE_PACKET_SIZE][3];
 
   void prc_tx(); //used to send images
   void prc_rx(); //X (used to receive gaze data)
@@ -21,7 +22,9 @@ SC_MODULE (server) {
   static bool is_free(); //getter
 
  public:
-  static void receive_message(int mobile_index, int message); //a request from a mobile to use the network
+  //a request from a mobile to use the network
+  static void receive_tuple_packet(int mobile_index,
+				   int packet_num, int tuple_num, int tuple[3]);
 
   SC_HAS_PROCESS(server);
 

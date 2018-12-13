@@ -45,6 +45,7 @@ int server :: image_set[PACKETS_PER_IMAGE * IMAGE_AMOUNT][PACKET_ARRAY_LENGTH] =
    {470, 20, 600, 900},
    {670, 40, 950, 550},
    {680, 700, 1000, 1000}};
+int server :: packets_received[MAX_GAZE_PACKET_AMT][MAX_GAZE_PACKET_SIZE][3];
 
 //server transmitter -- sends image data
 void server :: prc_tx() {
@@ -75,7 +76,7 @@ void server :: prc_rx() {
     //receive
     //wait(ev_network_request);
     cout << "SERVER: Receiving; waiting for request to use the network." << endl;
-    wait(ev_network_request);
+    wait(sc_time(1000, SC_NS), ev_network_request); //window time specified here
     //notify transmit
     ev_transmit.notify();
     wait();
@@ -88,9 +89,14 @@ bool server :: is_free() {
 }
 
 //a request from a mobile to use the server (1: gaze data)
-void server :: receive_message(int mobile_index, int message) {
+void server :: receive_tuple_packet(int mobile_index,
+				    int packet_num,
+				    int tuple_num, int tuple[3]) {
   cout << "SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile "
        << mobile_index << "." << endl;
   cout << "Mobile " << mobile_index << " is sending gaze data." << endl;
+  packets_received[packet_num][tuple_num][0] = tuple[0];
+  packets_received[packet_num][tuple_num][1] = tuple[1];
+  packets_received[packet_num][tuple_num][2] = tuple[2];  
   ev_network_request.notify();
 }
