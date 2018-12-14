@@ -55,6 +55,7 @@ void server :: prc_tx() {
     free = false;
     cout << "SERVER: Sending image packet " << i << " to mobile 0" << endl;
     mobile::receive_image_packet(0, image_set[i]); //mobile receives pointer packet
+    //PARAMETER: IMAGE PACKET SENDING TIME
     wait(1600, SC_MS); //it takes 8 seconds to send an image, 1.6 for one packet of 5
 
     //now, receive -- we are now free
@@ -76,7 +77,8 @@ void server :: prc_rx() {
     //receive
     //wait(ev_network_request);
     cout << "SERVER: Receiving; waiting for request to use the network." << endl;
-    wait(sc_time(1000, SC_NS), ev_network_request); //window time specified here
+    //PARAMETER: GAZE PACKET SENDING WINDOW TIME
+    wait(sc_time(1000, SC_NS), ev_network_request); //window time = 1 sec
     //notify transmit
     ev_transmit.notify();
     wait();
@@ -92,11 +94,15 @@ bool server :: is_free() {
 void server :: receive_tuple_packet(int mobile_index,
 				    int packet_num,
 				    int tuple_num, int tuple[3]) {
-  cout << "SERVER.RECEIVE_MESSAGE: A request was sent to server from mobile "
+  cout << "SERVER.RECEIVE_TUPLE_PACKET: A request was sent to server from mobile "
        << mobile_index << "." << endl;
   cout << "Mobile " << mobile_index << " is sending gaze data." << endl;
   packets_received[packet_num][tuple_num][0] = tuple[0];
   packets_received[packet_num][tuple_num][1] = tuple[1];
-  packets_received[packet_num][tuple_num][2] = tuple[2];  
+  packets_received[packet_num][tuple_num][2] = tuple[2];
+  cout << "SERVER.RECEIVE_TUPLE_PACKET: Server received packet containing tuple ("
+       << tuple[0] << ", "
+       << tuple[1] << ", "
+       << tuple[2] << ") -- format is (ROI, start time [MS], end time [MS])" << endl;
   ev_network_request.notify();
 }

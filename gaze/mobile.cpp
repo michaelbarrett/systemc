@@ -71,19 +71,16 @@ void mobile :: ufo() {
 
       //make a tuple: (ROI, start time [MS], end time [MS]) and packetize
       m0_packet[tuple_counter][0] = roi;
-      m0_packet[tuple_counter][1] = time_ms;
-      cout << "time_ms: " << time_ms << endl;   
+      m0_packet[tuple_counter][1] = time_ms;      
       m0_packet[tuple_counter][2] = time_ms + random_time;
-      cout << "time_ms + random_time: " << (time_ms + random_time) << endl;
       tuple_counter += 1;
-      cout << "m0_packet packet contents: " << endl;
       //print vector
-      for (int i = 0; i < tuple_counter; i++) {
+      /*for (int i = 0; i < tuple_counter; i++) {
 	cout << "Tuple " << i << ": ("
 	     << m0_packet[i][0] << ", "
 	     << m0_packet[i][1] << ", "
 	     << m0_packet[i][2] << ")" << endl;
-      }
+	     }*/
     }
     //after dealing with tuple creation, send a packet if we have >=20 tuples ready
     if (tuple_counter >= MIN_GAZE_PACKET_SIZE) { //20 tuples
@@ -94,6 +91,7 @@ void mobile :: ufo() {
 	//if no, wait a random time (wait(random))
 	//if yes, send from server when network signal goes high (signal = data ready)
 	for (int i = 0; i < tuple_counter; i++) { //server receives entire packet
+	  cout << "Server is receiving gaze data packet " << packet_counter << endl;
 	  server::receive_tuple_packet(0, packet_counter, i, m0_packet[i]); 
 	}
 	//now clear the m0_packet, and reset tuple_counter
@@ -120,22 +118,22 @@ void mobile :: prc_rx() {
       m0_display_image_buffer[0][0] << ", " << 
       m0_display_image_buffer[0][1] << ", " << 
       m0_display_image_buffer[0][2] << ", " << 
-      m0_display_image_buffer[0][3] << "}" << endl;
+      m0_display_image_buffer[0][3] << "} ~ ";
     cout << "ROI 1 ~ {" <<
       m0_display_image_buffer[1][0] << ", " << 
       m0_display_image_buffer[1][1] << ", " << 
       m0_display_image_buffer[1][2] << ", " << 
-      m0_display_image_buffer[1][3] << "}" << endl;
+      m0_display_image_buffer[1][3] << "} ~ ";
     cout << "ROI 2 ~ {" <<
       m0_display_image_buffer[2][0] << ", " << 
       m0_display_image_buffer[2][1] << ", " << 
       m0_display_image_buffer[2][2] << ", " << 
-      m0_display_image_buffer[2][3] << "}" << endl;
+      m0_display_image_buffer[2][3] << "} ~ ";
     cout << "ROI 3 ~ {" <<
       m0_display_image_buffer[3][0] << ", " << 
       m0_display_image_buffer[3][1] << ", " << 
       m0_display_image_buffer[3][2] << ", " << 
-      m0_display_image_buffer[3][3] << "}" << endl;
+      m0_display_image_buffer[3][3] << "} ~ ";
     cout << "ROI 4 ~ {" <<
       m0_display_image_buffer[4][0] << ", " << 
       m0_display_image_buffer[4][1] << ", " << 
@@ -145,27 +143,28 @@ void mobile :: prc_rx() {
       m0_display_image_buffer[5][0] << ", " << 
       m0_display_image_buffer[5][1] << ", " << 
       m0_display_image_buffer[5][2] << ", " << 
-      m0_display_image_buffer[5][3] << "}" << endl;
+      m0_display_image_buffer[5][3] << "} ~ ";
     cout << "ROI 1 ~ {" <<
       m0_display_image_buffer[6][0] << ", " << 
       m0_display_image_buffer[6][1] << ", " << 
       m0_display_image_buffer[6][2] << ", " << 
-      m0_display_image_buffer[6][3] << "}" << endl;
+      m0_display_image_buffer[6][3] << "} ~ ";
     cout << "ROI 2 ~ {" <<
       m0_display_image_buffer[7][0] << ", " << 
       m0_display_image_buffer[7][1] << ", " << 
       m0_display_image_buffer[7][2] << ", " << 
-      m0_display_image_buffer[7][3] << "}" << endl;
+      m0_display_image_buffer[7][3] << "} ~ ";
     cout << "ROI 3 ~ {" <<
       m0_display_image_buffer[8][0] << ", " << 
       m0_display_image_buffer[8][1] << ", " << 
       m0_display_image_buffer[8][2] << ", " << 
-      m0_display_image_buffer[8][3] << "}" << endl;
+      m0_display_image_buffer[8][3] << "} ~ ";
     cout << "ROI 4 ~ {" <<
       m0_display_image_buffer[9][0] << ", " << 
       m0_display_image_buffer[9][1] << ", " << 
       m0_display_image_buffer[9][2] << ", " << 
-      m0_display_image_buffer[9][3] << "}" << endl;            
+      m0_display_image_buffer[9][3] << "}" << endl;
+    cout << "Memory Usage Monitor: " << m0_image_packet_index << endl;
     sc_time t = sc_time_stamp();
     cout << "MOBILE: TIME = " << t << endl;
     int time_ms = t.value()/pow(10,9); //time in ms as int
@@ -197,19 +196,21 @@ void mobile :: prc_rx() {
 
 //receive an image packet from the server
 void mobile :: receive_image_packet(int mobile_index, int image_packet[4]) {
-  cout << "MOBILE.RECEIVE_IMAGE: An image packet was sent to mobile "
-       << mobile_index << "." << endl;
-  cout << "MOBILE.RECEIVE_IMAGE: Packet is " << image_packet[0] << ", " << image_packet[1] << ", " << image_packet[2] << ", " << image_packet[3] << endl;
+  /*if (image_packet[0] == 0 && image_packet[1] == 0 && image_packet[2] == 0 && image_packet[3] == 0) {
+    cout << "MOBILE.RECEIVE_IMAGE: No image to receive." << endl;
+    return;
+    }*/
+  cout << "MOBILE.RECEIVE_IMAGE: Received packet is " << image_packet[0] << ", " << image_packet[1] << ", " << image_packet[2] << ", " << image_packet[3] << endl;
   //copy image packet to display_image_buffer
   for (int i = 0; i < 4; i++) {
     m0_display_image_buffer[m0_image_packet_index][i] = image_packet[i];
-    cout << "MRI LOOP: adding " << image_packet[i] << " to index " << i << endl;
+    //cout << "MRI LOOP: adding " << image_packet[i] << " to index " << i << endl;
   }
-  cout << "MRI COPY TEST: m0_image_packet_index = " << m0_image_packet_index << endl;
+  /*cout << "MRI COPY TEST~ m0_image_packet_index: " << m0_image_packet_index << endl;
   cout << "MRI COPY TEST: " << m0_display_image_buffer[m0_image_packet_index][0] <<
     " " << m0_display_image_buffer[m0_image_packet_index][1] <<
     " " << m0_display_image_buffer[m0_image_packet_index][2] <<
-    " " << m0_display_image_buffer[m0_image_packet_index][3] << endl;
+    " " << m0_display_image_buffer[m0_image_packet_index][3] << endl;*/
   m0_image_packet_index += 1;
   ev_image_to_mobile.notify();
 }
