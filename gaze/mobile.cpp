@@ -164,11 +164,109 @@ void mobile :: prc_rx() {
       m0_display_image_buffer[9][1] << ", " << 
       m0_display_image_buffer[9][2] << ", " << 
       m0_display_image_buffer[9][3] << "}" << endl;
-    cout << "Memory Usage Monitor: " << m0_image_packet_index << endl;
+    cout << "MOBILE: THIRD IMAGE: ROI 0 ~ {" <<
+      m0_display_image_buffer[10][0] << ", " << 
+      m0_display_image_buffer[10][1] << ", " << 
+      m0_display_image_buffer[10][2] << ", " << 
+      m0_display_image_buffer[10][3] << "} ~ ";
+    cout << "ROI 1 ~ {" <<
+      m0_display_image_buffer[11][0] << ", " << 
+      m0_display_image_buffer[11][1] << ", " << 
+      m0_display_image_buffer[11][2] << ", " << 
+      m0_display_image_buffer[11][3] << "} ~ ";
+    cout << "ROI 2 ~ {" <<
+      m0_display_image_buffer[12][0] << ", " << 
+      m0_display_image_buffer[12][1] << ", " << 
+      m0_display_image_buffer[12][2] << ", " << 
+      m0_display_image_buffer[12][3] << "} ~ ";
+    cout << "ROI 3 ~ {" <<
+      m0_display_image_buffer[13][0] << ", " << 
+      m0_display_image_buffer[13][1] << ", " << 
+      m0_display_image_buffer[13][2] << ", " << 
+      m0_display_image_buffer[13][3] << "} ~ ";
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[14][0] << ", " << 
+      m0_display_image_buffer[14][1] << ", " << 
+      m0_display_image_buffer[14][2] << ", " << 
+      m0_display_image_buffer[14][3] << "}" << endl;
+    cout << "MOBILE: FOURTH IMAGE: ROI 0 ~ {" <<
+      m0_display_image_buffer[15][0] << ", " << 
+      m0_display_image_buffer[15][1] << ", " << 
+      m0_display_image_buffer[15][2] << ", " << 
+      m0_display_image_buffer[15][3] << "} ~ ";
+    cout << "ROI 1 ~ {" <<
+      m0_display_image_buffer[16][0] << ", " << 
+      m0_display_image_buffer[16][1] << ", " << 
+      m0_display_image_buffer[16][2] << ", " << 
+      m0_display_image_buffer[16][3] << "} ~ ";
+    cout << "ROI 2 ~ {" <<
+      m0_display_image_buffer[17][0] << ", " << 
+      m0_display_image_buffer[17][1] << ", " << 
+      m0_display_image_buffer[17][2] << ", " << 
+      m0_display_image_buffer[17][3] << "} ~ ";
+    cout << "ROI 3 ~ {" <<
+      m0_display_image_buffer[18][0] << ", " << 
+      m0_display_image_buffer[18][1] << ", " << 
+      m0_display_image_buffer[18][2] << ", " << 
+      m0_display_image_buffer[18][3] << "} ~ ";
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[19][0] << ", " << 
+      m0_display_image_buffer[19][1] << ", " << 
+      m0_display_image_buffer[19][2] << ", " << 
+      m0_display_image_buffer[19][3] << "}" << endl;
+    cout << "MOBILE: FIFTH IMAGE: ROI 0 ~ {" <<
+      m0_display_image_buffer[20][0] << ", " << 
+      m0_display_image_buffer[20][1] << ", " << 
+      m0_display_image_buffer[20][2] << ", " << 
+      m0_display_image_buffer[20][3] << "} ~ ";
+    cout << "ROI 1 ~ {" <<
+      m0_display_image_buffer[21][0] << ", " << 
+      m0_display_image_buffer[21][1] << ", " << 
+      m0_display_image_buffer[21][2] << ", " << 
+      m0_display_image_buffer[21][3] << "} ~ ";
+    cout << "ROI 2 ~ {" <<
+      m0_display_image_buffer[22][0] << ", " << 
+      m0_display_image_buffer[22][1] << ", " << 
+      m0_display_image_buffer[22][2] << ", " << 
+      m0_display_image_buffer[22][3] << "} ~ ";
+    cout << "ROI 3 ~ {" <<
+      m0_display_image_buffer[23][0] << ", " << 
+      m0_display_image_buffer[23][1] << ", " << 
+      m0_display_image_buffer[23][2] << ", " << 
+      m0_display_image_buffer[23][3] << "} ~ ";
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[24][0] << ", " << 
+      m0_display_image_buffer[24][1] << ", " << 
+      m0_display_image_buffer[24][2] << ", " << 
+      m0_display_image_buffer[24][3] << "}" << endl;
+    cout << "MOBILE: SIXTH IMAGE: ROI 0 ~ {" <<
+      m0_display_image_buffer[25][0] << ", " << 
+      m0_display_image_buffer[25][1] << ", " << 
+      m0_display_image_buffer[25][2] << ", " << 
+      m0_display_image_buffer[25][3] << "} ~ ";
+    cout << "ROI 1 ~ {" <<
+      m0_display_image_buffer[26][0] << ", " << 
+      m0_display_image_buffer[26][1] << ", " << 
+      m0_display_image_buffer[26][2] << ", " << 
+      m0_display_image_buffer[26][3] << "} ~ ";
+    cout << "ROI 2 ~ {" <<
+      m0_display_image_buffer[27][0] << ", " << 
+      m0_display_image_buffer[27][1] << ", " << 
+      m0_display_image_buffer[27][2] << ", " << 
+      m0_display_image_buffer[27][3] << "} ~ ";
+    cout << "ROI 3 ~ {" <<
+      m0_display_image_buffer[28][0] << ", " << 
+      m0_display_image_buffer[28][1] << ", " << 
+      m0_display_image_buffer[28][2] << ", " << 
+      m0_display_image_buffer[28][3] << "} ~ ";
+    cout << "ROI 4 ~ {" <<
+      m0_display_image_buffer[29][0] << ", " << 
+      m0_display_image_buffer[29][1] << ", " << 
+      m0_display_image_buffer[29][2] << ", " << 
+      m0_display_image_buffer[29][3] << "}" << endl;             
     sc_time t = sc_time_stamp();
     cout << "MOBILE: TIME = " << t << endl;
     int time_ms = t.value()/pow(10,9); //time in ms as int
-    cout << "MOBILE: TVAL = " << time_ms << endl; 
     if (time_ms > 150000 && frame == 0) { //display @ 150,000 MS = 150 sec
       percolate_new_image(0); //mobile 0 -- percolate new image
       frame = 1;
