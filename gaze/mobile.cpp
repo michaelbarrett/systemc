@@ -15,6 +15,7 @@ int mobile :: frame = 0;
 int mobile :: gaze_point[2] = {((IMAGE_SIZE_X / 2) - 1),
 			       ((IMAGE_SIZE_Y / 2) - 1)}; //center of image
 int mobile :: m0_packet[MAX_GAZE_PACKET_SIZE][3] = {0};
+int mobile :: m0_packet_to_image_counter = 0;
 
 //mobile gaze UFO movement -- also functions as tx, sends gaze tuple packets
 void mobile :: ufo() {
@@ -302,14 +303,11 @@ void mobile :: receive_image_packet(int mobile_index, int image_packet[4]) {
   //copy image packet to display_image_buffer
   for (int i = 0; i < 4; i++) {
     m0_display_image_buffer[m0_image_packet_index][i] = image_packet[i];
-    //cout << "MRI LOOP: adding " << image_packet[i] << " to index " << i << endl;
+   
   }
-  /*cout << "MRI COPY TEST~ m0_image_packet_index: " << m0_image_packet_index << endl;
-  cout << "MRI COPY TEST: " << m0_display_image_buffer[m0_image_packet_index][0] <<
-    " " << m0_display_image_buffer[m0_image_packet_index][1] <<
-    " " << m0_display_image_buffer[m0_image_packet_index][2] <<
-    " " << m0_display_image_buffer[m0_image_packet_index][3] << endl;*/
   m0_image_packet_index += 1;
+
+  m0_packet_to_image_counter += 1;
   ev_image_to_mobile.notify();
 }
 

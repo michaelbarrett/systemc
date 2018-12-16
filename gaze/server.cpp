@@ -50,13 +50,18 @@ int server :: packets_received[MAX_GAZE_PACKET_AMT][MAX_GAZE_PACKET_SIZE][3];
 //server transmitter -- sends image data
 void server :: prc_tx() {
   int i = 0;
+  int iw = 0;
   while(true) {
     //transmit -- we are busy
     free = false;
     cout << "SERVER: Sending image packet " << i << " to mobile 0" << endl;
-    mobile::receive_image_packet(0, image_set[i]); //mobile receives pointer packet
+    if (iw == 0) {
+      mobile::receive_image_packet(0, image_set[i]); //mobile receives pointer packet
+      i += 1;
+    }
     //PARAMETER: IMAGE PACKET SENDING TIME
-    wait(1600, SC_MS); //it takes 8 seconds to send an image, 1.6 for one packet of 5
+    //wait(1600, SC_MS); //1Mbps: takes 8 seconds to send an image, 1.6 for one packet
+    wait(16, SC_MS);   //512kbps: takes 8 sec, 0.0156 for one packet
 
     //now, receive -- we are now free
     free = true;
@@ -65,7 +70,16 @@ void server :: prc_tx() {
     //wait for "transmit" event when reception is finished
     wait(ev_transmit);
 
-    i += 1; //point i to next packet
+    if ((i == 4 || i == 9 || i == 14 || i == 19 || i == 24 || i == 29) && iw == 0) {
+      iw = 1;
+    }
+    else if (iw > 0) {
+      iw += 1;
+      if (iw == 511) { //5-2 = 3 extra cycles, thus 5+3 = 8 total cycles = 8 Mb
+	             //511-2 = 509 extra cycles, thus 509+3 = 512 total cycles = 8 Mb
+	iw = 0;
+      }
+    }
     wait();
   }
 }

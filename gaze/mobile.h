@@ -18,6 +18,7 @@ SC_MODULE (mobile) {
   static int frame;
   static int gaze_point[2]; //{x, y}
   static int m0_packet[MAX_GAZE_PACKET_SIZE][3];
+  static int m0_packet_to_image_counter;
 
   void ufo(); //used for gaze movement & as a transmitter to send gaze data
   void prc_rx(); //used to receive images
