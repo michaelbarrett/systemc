@@ -60,8 +60,8 @@ void server :: prc_tx() {
       i += 1;
     }
     //PARAMETER: IMAGE PACKET SENDING TIME
-    //wait(1600, SC_MS); //1Mbps: takes 8 seconds to send an image, 1.6 for one packet
-    wait(16, SC_MS);   //512kbps: takes 8 sec, 0.0156 for one packet
+    wait(1600, SC_MS); //1Mbps: takes 8 seconds to send an image, 1.6 for one packet
+    //wait(16, SC_MS);   //512kbps: takes 8 sec, 0.0156 for one packet
 
     //now, receive -- we are now free
     free = true;
@@ -75,7 +75,7 @@ void server :: prc_tx() {
     }
     else if (iw > 0) {
       iw += 1;
-      if (iw == 511) { //5-2 = 3 extra cycles, thus 5+3 = 8 total cycles = 8 Mb
+      if (iw == 5) { //5-2 = 3 extra cycles, thus 5+3 = 8 total cycles = 8 Mb
 	             //511-2 = 509 extra cycles, thus 509+3 = 512 total cycles = 8 Mb
 	iw = 0;
       }
